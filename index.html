@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHOTON PLAYER</title>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #player {
+            width: 392px;
+            height: 221px;
+        }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .result-item h3 {
+            margin-top: 0;
+        }
+
+        .result-item .player {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+
+        .result-item .player iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .result-item .buttons {
+            margin-top: 10px;
+        }
+
+        .result-item .buttons button {
+            margin-right: 5px;
+        }
+
+        .result-item .add-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result-item .play-button {
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result-item .play-button:hover,
+        .result-item .add-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Search and Play</h1>
+    <div>
+        <input type="text" id="searchInput" placeholder="Enter song or artist">
+        <button onclick="search()">Search</button>
+        <button onclick="clearSearchResults()">&#10005;</button>
+    </div>
+
+    <div id="results"></div>
+
+    <h2>Playlist</h2>
+    <div id="playlist"></div>
+    <button onclick="clearPlaylist()">Clear Playlist</button>
+    <button onclick="shuffleAndPlay()">Shuffle and Play</button>
+
+    <div id="player"></div>
+
+    <script>
+        var player;
+        var playlistItems;
+        var currentVideoIndex = 0;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '221',
+                width: '392',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player is ready to receive commands
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                // Video has ended, play the next video
+                currentVideoIndex++;
+                if (currentVideoIndex < playlistItems.length) {
+                    playVideo(playlistItems[currentVideoIndex].videoId);
+                } else {
+                    currentVideoIndex = 0;
+                    player.stopVideo();
+                }
+            }
+        }
+
+        function search() {
+            var query = document.getElementById("searchInput").value;
+            var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&key=AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA";
+
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    displayResults(response);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
+
+        function displayResults(response) {
+            var results = document.getElementById("results");
+            results.innerHTML = "";
+
+            for (var i = 0; i < response.items.length; i++) {
+                var video = response.items[i];
+                var videoId = video.id.videoId;
+                var videoTitle = video.snippet.title;
+
+                var div = document.createElement("div");
+                div.classList.add("result-item");
+
+                var title = document.createElement("h3");
+                title.textContent = videoTitle;
+
+                var player = document.createElement("div");
+                player.classList.add("player");
+                var iframe = document.createElement("iframe");
+                iframe.src = "https://www.youtube.com/embed/" + videoId;
+                iframe.width = "560";
+                iframe.height = "315";
+                iframe.allowfullscreen = true;
+                player.appendChild(iframe);
+
+                var buttons = document.createElement("div");
+                buttons.classList.add("buttons");
+                var addButton = document.createElement("button");
+                addButton.classList.add("add-button");
+                addButton.textContent = "Add to Playlist";
+                addButton.addEventListener("click", function(id, title) {
+                    return function() {
+                        addToPlaylist(id, title);
+                    };
+                }(videoId, videoTitle));
+
+                var playButton = document.createElement("button");
+                playButton.classList.add("play-button");
+                playButton.textContent = "Play Video";
+                playButton.addEventListener("click", function(id) {
+                    return function() {
+                        playVideo(id);
+                    };
+                }(videoId));
+
+                buttons.appendChild(addButton);
+                buttons.appendChild(playButton);
+
+                div.appendChild(title);
+                div.appendChild(player);
+                div.appendChild(buttons);
+
+                results.appendChild(div);
+            }
+        }
+
+        function addToPlaylist(videoId, videoTitle) {
+            var playlist = localStorage.getItem("playlist");
+            playlistItems = playlist ? JSON.parse(playlist) : [];
+
+            playlistItems.push({
+                videoId: videoId,
+                videoTitle: videoTitle
+            });
+
+            localStorage.setItem("playlist", JSON.stringify(playlistItems));
+
+            displayPlaylist();
+        }
+
+        function displayPlaylist() {
+            var playlistDiv = document.getElementById("playlist");
+            playlistDiv.innerHTML = "";
+
+            var storedPlaylist = localStorage.getItem("playlist");
+            if (storedPlaylist) {
+                playlistItems = JSON.parse(storedPlaylist);
+                for (var i = 0; i < playlistItems.length; i++) {
+                    var listItem = document.createElement("p");
+                    var playButton = document.createElement("button");
+
+                    listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + playlistItems[i].videoTitle;
+
+                    playButton.textContent = "Play";
+                    playButton.addEventListener("click", function(index) {
+                        return function() {
+                            currentVideoIndex = index;
+                            playVideo(playlistItems[currentVideoIndex].videoId);
+                        };
+                    }(i));
+
+                    listItem.appendChild(playButton);
+                 
+                    playlistDiv.appendChild(listItem);
+                }
+            } else {
+                playlistDiv.innerHTML = "Playlist is empty";
+            }
+        }
+
+        function playVideo(videoId) {
+            if (player) {
+                player.loadVideoById(videoId);
+                player.playVideo();
+            }
+        }
+
+        function clearPlaylist() {
+            localStorage.removeItem("playlist");
+            playlistItems = [];
+            displayPlaylist();
+            currentVideoIndex = 0;
+            if (player) {
+                player.stopVideo();
+            }
+        }
+
+        function shuffleAndPlay() {
+            var storedPlaylist = localStorage.getItem("playlist");
+            if (!storedPlaylist) {
+                alert("Playlist is empty. Add videos to the playlist first.");
+                return;
+            }
+
+            playlistItems = JSON.parse(storedPlaylist);
+            shuffleArray(playlistItems);
+            currentVideoIndex = 0;
+
+            if (player) {
+                playVideo(playlistItems[currentVideoIndex].videoId);
+            }
+        }
+
+        function shuffleArray(array) {
+
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        function clearSearchResults() {
+            var results = document.getElementById("results");
+            results.innerHTML = "";
+
+            document.getElementById("searchInput").value = "";
+        }
+
+        displayPlaylist();
+    </script>
+
+    <script>
+        // Load the YouTube IFrame Player API asynchronously
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    </script>
+</body>
+</html>
