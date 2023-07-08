@@ -12,6 +12,16 @@
 
         .more-button {
             float: right;
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            padding: 0;
+            font-size: 18px;
+        }
+
+        .more-button:focus {
+            outline: none;
         }
 
         .more-dropdown {
@@ -20,24 +30,70 @@
             right: 0;
             background-color: #f9f9f9;
             padding: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .more-dropdown a {
             display: block;
-            margin-bottom: 5px;
+            padding: 5px 10px;
             text-decoration: none;
             color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .more-dropdown a:hover {
+            background-color: #eee;
         }
 
         .playlist-item {
             margin: 5px 0;
             padding: 10px;
             background-color: #f2f2f2;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
         }
 
         .playlist-item strong {
             font-weight: bold;
             margin-right: 5px;
+            width: 30px;
+        }
+
+        .playlist-item p {
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .playlist-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .playlist-controls a {
+            margin-right: 10px;
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .playlist-controls a:hover {
+            color: #333;
+        }
+
+        .playlist-message {
+            text-align: center;
+            font-style: italic;
+            color: #999;
+        }
+
+        /* Responsive Styles */
+
+        @media only screen and (max-width: 600px) {
+            /* Adjustments for smaller screens */
+            .playlist-item {
+                padding: 5px;
+            }
         }
     </style>
 </head>
@@ -56,7 +112,8 @@
     <div id="player"></div>
 
     <script>
-        var player;
+        // JavaScript code goes here
+       var player;
         var playlistItems;
         var currentVideoIndex = 0;
 
@@ -174,6 +231,7 @@
                     var listItem = document.createElement("p");
                     var moreButton = document.createElement("button");
                     var moreDropdown = document.createElement("div");
+                    var playlistControls = document.createElement("div");
                     var playOption = document.createElement("a");
                     var removeOption = document.createElement("a");
 
@@ -182,10 +240,12 @@
                     moreButton.textContent = "More ▼";
                     moreButton.className = "more-button";
                     moreButton.addEventListener("click", function(index) {
+                       
                         return function() {
                             toggleDropdown(index);
                         };
                     }(i));
+                      listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + playlistItems[i].videoTitle;
 
                     moreDropdown.className = "more-dropdown";
 
