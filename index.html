@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHOTON PLAYER</title>
+    <script src="https://kit.fontawesome.com/bac1e9dfb2.js" crossorigin="anonymous"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
@@ -195,17 +196,17 @@
 <body>
     <h1>PHOTON PLAYER</h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
-      <button onclick="clearSearchResults()">&#10005;</button>
+      <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark"></i></button>
     </div>
-    <button onclick="search()">Search</button>
+    <button onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
 
     <div id="results"></div>
 
     <h2>PLAYLIST</h2>
      <div class="shuffle">
-     <button onclick="clearPlaylist()">Clear Playlist</button>
-     <button onclick="stopVideo()">Stop</button>
-    <button onclick="shuffleAndPlay()">Shuffle and Play</button>
+     <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
+     <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
+    <button onclick="shuffleAndPlay()"><i class="fa-solid fa-play fa-xl"></i></button>
       </div>
    <br></br>
     <div id="playlist"></div>
@@ -214,8 +215,8 @@
     
      <div class="backup-restore">
         <input type="text" id="backupInput" placeholder="Backup Code">
-        <button onclick="backupPlaylist()">Backup</button>
-        <button onclick="restorePlaylist()">Restore</button>
+        <button onclick="backupPlaylist()"><i class="fa-solid fa-file-import fa-xl"></i></button>
+        <button onclick="restorePlaylist()"><i class="fa-solid fa-file-import fa-xl"></i></button>
     </div>
 
     <script>
