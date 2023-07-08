@@ -9,12 +9,18 @@
             width: 392px;
             height: 221px;
         }
-
+        body {
+         background-color:#0C0032;
+         width: 350px;
+        padding: 5px;
+        display: block;
+        
+}
         .more-button {
             float: right;
             background: none;
             border: none;
-            color: #999;
+            color: #003994;
             cursor: pointer;
             padding: 0;
             font-size: 18px;
@@ -48,7 +54,7 @@
         .playlist-item {
             margin: 5px 0;
             padding: 10px;
-            background-color: #f2f2f2;
+            background-color: #00B7C6;
             border-radius: 4px;
             display: flex;
             align-items: center;
@@ -58,11 +64,13 @@
             font-weight: bold;
             margin-right: 5px;
             width: 30px;
+            color: #190061;
         }
 
         .playlist-item p {
             margin: 0;
             flex-grow: 1;
+            color: #fff;
         }
 
         .playlist-controls {
@@ -72,13 +80,13 @@
 
         .playlist-controls a {
             margin-right: 10px;
-            color: #999;
+            color: #008EC4;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .playlist-controls a:hover {
-            color: #333;
+            color: #0064B5;
         }
 
         .playlist-message {
@@ -87,18 +95,35 @@
             color: #999;
         }
 
-        /* Responsive Styles */
+        h1, h2 {
+            color: #003994;
+        }
 
-        @media only screen and (max-width: 600px) {
-            /* Adjustments for smaller screens */
-            .playlist-item {
-                padding: 5px;
-            }
+        input[type="text"], button {
+            background-color: #008EC4;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="text"]::placeholder {
+            color: #fff;
+            opacity: 0.7;
+        }
+
+        button:hover {
+            background-color: #0064B5;
+        }
+
+        button:focus {
+            outline: none;
         }
     </style>
 </head>
 <body>
-    <h1>Music Search and Play</h1>
+    <h1>PHOTON PLAYER </h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
     <button onclick="search()">Search</button>
 
@@ -112,8 +137,7 @@
     <div id="player"></div>
 
     <script>
-        // JavaScript code goes here
-       var player;
+        var player;
         var playlistItems;
         var currentVideoIndex = 0;
 
@@ -178,8 +202,8 @@
                 title.textContent = videoTitle;
 
                 player.src = "https://www.youtube.com/embed/" + videoId;
-                player.width = "560";
-                player.height = "315";
+                player.width = "350";
+                player.height = "100";
 
                 addToPlaylistButton.textContent = "Add to Playlist";
                 addToPlaylistButton.addEventListener("click", function(id, title) {
@@ -228,6 +252,9 @@
                     var playlistItem = document.createElement("div");
                     playlistItem.className = "playlist-item";
 
+                   
+
+
                     var listItem = document.createElement("p");
                     var moreButton = document.createElement("button");
                     var moreDropdown = document.createElement("div");
@@ -240,6 +267,7 @@
                     moreButton.textContent = "More ▼";
                     moreButton.className = "more-button";
                     moreButton.addEventListener("click", function(index) {
+          
                        
                         return function() {
                             toggleDropdown(index);
