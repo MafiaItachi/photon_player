@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PHOTON PLAYER</title>
+    <title>Music Search and Play</title>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
@@ -10,75 +10,41 @@
             height: 221px;
         }
 
-        #results {
-            margin-top: 20px;
+        .more-button {
+            float: right;
         }
 
-        .result-item {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .result-item h3 {
-            margin-top: 0;
-        }
-
-        .result-item .player {
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
-            position: relative;
-        }
-
-        .result-item .player iframe {
-            width: 100%;
-            height: 100%;
+        .more-dropdown {
+            display: none;
             position: absolute;
-            top: 0;
-            left: 0;
+            right: 0;
+            background-color: #f9f9f9;
+            padding: 5px;
         }
 
-        .result-item .buttons {
-            margin-top: 10px;
+        .more-dropdown a {
+            display: block;
+            margin-bottom: 5px;
+            text-decoration: none;
+            color: #333;
         }
 
-        .result-item .buttons button {
+        .playlist-item {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        .playlist-item strong {
+            font-weight: bold;
             margin-right: 5px;
-        }
-
-        .result-item .add-button {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .result-item .play-button {
-            background-color: #2196f3;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .result-item .play-button:hover,
-        .result-item .add-button:hover {
-            opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <h1>Music Search and Play</h1>
-    <div>
-        <input type="text" id="searchInput" placeholder="Enter song or artist">
-        <button onclick="search()">Search</button>
-        <button onclick="clearSearchResults()">&#10005;</button>
-    </div>
+    <input type="text" id="searchInput" placeholder="Enter song or artist">
+    <button onclick="search()">Search</button>
 
     <div id="results"></div>
 
@@ -147,47 +113,35 @@
                 var videoTitle = video.snippet.title;
 
                 var div = document.createElement("div");
-                div.classList.add("result-item");
+                var title = document.createElement("p");
+                var player = document.createElement("iframe");
+                var addToPlaylistButton = document.createElement("button");
+                var playVideoButton = document.createElement("button");
 
-                var title = document.createElement("h3");
                 title.textContent = videoTitle;
 
-                var player = document.createElement("div");
-                player.classList.add("player");
-                var iframe = document.createElement("iframe");
-                iframe.src = "https://www.youtube.com/embed/" + videoId;
-                iframe.width = "560";
-                iframe.height = "315";
-                iframe.allowfullscreen = true;
-                player.appendChild(iframe);
+                player.src = "https://www.youtube.com/embed/" + videoId;
+                player.width = "560";
+                player.height = "315";
 
-                var buttons = document.createElement("div");
-                buttons.classList.add("buttons");
-                var addButton = document.createElement("button");
-                addButton.classList.add("add-button");
-                addButton.textContent = "Add to Playlist";
-                addButton.addEventListener("click", function(id, title) {
+                addToPlaylistButton.textContent = "Add to Playlist";
+                addToPlaylistButton.addEventListener("click", function(id, title) {
                     return function() {
                         addToPlaylist(id, title);
                     };
                 }(videoId, videoTitle));
 
-                var playButton = document.createElement("button");
-                playButton.classList.add("play-button");
-                playButton.textContent = "Play Video";
-                playButton.addEventListener("click", function(id) {
+                playVideoButton.textContent = "Play Video";
+                playVideoButton.addEventListener("click", function(id) {
                     return function() {
                         playVideo(id);
                     };
                 }(videoId));
 
-                buttons.appendChild(addButton);
-                buttons.appendChild(playButton);
-
                 div.appendChild(title);
                 div.appendChild(player);
-                div.appendChild(buttons);
-
+                div.appendChild(addToPlaylistButton);
+                div.appendChild(playVideoButton);
                 results.appendChild(div);
             }
         }
@@ -214,22 +168,53 @@
             if (storedPlaylist) {
                 playlistItems = JSON.parse(storedPlaylist);
                 for (var i = 0; i < playlistItems.length; i++) {
+                    var playlistItem = document.createElement("div");
+                    playlistItem.className = "playlist-item";
+
                     var listItem = document.createElement("p");
-                    var playButton = document.createElement("button");
+                    var moreButton = document.createElement("button");
+                    var moreDropdown = document.createElement("div");
+                    var playOption = document.createElement("a");
+                    var removeOption = document.createElement("a");
 
                     listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + playlistItems[i].videoTitle;
 
-                    playButton.textContent = "Play";
-                    playButton.addEventListener("click", function(index) {
+                    moreButton.textContent = "More ▼";
+                    moreButton.className = "more-button";
+                    moreButton.addEventListener("click", function(index) {
                         return function() {
-                            currentVideoIndex = index;
-                            playVideo(playlistItems[currentVideoIndex].videoId);
+                            toggleDropdown(index);
                         };
                     }(i));
 
-                    listItem.appendChild(playButton);
-                 
-                    playlistDiv.appendChild(listItem);
+                    moreDropdown.className = "more-dropdown";
+
+                    playOption.textContent = "Play";
+                    playOption.href = "#";
+                    playOption.addEventListener("click", function(index) {
+                        return function() {
+                            currentVideoIndex = index;
+                            playVideo(playlistItems[currentVideoIndex].videoId);
+                            toggleDropdown(index);
+                        };
+                    }(i));
+
+                    removeOption.textContent = "Remove";
+                    removeOption.href = "#";
+                    removeOption.addEventListener("click", function(index) {
+                        return function() {
+                            removeFromPlaylist(index);
+                            toggleDropdown(index);
+                        };
+                    }(i));
+
+                    moreDropdown.appendChild(playOption);
+                    moreDropdown.appendChild(removeOption);
+
+                    listItem.appendChild(moreButton);
+                    listItem.appendChild(moreDropdown);
+                    playlistItem.appendChild(listItem);
+                    playlistDiv.appendChild(playlistItem);
                 }
             } else {
                 playlistDiv.innerHTML = "Playlist is empty";
@@ -243,6 +228,9 @@
             }
         }
 
+     
+
+
         function clearPlaylist() {
             localStorage.removeItem("playlist");
             playlistItems = [];
@@ -252,6 +240,28 @@
                 player.stopVideo();
             }
         }
+
+        function removeFromPlaylist(index) {
+            if (index >= 0 && index < playlistItems.length) {
+                playlistItems.splice(index, 1);
+                localStorage.setItem("playlist", JSON.stringify(playlistItems));
+                displayPlaylist();
+            }
+        }
+
+        function toggleDropdown(index) {
+            var dropdowns = document.getElementsByClassName("more-dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                if (i === index) {
+                    dropdowns[i].style.display = dropdowns[i].style.display === "none" ? "block" : "none";
+                } else {
+                    dropdowns[i].style.display = "none";
+                }
+            }
+        }
+
+       
+        
 
         function shuffleAndPlay() {
             var storedPlaylist = localStorage.getItem("playlist");
@@ -264,13 +274,13 @@
             shuffleArray(playlistItems);
             currentVideoIndex = 0;
 
+ 
             if (player) {
                 playVideo(playlistItems[currentVideoIndex].videoId);
             }
         }
 
         function shuffleArray(array) {
-
             for (var i = array.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
                 var temp = array[i];
@@ -278,17 +288,12 @@
                 array[j] = temp;
             }
         }
-        function clearSearchResults() {
-            var results = document.getElementById("results");
-            results.innerHTML = "";
-
-            document.getElementById("searchInput").value = "";
-        }
 
         displayPlaylist();
     </script>
 
     <script>
+        // Load the YouTube IFrame Player API asynchronously
         // Load the YouTube IFrame Player API asynchronously
         var tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
