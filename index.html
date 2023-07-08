@@ -9,13 +9,7 @@
             width: 392px;
             height: 221px;
         }
-        body {
-         background-color:#0C0032;
-         width: 350px;
-        padding: 5px;
-        display: block;
-        
-}
+
         .more-button {
             float: right;
             background: none;
@@ -120,10 +114,53 @@
         button:focus {
             outline: none;
         }
+
+        #results {
+            margin-top: 20px;
+        }
+
+        .result-item {
+            margin-bottom: 20px;
+        }
+
+        .result-video {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            background-color: #f2f2f2;
+        }
+
+        .result-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .result-details {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        .result-title {
+            font-size: 18px;
+            color: #0064B5;
+            margin-bottom: 5px;
+        }
+
+        .result-buttons {
+            margin-top: 10px;
+        }
+
+        .result-buttons button {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>PHOTON PLAYER </h1>
+    <h1>Music Search and Play</h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
     <button onclick="search()">Search</button>
 
@@ -194,17 +231,23 @@
                 var videoTitle = video.snippet.title;
 
                 var div = document.createElement("div");
-                var title = document.createElement("p");
-                var player = document.createElement("iframe");
-                var addToPlaylistButton = document.createElement("button");
-                var playVideoButton = document.createElement("button");
+                div.className = "result-item";
 
+                var videoDiv = document.createElement("div");
+                videoDiv.className = "result-video";
+                videoDiv.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
+
+                var detailsDiv = document.createElement("div");
+                detailsDiv.className = "result-details";
+
+                var title = document.createElement("p");
+                title.className = "result-title";
                 title.textContent = videoTitle;
 
-                player.src = "https://www.youtube.com/embed/" + videoId;
-                player.width = "350";
-                player.height = "100";
+                var buttonsDiv = document.createElement("div");
+                buttonsDiv.className = "result-buttons";
 
+                var addToPlaylistButton = document.createElement("button");
                 addToPlaylistButton.textContent = "Add to Playlist";
                 addToPlaylistButton.addEventListener("click", function(id, title) {
                     return function() {
@@ -212,22 +255,27 @@
                     };
                 }(videoId, videoTitle));
 
+                var playVideoButton = document.createElement("button");
                 playVideoButton.textContent = "Play Video";
                 playVideoButton.addEventListener("click", function(id) {
-                    return function() {
-                        playVideo(id);
-                    };
-                }(videoId));
+                return function() {
+                playVideo(id);
+                 };
+                 }(videoId));
+                          buttonsDiv.appendChild(addToPlaylistButton);
+            buttonsDiv.appendChild(playVideoButton);
 
-                div.appendChild(title);
-                div.appendChild(player);
-                div.appendChild(addToPlaylistButton);
-                div.appendChild(playVideoButton);
-                results.appendChild(div);
-            }
+            detailsDiv.appendChild(title);
+            detailsDiv.appendChild(buttonsDiv);
+
+            div.appendChild(videoDiv);
+            div.appendChild(detailsDiv);
+
+            results.appendChild(div);
         }
+    }
 
-        function addToPlaylist(videoId, videoTitle) {
+          function addToPlaylist(videoId, videoTitle) {
             var playlist = localStorage.getItem("playlist");
             playlistItems = playlist ? JSON.parse(playlist) : [];
 
@@ -336,8 +384,7 @@
                 displayPlaylist();
             }
         }
-
-        function toggleDropdown(index) {
+       function toggleDropdown(index) {
             var dropdowns = document.getElementsByClassName("more-dropdown");
             for (var i = 0; i < dropdowns.length; i++) {
                 if (i === index) {
