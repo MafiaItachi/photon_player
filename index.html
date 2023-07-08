@@ -10,6 +10,9 @@
         #player {
             width: 360px;
             height: 221px;
+          
+            overflow: hidden;
+            border-radius: 40px;
         }
       body {
     background: #003994;
@@ -143,7 +146,8 @@
             height: 0;
             padding-bottom: 56.25%;
             background-color: #f2f2f2;
-            border-radius : 20px
+            overflow: hidden;
+            border-radius: 40px;
         }
 
         .result-video iframe {
@@ -161,7 +165,7 @@
 
         .result-title {
             font-size: 18px;
-            color: #0064B5;
+            color: #ffffff;
             margin-bottom: 5px;
         }
 
@@ -196,7 +200,7 @@
 <body>
     <h1>PHOTON PLAYER</h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
-      <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark"></i></button>
+      <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
     </div>
     <button onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
 
