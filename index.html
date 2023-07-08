@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Music Search and Play</title>
+    <title>PHOTON PLAYER</title>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         #player {
-            width: 392px;
+            width: 360px;
             height: 221px;
         }
-
+      body {
+    background: #003994;
+    width: 360px;
+    padding: 5px;
+          }
         .more-button {
             float: right;
             background: none;
@@ -26,11 +30,13 @@
 
         .more-dropdown {
             display: none;
-            position: absolute;
-            right: 0;
-            background-color: #f9f9f9;
+            position: relative;
+            right: 5px;
+            top: 10px;
+            background-color: #00B7C6;
             padding: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+            text-align: right;
         }
 
         .more-dropdown a {
@@ -44,12 +50,15 @@
         .more-dropdown a:hover {
             background-color: #eee;
         }
+       #shuffle button {
+         border-radius: 20px;
+      }
 
         .playlist-item {
             margin: 5px 0;
             padding: 10px;
             background-color: #00B7C6;
-            border-radius: 4px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
         }
@@ -90,7 +99,7 @@
         }
 
         h1, h2 {
-            color: #003994;
+            color: #ffffff;
         }
 
         input[type="text"], button {
@@ -98,8 +107,9 @@
             color: #fff;
             border: none;
             padding: 8px 16px;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
+           border-radius: 18px;
         }
 
         input[type="text"]::placeholder {
@@ -118,7 +128,9 @@
         #results {
             margin-top: 20px;
         }
-
+       #results div {
+      border-radius : 20px;
+        }
         .result-item {
             margin-bottom: 20px;
         }
@@ -129,6 +141,7 @@
             height: 0;
             padding-bottom: 56.25%;
             background-color: #f2f2f2;
+            border-radius : 20px
         }
 
         .result-video iframe {
@@ -140,7 +153,7 @@
         }
 
         .result-details {
-            background-color: #f2f2f2;
+            background-color: #0064B5;
             padding: 10px;
         }
 
@@ -152,26 +165,57 @@
 
         .result-buttons {
             margin-top: 10px;
+          border-radius: 20px;
         }
 
         .result-buttons button {
             margin-right: 10px;
+         border-radius: 20px;
         }
+
+    .backup-restore {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .backup-restore input[type="text"] {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .backup-restore button {
+            background-color: #003994;
+            color: #fff;
+        }
+   
     </style>
 </head>
 <body>
-    <h1>Music Search and Play</h1>
+    <h1>PHOTON PLAYER</h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
+      <button onclick="clearSearchResults()">&#10005;</button>
+    </div>
     <button onclick="search()">Search</button>
 
     <div id="results"></div>
 
-    <h2>Playlist</h2>
-    <div id="playlist"></div>
-    <button onclick="clearPlaylist()">Clear Playlist</button>
+    <h2>PLAYLIST</h2>
+     <div class="shuffle">
+     <button onclick="clearPlaylist()">Clear Playlist</button>
+     <button onclick="stopVideo()">Stop</button>
     <button onclick="shuffleAndPlay()">Shuffle and Play</button>
-
+      </div>
+   <br></br>
+    <div id="playlist"></div>
+    <br></br>
     <div id="player"></div>
+    
+     <div class="backup-restore">
+        <input type="text" id="backupInput" placeholder="Backup Code">
+        <button onclick="backupPlaylist()">Backup</button>
+        <button onclick="restorePlaylist()">Restore</button>
+    </div>
 
     <script>
         var player;
@@ -289,73 +333,7 @@
             displayPlaylist();
         }
 
-        function displayPlaylist() {
-            var playlistDiv = document.getElementById("playlist");
-            playlistDiv.innerHTML = "";
-
-            var storedPlaylist = localStorage.getItem("playlist");
-            if (storedPlaylist) {
-                playlistItems = JSON.parse(storedPlaylist);
-                for (var i = 0; i < playlistItems.length; i++) {
-                    var playlistItem = document.createElement("div");
-                    playlistItem.className = "playlist-item";
-
-                   
-
-
-                    var listItem = document.createElement("p");
-                    var moreButton = document.createElement("button");
-                    var moreDropdown = document.createElement("div");
-                    var playlistControls = document.createElement("div");
-                    var playOption = document.createElement("a");
-                    var removeOption = document.createElement("a");
-
-                    listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + playlistItems[i].videoTitle;
-
-                    moreButton.textContent = "More ▼";
-                    moreButton.className = "more-button";
-                    moreButton.addEventListener("click", function(index) {
-          
-                       
-                        return function() {
-                            toggleDropdown(index);
-                        };
-                    }(i));
-                      listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + playlistItems[i].videoTitle;
-
-                    moreDropdown.className = "more-dropdown";
-
-                    playOption.textContent = "Play";
-                    playOption.href = "#";
-                    playOption.addEventListener("click", function(index) {
-                        return function() {
-                            currentVideoIndex = index;
-                            playVideo(playlistItems[currentVideoIndex].videoId);
-                            toggleDropdown(index);
-                        };
-                    }(i));
-
-                    removeOption.textContent = "Remove";
-                    removeOption.href = "#";
-                    removeOption.addEventListener("click", function(index) {
-                        return function() {
-                            removeFromPlaylist(index);
-                            toggleDropdown(index);
-                        };
-                    }(i));
-
-                    moreDropdown.appendChild(playOption);
-                    moreDropdown.appendChild(removeOption);
-
-                    listItem.appendChild(moreButton);
-                    listItem.appendChild(moreDropdown);
-                    playlistItem.appendChild(listItem);
-                    playlistDiv.appendChild(playlistItem);
-                }
-            } else {
-                playlistDiv.innerHTML = "Playlist is empty";
-            }
-        }
+        
 
         function playVideo(videoId) {
             if (player) {
@@ -364,7 +342,71 @@
             }
         }
 
-     
+     function displayPlaylist() {
+    var playlistDiv = document.getElementById("playlist");
+    playlistDiv.innerHTML = "";
+
+    var storedPlaylist = localStorage.getItem("playlist");
+    if (storedPlaylist) {
+        playlistItems = JSON.parse(storedPlaylist);
+        for (var i = 0; i < playlistItems.length; i++) {
+            var playlistItem = document.createElement("div");
+            playlistItem.className = "playlist-item";
+
+            var listItem = document.createElement("p");
+            var moreButton = document.createElement("button");
+            var moreDropdown = document.createElement("div");
+            var playlistControls = document.createElement("div");
+            var playOption = document.createElement("a");
+            var removeOption = document.createElement("a");
+
+            var videoTitle = playlistItems[i].videoTitle;
+            var truncatedTitle = videoTitle.split(' ').splice(0, 7).join(' ');
+
+            listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + truncatedTitle;
+
+            moreButton.textContent = "more";
+            moreButton.className = "more-button";
+            moreButton.addEventListener("click", function(index) {
+                return function() {
+                    toggleDropdown(index);
+                };
+            }(i));
+
+            moreDropdown.className = "more-dropdown";
+
+            playOption.textContent = "Play";
+            playOption.href = "#";
+            playOption.addEventListener("click", function(index) {
+                return function() {
+                    currentVideoIndex = index;
+                    playVideo(playlistItems[currentVideoIndex].videoId);
+                    toggleDropdown(index);
+                };
+            }(i));
+
+            removeOption.textContent = "Remove";
+            removeOption.href = "#";
+            removeOption.addEventListener("click", function(index) {
+                return function() {
+                    removeFromPlaylist(index);
+                    toggleDropdown(index);
+                };
+            }(i));
+
+            moreDropdown.appendChild(playOption);
+            moreDropdown.appendChild(removeOption);
+
+            listItem.appendChild(moreButton);
+            listItem.appendChild(moreDropdown);
+            playlistItem.appendChild(listItem);
+            playlistDiv.appendChild(playlistItem);
+        }
+    } else {
+        playlistDiv.innerHTML = "Playlist is empty";
+    }
+}
+
 
 
         function clearPlaylist() {
@@ -372,6 +414,11 @@
             playlistItems = [];
             displayPlaylist();
             currentVideoIndex = 0;
+            if (player) {
+                player.stopVideo();
+            }
+        }
+          function stopVideo() {
             if (player) {
                 player.stopVideo();
             }
@@ -384,6 +431,20 @@
                 displayPlaylist();
             }
         }
+       function backupPlaylist() {
+            var backupCode = btoa(JSON.stringify(playlistItems));
+            document.getElementById("backupInput").value = backupCode;
+        }
+
+        function restorePlaylist() {
+            var backupCode = document.getElementById("backupInput").value;
+            var restoredPlaylist = atob(backupCode);
+            playlistItems = JSON.parse(restoredPlaylist);
+            localStorage.setItem("playlist", JSON.stringify(playlistItems));
+            displayPlaylist();
+        }
+   
+    
        function toggleDropdown(index) {
             var dropdowns = document.getElementsByClassName("more-dropdown");
             for (var i = 0; i < dropdowns.length; i++) {
@@ -394,7 +455,11 @@
                 }
             }
         }
-
+         function clearSearchResults() {
+            var results = document.getElementById("results");
+            results.innerHTML = "";
+            document.getElementById("searchInput").value = "";
+        }
        
         
 
