@@ -93,7 +93,7 @@
             color: #003994;
             cursor: pointer;
             padding: 0;
-            font-size: .9rem;
+            font-size: .8rem;
         }
 
         .more-button:focus {
@@ -141,12 +141,18 @@
             width: 30px;
             color: #190061;
         }
+        .playlist-item img {
+            width: 45px;
+            height: 38px;
+            margin-right: 10px;
+            border-radius: 25%;
+        }
 
         .playlist-item p {
             margin: 0;
             flex-grow: 1;
             color: #190061;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .playlist-controls {
@@ -283,7 +289,7 @@
      <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
     <button onclick="shuffleAndPlay()"><i class="fa-solid fa-play fa-xl"></i></button>
       </div>
-   <br></br>
+  
     <div id="playlist"></div>
     <br></br>
     <div id="player"></div>
@@ -453,6 +459,7 @@ function handleVideoEnd() {
                 var video = response.items[i];
                 var videoId = video.id.videoId;
                 var videoTitle = video.snippet.title;
+                var thumbnailUrl = video.snippet.thumbnails.default.url;
 
                 var div = document.createElement("div");
                 div.className = "result-item";
@@ -533,6 +540,9 @@ function handleVideoEnd() {
         for (var i = 0; i < playlistItems.length; i++) {
             var playlistItem = document.createElement("div");
             playlistItem.className = "playlist-item";
+            var thumbnail = document.createElement("img");
+                thumbnail.src = "https://img.youtube.com/vi/" + playlistItems[i].videoId + "/default.jpg";
+            
 
             var listItem = document.createElement("p");
             var moreButton = document.createElement("button");
@@ -542,7 +552,7 @@ function handleVideoEnd() {
             var removeOption = document.createElement("a");
 
             var videoTitle = playlistItems[i].videoTitle;
-            var truncatedTitle = videoTitle.split(' ').splice(0, 7).join(' ');
+            var truncatedTitle = videoTitle.split(' ').splice(0, 6).join(' ');
 
             listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + truncatedTitle;
 
@@ -580,6 +590,7 @@ function handleVideoEnd() {
 
             listItem.appendChild(moreButton);
             listItem.appendChild(moreDropdown);
+            playlistItem.appendChild(thumbnail);
             playlistItem.appendChild(listItem);
             playlistDiv.appendChild(playlistItem);
         }
