@@ -300,7 +300,7 @@
     <option value="repeat-one">Repeat One</option>
     <option value="repeat-all" selected>Repeat All</option> <!-- Add the 'selected' attribute -->
      </select>
-      <button id="play-pause">Play</button>
+      <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
       <br></br>
         <div id="seek-bar">
             <div id="progress-bar"></div>
@@ -378,7 +378,8 @@ function handleVideoEnd() {
 
         function updatePlayPauseButton() {
             var button = $('#play-pause');
-            button.text(isPlaying ? 'Pause' : 'Play');
+           
+            button.html(isPlaying ? '<i class="fa-solid fa-pause fa-xl"></i>' : '<i class="fa-solid fa-play fa-xl"></i>');
         }
 
         function startProgressInterval() {
@@ -424,7 +425,7 @@ function handleVideoEnd() {
         function setRepeatModeText() {
             $('#repeat-mode option').each(function() {
                 if ($(this).val() === repeatMode) {
-                    $(this).text('Current Repeat Mode: ' + $(this).text());
+                    $(this).text(': ' + $(this).text());
                 } else {
                     $(this).text($(this).text().replace('Current Repeat Mode: ', ''));
                 }
