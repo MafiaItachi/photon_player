@@ -19,6 +19,68 @@
     width: 360px;
     padding: 5px;
           }
+        
+#repeat-mode {
+  margin-left: 10px;
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #008EC4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#repeat-mode option {
+  background-color: #008EC4;
+  color: #fff;
+}
+
+
+
+        #controls {
+            margin-top: 20px;
+        }
+
+        #seek-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        #seek-bar {
+            flex-grow: 1;
+            height: 8px;
+            margin: 0 10px;
+            background-color: #ccc;
+            position: relative;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #seek-bar #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #0064B5;
+            border-radius: 4px;
+        }
+
+        #volume-bar {
+            width: 100px;
+            height: 8px;
+            background-color: #ccc;
+            position: relative;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #volume-bar #volume-level {
+            width: 0%;
+            height: 100%;
+            background-color: #0064B5;
+            border-radius: 4px;
+        }
         .more-button {
             float: right;
             background: none;
@@ -219,7 +281,20 @@
     <div id="playlist"></div>
     <br></br>
     <div id="player"></div>
-    
+     <div id="controls">
+       
+        <select id="repeat-mode">
+    <option value="no-repeat">No Repeat</option>
+    <option value="repeat-one">Repeat One</option>
+    <option value="repeat-all" selected>Repeat All</option> <!-- Add the 'selected' attribute -->
+     </select>
+      <button id="play-pause">Play</button>
+      <br></br>
+        <div id="seek-bar">
+            <div id="progress-bar"></div>
+        </div>
+ 
+     </div>
      <div class="backup-restore">
         <input type="text" id="backupInput" placeholder="Backup Code">
         <button onclick="backupPlaylist()"><i class="fa-solid fa-file-import fa-xl"></i></button>
@@ -228,13 +303,15 @@
 
     <script>
         var player;
-        var playlistItems;
-        var currentVideoIndex = 0;
+        var isPlaying = false;
+        var progressInterval;
+        var repeatMode = "repeat-all";
+        var repeatModes = ["no-repeat", "repeat-one", "repeat-all"];
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '221',
-                width: '392',
+                height: '360',
+                width: '640',
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
@@ -244,19 +321,102 @@
 
         function onPlayerReady(event) {
             // Player is ready to receive commands
+            $('#play-pause').click(togglePlayPause);
+            $('#seek-bar').click(seek);
+            $('#volume-bar').click(setVolume);
+            $('#repeat-mode').change(changeRepeatMode);
         }
 
         function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                // Video has ended, play the next video
-                currentVideoIndex++;
-                if (currentVideoIndex < playlistItems.length) {
-                    playVideo(playlistItems[currentVideoIndex].videoId);
-                } else {
-                    currentVideoIndex = 0;
-                    player.stopVideo();
-                }
+    if (event.data === YT.PlayerState.PLAYING) {
+        isPlaying = true;
+        startProgressInterval();
+    } else {
+        isPlaying = false;
+        stopProgressInterval();
+    }
+
+    if (event.data === YT.PlayerState.ENDED) {
+        handleVideoEnd();
+    }
+
+    updatePlayPauseButton();
+}
+
+function handleVideoEnd() {
+    if (repeatMode === "repeat-one") {
+        player.playVideo();
+    } else if (repeatMode === "repeat-all") {
+        currentVideoIndex++;
+        if (currentVideoIndex >= playlistItems.length) {
+            currentVideoIndex = 0;
+        }
+        playVideo(playlistItems[currentVideoIndex].videoId);
+    }
+}
+
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
             }
+        }
+
+        function updatePlayPauseButton() {
+            var button = $('#play-pause');
+            button.text(isPlaying ? 'Pause' : 'Play');
+        }
+
+        function startProgressInterval() {
+            progressInterval = setInterval(updateProgressBar, 1000);
+        }
+
+        function stopProgressInterval() {
+            clearInterval(progressInterval);
+        }
+
+        function updateProgressBar() {
+            var currentTime = player.getCurrentTime();
+            var duration = player.getDuration();
+            var progress = (currentTime / duration) * 100;
+
+            $('#progress-bar').css('width', progress + '%');
+        }
+
+        function seek(event) {
+            var seekBar = $('#seek-bar');
+            var offsetX = event.pageX - seekBar.offset().left;
+            var barWidth = seekBar.outerWidth();
+            var seekTime = (offsetX / barWidth) * player.getDuration();
+
+            player.seekTo(seekTime, true);
+        }
+
+        function setVolume(event) {
+            var volumeBar = $('#volume-bar');
+            var offsetX = event.pageX - volumeBar.offset().left;
+            var barWidth = volumeBar.outerWidth();
+            var volumeLevel = offsetX / barWidth;
+
+            player.setVolume(volumeLevel * 100);
+            $('#volume-level').css('width', offsetX + 'px');
+        }
+
+        function changeRepeatMode() {
+            repeatMode = $('#repeat-mode').val();
+            setRepeatModeText();
+        }
+
+        function setRepeatModeText() {
+            $('#repeat-mode option').each(function() {
+                if ($(this).val() === repeatMode) {
+                    $(this).text('Current Repeat Mode: ' + $(this).text());
+                } else {
+                    $(this).text($(this).text().replace('Current Repeat Mode: ', ''));
+                }
+            });
         }
 
         var apiKeys = ['AIzaSyB8I395JE6CdPKh2mULCPIss6i3rz5m7UY', 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA',]; // Array of API keys
