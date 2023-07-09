@@ -16,7 +16,7 @@
             height: 221px;
           
             overflow: hidden;
-            border-radius: 40px;
+            border-radius: 20px;
         }
       body {
     background: #003994;
@@ -556,7 +556,8 @@ function handleVideoEnd() {
 
             listItem.innerHTML = "<strong>" + (i + 1) + ". </strong>" + truncatedTitle;
 
-            moreButton.textContent = "more";
+            
+            moreButton.innerHTML = '<i class="fa-solid fa-ellipsis-vertical fa-sm"></i>';
             moreButton.className = "more-button";
             moreButton.addEventListener("click", function(index) {
                 return function() {
