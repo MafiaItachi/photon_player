@@ -26,13 +26,16 @@
           }
         
 #repeat-mode {
-  margin-left: 10px;
-  font-size: 16px;
-  padding: 5px 10px;
+  width:60px;
+  height: 30px;
+  margin: 10px;
+  
+  font-size: 14px;
+  padding: 5px ;
   background-color: #008EC4;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -46,20 +49,15 @@
         #controls {
             margin-top: 20px;
         }
-
         #seek-bar {
-            width: 100%;
-            height: 5px;
-            background-color: #fff;
-            cursor: pointer;
-        }
-
-        #seek-bar {
-            flex-grow: 1;
-            height: 8px;
-            margin: 0 10px;
+            height: 4px;
+            width:97%;
+            
             background-color: #ccc;
-            position: relative;
+            position: absolute;
+            bottom:2px;
+            right:4px;
+            left:6px;
             border-radius: 4px;
             cursor: pointer;
         }
@@ -71,21 +69,8 @@
             border-radius: 4px;
         }
 
-        #volume-bar {
-            width: 100px;
-            height: 8px;
-            background-color: #ccc;
-            position: relative;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #volume-bar #volume-level {
-            width: 0%;
-            height: 100%;
-            background-color: #0064B5;
-            border-radius: 4px;
-        }
+        
+        
         .more-button {
             float: right;
             background: none;
@@ -256,7 +241,7 @@
          border-radius: 20px;
         }
 
-    .backup-restore {
+        .backup-restore {
             margin-top: 20px;
             display: flex;
             align-items: center;
@@ -271,7 +256,44 @@
             background-color: #003994;
             color: #fff;
         }
-   
+        #controls{
+           height:70px;
+           wight : 100%;
+           background-color: #190061;
+           position :fixed;
+        bottom :5px;
+    right:5px;
+    left:5px;
+    border-radius:10px;
+     padding-right:5px;
+
+}
+     .video-thumbnail{
+             width:60px;
+     height:50px;
+     margin-left:9px;
+     margin-top:8px;
+     background-color:white;
+    
+     border-radius:10px;
+      }
+       .con{
+      width:100%;
+    display:flex;
+    
+    align-items: center;
+
+}
+    .video-title{
+        width:180px;
+    color:white;
+    margin-left:10px;
+    display:flex;
+    align-item:center;
+        
+}
+
+
     </style>
 </head>
 <body>
@@ -294,19 +316,21 @@
     <br></br>
     <div id="player"></div>
      <div id="controls">
-       
-        <select id="repeat-mode">
-    <option value="no-repeat">No Repeat</option>
-    <option value="repeat-one">Repeat One</option>
-    <option value="repeat-all" selected>Repeat All</option> <!-- Add the 'selected' attribute -->
-     </select>
-      <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
-      <br></br>
-        <div id="seek-bar">
-            <div id="progress-bar"></div>
-        </div>
- 
-     </div>
+        <div class="con">
+          <img class="video-thumbnail" src="" alt="Video Thumbnail">
+          <div class="video-title"></div>
+          <select id="repeat-mode">
+                  <option value="no-repeat">No Repeat</option>
+                  <option value="repeat-one">Repeat One</option>
+                  <option value="repeat-all" selected>Repeat All</option> <!-- Add the 'selected' attribute -->
+         </select>
+         <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
+         </div>
+     
+         <div id="seek-bar">
+             <div id="progress-bar"></div>
+         </div>
+    </div>
      <div class="backup-restore">
         <input type="text" id="backupInput" placeholder="Backup Code">
         <button onclick="backupPlaylist()"><i class="fa-solid fa-file-export fa-xl"></i></button>
@@ -314,6 +338,7 @@
     </div>
 
     <script>
+        var currentVideoIndex = -1;
         var player;
         var isPlaying = false;
         var progressInterval;
@@ -364,6 +389,9 @@ function handleVideoEnd() {
             currentVideoIndex = 0;
         }
         playVideo(playlistItems[currentVideoIndex].videoId);
+    } else {
+        isPlaying = false;
+        updatePlayPauseButton();
     }
 }
 
@@ -522,14 +550,28 @@ function handleVideoEnd() {
             displayPlaylist();
         }
 
-        
-
         function playVideo(videoId) {
-            if (player) {
-                player.loadVideoById(videoId);
-                player.playVideo();
+    if (player) {
+        currentVideoIndex = playlistItems.findIndex(item => item.videoId === videoId);
+        player.loadVideoById(videoId);
+        player.playVideo();
+       // Display video title and thumbnail
+            var currentVideo = playlistItems.find(function(item) {
+                return item.videoId === videoId;
+            });
+
+            if (currentVideo) {
+                var videoTitleElement = document.querySelector(".video-title");
+                var videoThumbnailElement = document.querySelector(".video-thumbnail");
+
+                videoTitleElement.textContent = currentVideo.videoTitle;
+                videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
             }
         }
+    }
+
+        
+        
 
      function displayPlaylist() {
     var playlistDiv = document.getElementById("playlist");
