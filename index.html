@@ -280,7 +280,7 @@
        .con{
       width:100%;
     display:flex;
-    
+    justify-content: space-around;
     align-items: center;
 
 }
@@ -317,13 +317,9 @@
     <div id="player"></div>
      <div id="controls">
         <div class="con">
-          <img class="video-thumbnail" src="" alt="Video Thumbnail">
+          <img class="video-thumbnail" src="" >
           <div class="video-title"></div>
-          <select id="repeat-mode">
-                  <option value="no-repeat">No Repeat</option>
-                  <option value="repeat-one">Repeat One</option>
-                  <option value="repeat-all" selected>Repeat All</option> <!-- Add the 'selected' attribute -->
-         </select>
+          <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><i class="fa-solid fa-repeat fa-lg"></i></button>
          <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
          </div>
      
@@ -445,20 +441,30 @@ function handleVideoEnd() {
             $('#volume-level').css('width', offsetX + 'px');
         }
 
-        function changeRepeatMode() {
-            repeatMode = $('#repeat-mode').val();
-            setRepeatModeText();
-        }
+        function toggleRepeatMode() {
+    const repeatToggle = document.getElementById('repeat-toggle');
+    if (repeatMode === 'no-repeat') {
+        repeatMode = 'repeat-all';
+        repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-lg"></i>';
+    } else if (repeatMode === 'repeat-all') {
+        repeatMode = 'repeat-one';
+        repeatToggle.innerHTML = '<i class="fa-solid fa-redo fa-lg"></i>';
+    } else {
+        repeatMode = 'no-repeat';
+        repeatToggle.innerHTML = '<i class="fa-solid fa-times-circle fa-lg"></i>';
+    }
+}
 
-        function setRepeatModeText() {
-            $('#repeat-mode option').each(function() {
-                if ($(this).val() === repeatMode) {
-                    $(this).text(': ' + $(this).text());
-                } else {
-                    $(this).text($(this).text().replace('Current Repeat Mode: ', ''));
-                }
-            });
-        }
+function setInitialRepeatModeIcon() {
+    const repeatToggle = document.getElementById('repeat-toggle');
+    if (repeatMode === 'no-repeat') {
+        repeatToggle.innerHTML = '<i class="fa-solid fa-times-circle fa-lg"></i>';
+    } else if (repeatMode === 'repeat-all') {
+        repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-lg"></i>';
+    } else {
+        repeatToggle.innerHTML = '<i class="fa-solid fa-redo fa-lg"></i>';
+    }
+}
 
         var apiKeys = ['AIzaSyB8I395JE6CdPKh2mULCPIss6i3rz5m7UY', 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA',]; // Array of API keys
         var currentApiKeyIndex = 0; // Index of the current API key being used
