@@ -6,6 +6,7 @@
     <script src="https://kit.fontawesome.com/bac1e9dfb2.js" crossorigin="anonymous"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <style>
         @media screen and (max-width: 480px) {
     /* CSS styles specific to mobile devices with a screen width up to 480px */
@@ -706,7 +707,36 @@ function setInitialRepeatModeIcon() {
             document.getElementById("searchInput").value = "";
         }
        
-        
+        // Initialize Hammer.js on the controls section
+var controlsElement = document.getElementById('controls');
+var controlsHammer = new Hammer(controlsElement);
+
+// Detect swipe gestures
+controlsHammer.on('swipeleft', function() {
+  playNextTrack();
+});
+
+controlsHammer.on('swiperight', function() {
+  playPreviousTrack();
+});
+
+// Function to play the next track
+function playNextTrack() {
+  currentVideoIndex++;
+  if (currentVideoIndex >= playlistItems.length) {
+    currentVideoIndex = 0;
+  }
+  playVideo(playlistItems[currentVideoIndex].videoId);
+}
+
+// Function to play the previous track
+function playPreviousTrack() {
+  currentVideoIndex--;
+  if (currentVideoIndex < 0) {
+    currentVideoIndex = playlistItems.length - 1;
+  }
+  playVideo(playlistItems[currentVideoIndex].videoId);
+}
 
         function shuffleAndPlay() {
             var storedPlaylist = localStorage.getItem("playlist");
