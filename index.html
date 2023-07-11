@@ -294,6 +294,94 @@
         
 }
 
+/* Existing styles... */
+
+/* Mini player styles */
+.mini-player {
+  position: fixed;
+  bottom: 3px;
+  left: 6px;
+  width:380px;
+  height: 380px;
+  background-color: #190061;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-direction: column;
+  border-radius:10px;
+}
+
+.mini-player-controls {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.mini-player-details {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: white;
+}
+
+.mini-player-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.mini-player-buttons {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mini-player-buttons button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  height:50px;
+  width:50px;
+  
+}
+
+.mini-player-buttons button:focus {
+  outline: none;
+}
+
+ .player-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.video-title2 {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.seekbar2 {
+  width: 100%;
+  height: 5px;
+  background-color: #666;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar2 {
+  width: 0;
+  height: 100%;
+  background-color: #fff;
+}
+
+
 
     </style>
 </head>
@@ -315,7 +403,6 @@
   
     <div id="playlist"></div>
     <br></br>
-    <div id="player"></div>
      <div id="controls">
         <div class="con">
           <img class="video-thumbnail" src="" >
@@ -327,9 +414,30 @@
          <div id="seek-bar">
              <div id="progress-bar"></div>
          </div>
+   <div id="mini-player" class="mini-player">
+      <div id="player"></div>
+       
+         
+           <div class="player-controls">
+                <div class="seekbar2">
+                  <div class="progress-bar2"></div>
+                </div><br>
+                <div class="video-title2"></div>
+           </div>
+                  <div class="mini-player-buttons">
+                       <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i class="fa-solid fa-chevron-left fa-xl"></i></button>
+                       <button class="mini-player-play-button" onclick="togglePlayPause()"><i class="fa-solid fa-play fa-xl"></i></button>
+                       <button class="mini-player-next-button" onclick="playNextTrack()"><i class="fa-solid fa-chevron-right fa-xl"></i></button>
+                  </div>
+               
+            
+        </div>
+
+  
+
     </div>
      <div class="backup-restore">
-        <input type="text" id="backupInput" placeholder="Backup Code">
+        <input type="text" id="backupInput" placeholder="">
         <button onclick="backupPlaylist()"><i class="fa-solid fa-file-export fa-xl"></i></button>
         <button onclick="restorePlaylist()"><i class="fa-solid fa-file-import fa-xl"></i></button>
     </div>
@@ -359,6 +467,7 @@
             $('#seek-bar').click(seek);
             $('#volume-bar').click(setVolume);
             $('#repeat-mode').change(changeRepeatMode);
+         
         }
 
         function onPlayerStateChange(event) {
@@ -373,10 +482,23 @@
     if (event.data === YT.PlayerState.ENDED) {
         handleVideoEnd();
     }
-
+    updateVideoTitle2();
     updatePlayPauseButton();
 }
+function updateVideoTitle2() {
+  var videoTitle = player.getVideoData().title;
+  var videoTitleElement = document.querySelector('.video-title2');
+  videoTitleElement.textContent = videoTitle;
+}
 
+function updateProgressBar() {
+  var currentTime = player.getCurrentTime();
+  var duration = player.getDuration();
+  var progress = (currentTime / duration) * 100;
+
+  $('#progress-bar').css('width', progress + '%');
+  $('.progress-bar2').css('width', progress + '%');
+}
 function handleVideoEnd() {
     if (repeatMode === "repeat-one") {
         player.playVideo();
@@ -391,7 +513,23 @@ function handleVideoEnd() {
         updatePlayPauseButton();
     }
 }
+// Function to play the next track
+function playNextTrack() {
+  currentVideoIndex++;
+  if (currentVideoIndex >= playlistItems.length) {
+    currentVideoIndex = 0;
+  }
+  playVideo(playlistItems[currentVideoIndex].videoId);
+}
 
+// Function to play the previous track
+function playPreviousTrack() {
+  currentVideoIndex--;
+  if (currentVideoIndex < 0) {
+    currentVideoIndex = playlistItems.length - 1;
+  }
+  playVideo(playlistItems[currentVideoIndex].videoId);
+}
 
         function togglePlayPause() {
             if (isPlaying) {
@@ -415,13 +553,7 @@ function handleVideoEnd() {
             clearInterval(progressInterval);
         }
 
-        function updateProgressBar() {
-            var currentTime = player.getCurrentTime();
-            var duration = player.getDuration();
-            var progress = (currentTime / duration) * 100;
-
-            $('#progress-bar').css('width', progress + '%');
-        }
+     
 
         function seek(event) {
             var seekBar = $('#seek-bar');
@@ -737,6 +869,39 @@ function playPreviousTrack() {
   }
   playVideo(playlistItems[currentVideoIndex].videoId);
 }
+
+// Initialize Hammer.js on the controls section
+var controlsElement = document.getElementById('controls');
+var controlsHammer = new Hammer(controlsElement);
+
+// Detect swipe up and swipe down gestures
+controlsHammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+controlsHammer.on('swipeup swipedown', function(event) {
+  event.preventDefault();
+});
+
+controlsHammer.on('swipeup', function() {
+  showMiniPlayer();
+});
+
+controlsHammer.on('swipedown', function() {
+  hideMiniPlayer();
+});
+
+// Function to show the mini player
+// Function to show the mini player
+function showMiniPlayer() {
+  var miniPlayer = document.getElementById('mini-player');
+  miniPlayer.style.transform = 'translateY(0)';
+}
+
+
+// Function to hide the mini player
+function hideMiniPlayer() {
+  var miniPlayer = document.getElementById('mini-player');
+  miniPlayer.style.transform = 'translateY(100%)';
+}
+
 
         function shuffleAndPlay() {
             var storedPlaylist = localStorage.getItem("playlist");
