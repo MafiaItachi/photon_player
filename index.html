@@ -570,7 +570,10 @@ function setInitialRepeatModeIcon() {
                 var videoTitleElement = document.querySelector(".video-title");
                 var videoThumbnailElement = document.querySelector(".video-thumbnail");
 
-                videoTitleElement.textContent = currentVideo.videoTitle;
+                // Set video title with word limit of 5
+            var videoTitle = currentVideo.videoTitle;
+            var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
+            videoTitleElement.textContent = truncatedTitle;
                 videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
             }
         }
