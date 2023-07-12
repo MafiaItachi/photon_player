@@ -119,6 +119,7 @@
             border-radius: 14px;
             display: flex;
             align-items: center;
+            width:350px;
         }
 
         .playlist-item strong {
@@ -138,7 +139,7 @@
             margin: 0;
             flex-grow: 1;
             color: #190061;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         .playlist-controls {
@@ -258,8 +259,8 @@
             color: #fff;
         }
         #controls{
-           height:70px;
-           wight : 100%;
+           height:75px;
+           widgh : 100%;
            background-color: #190061;
            position :fixed;
         bottom :5px;
@@ -273,12 +274,13 @@
              width:60px;
      height:50px;
      margin-left:9px;
-     margin-top:8px;
+     margin-top:0px;
      background-color:white;
     
      border-radius:10px;
       }
        .con{
+       height:100%;
       width:100%;
     display:flex;
     justify-content: space-around;
@@ -467,7 +469,6 @@
             $('#seek-bar').click(seek);
             $('#volume-bar').click(setVolume);
             $('#repeat-mode').change(changeRepeatMode);
-         
         }
 
         function onPlayerStateChange(event) {
@@ -619,61 +620,8 @@ function setInitialRepeatModeIcon() {
     });
 }
 
-        function displayResults(response) {
-            var results = document.getElementById("results");
-            results.innerHTML = "";
+  
 
-            for (var i = 0; i < response.items.length; i++) {
-                var video = response.items[i];
-                var videoId = video.id.videoId;
-                var videoTitle = video.snippet.title;
-                var thumbnailUrl = video.snippet.thumbnails.default.url;
-
-                var div = document.createElement("div");
-                div.className = "result-item";
-
-                var videoDiv = document.createElement("div");
-                videoDiv.className = "result-video";
-                videoDiv.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
-
-                var detailsDiv = document.createElement("div");
-                detailsDiv.className = "result-details";
-
-                var title = document.createElement("p");
-                title.className = "result-title";
-                title.textContent = videoTitle;
-
-                var buttonsDiv = document.createElement("div");
-                buttonsDiv.className = "result-buttons";
-
-                var addToPlaylistButton = document.createElement("button");
-                addToPlaylistButton.textContent = "Add to Playlist";
-                addToPlaylistButton.addEventListener("click", function(id, title) {
-                    return function() {
-                        addToPlaylist(id, title);
-                    };
-                }(videoId, videoTitle));
-
-                var playVideoButton = document.createElement("button");
-                playVideoButton.textContent = "Play Video";
-                playVideoButton.addEventListener("click", function(id) {
-                return function() {
-                playVideo(id);
-                 };
-                 }(videoId));
-                          buttonsDiv.appendChild(addToPlaylistButton);
-            buttonsDiv.appendChild(playVideoButton);
-
-            detailsDiv.appendChild(title);
-            detailsDiv.appendChild(buttonsDiv);
-
-            div.appendChild(videoDiv);
-            div.appendChild(detailsDiv);
-
-            results.appendChild(div);
-        }
-        currentApiKeyIndex = (currentApiKeyIndex + 1) % apiKeys.length;
-        }
 
           function addToPlaylist(videoId, videoTitle) {
             var playlist = localStorage.getItem("playlist");
@@ -689,31 +637,115 @@ function setInitialRepeatModeIcon() {
             displayPlaylist();
         }
 
-        function playVideo(videoId) {
+       
+    function playVideo(videoId, videoTitle, thumbnailUrl) {
     if (player) {
         currentVideoIndex = playlistItems.findIndex(item => item.videoId === videoId);
         player.loadVideoById(videoId);
         player.playVideo();
-       // Display video title and thumbnail
-            var currentVideo = playlistItems.find(function(item) {
-                return item.videoId === videoId;
-            });
 
-            if (currentVideo) {
-                var videoTitleElement = document.querySelector(".video-title");
-                var videoThumbnailElement = document.querySelector(".video-thumbnail");
+        // Display video title and thumbnail
+        var videoTitleElement = document.querySelector(".video-title");
+        var videoThumbnailElement = document.querySelector(".video-thumbnail");
 
-                // Set video title with word limit of 5
+        // Set video title with word limit of 5
+        var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
+        videoTitleElement.textContent = truncatedTitle;
+        videoThumbnailElement.src = thumbnailUrl;
+    }
+}
+
+
+function playVideos(videoId) {
+    if (player) {
+        currentVideoIndex = playlistItems.findIndex(item => item.videoId === videoId);
+        player.loadVideoById(videoId);
+        player.playVideo();
+
+        // Display video title and thumbnail
+        var currentVideo = playlistItems.find(function(item) {
+            return item.videoId === videoId;
+        });
+
+        if (currentVideo) {
+            var videoTitleElement = document.querySelector(".video-title");
+            var videoThumbnailElement = document.querySelector(".video-thumbnail");
+
             var videoTitle = currentVideo.videoTitle;
             var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
+
             videoTitleElement.textContent = truncatedTitle;
-                videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
-            }
+            videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
         }
     }
+}
+
+
+
+   function displayResults(response) {
+    var results = document.getElementById("results");
+    results.innerHTML = "";
+
+    for (var i = 0; i < response.items.length; i++) {
+        var video = response.items[i];
+        var videoId = video.id.videoId;
+        var videoTitle = video.snippet.title;
+        var thumbnailUrl = video.snippet.thumbnails.default.url;
+
+        var div = document.createElement("div");
+        div.className = "result-item";
+
+        var videoDiv = document.createElement("div");
+        videoDiv.className = "result-video";
+        videoDiv.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '" width="560" height="315" frameborder="0" allowfullscreen></iframe>';
+
+        var detailsDiv = document.createElement("div");
+        detailsDiv.className = "result-details";
+
+        var title = document.createElement("p");
+        title.className = "result-title";
+        title.textContent = videoTitle;
+
+        var buttonsDiv = document.createElement("div");
+        buttonsDiv.className = "result-buttons";
+
+        var addToPlaylistButton = document.createElement("button");
+        addToPlaylistButton.textContent = "Add to Playlist";
+        addToPlaylistButton.addEventListener("click", function(id, title, thumbnail) {
+            return function() {
+                addToPlaylist(id, title, thumbnail);
+            };
+        }(videoId, videoTitle, thumbnailUrl));
+
+        var playVideoButton = document.createElement("button");
+        playVideoButton.textContent = "Play Video";
+        playVideoButton.addEventListener("click", function(id, title, thumbnail) {
+            return function() {
+                playVideo(id, title, thumbnail);
+            };
+        }(videoId, videoTitle, thumbnailUrl));
+
+        buttonsDiv.appendChild(addToPlaylistButton);
+        buttonsDiv.appendChild(playVideoButton);
+
+        detailsDiv.appendChild(title);
+        detailsDiv.appendChild(buttonsDiv);
+
+        div.appendChild(videoDiv);
+        div.appendChild(detailsDiv);
+
+        results.appendChild(div);
+    }
+    currentApiKeyIndex = (currentApiKeyIndex + 1) % apiKeys.length;
+}
+
+
+      
+
+         
 
         
-        
+
 
      function displayPlaylist() {
     var playlistDiv = document.getElementById("playlist");
@@ -727,7 +759,7 @@ function setInitialRepeatModeIcon() {
             playlistItem.className = "playlist-item";
             var thumbnail = document.createElement("img");
                 thumbnail.src = "https://img.youtube.com/vi/" + playlistItems[i].videoId + "/default.jpg";
-            thumbnail.setAttribute("onclick", "playVideo('" + playlistItems[i].videoId + "')");
+            thumbnail.setAttribute("onclick", "playVideos('" + playlistItems[i].videoId + "')");
 
             var listItem = document.createElement("p");
             var moreButton = document.createElement("button");
@@ -858,7 +890,7 @@ function playNextTrack() {
   if (currentVideoIndex >= playlistItems.length) {
     currentVideoIndex = 0;
   }
-  playVideo(playlistItems[currentVideoIndex].videoId);
+  playVideos(playlistItems[currentVideoIndex].videoId);
 }
 
 // Function to play the previous track
@@ -867,7 +899,7 @@ function playPreviousTrack() {
   if (currentVideoIndex < 0) {
     currentVideoIndex = playlistItems.length - 1;
   }
-  playVideo(playlistItems[currentVideoIndex].videoId);
+  playVideos(playlistItems[currentVideoIndex].videoId);
 }
 
 // Initialize Hammer.js on the controls section
@@ -941,4 +973,5 @@ function hideMiniPlayer() {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     </script>
 </body>
-</html>
+    </html>
+    
