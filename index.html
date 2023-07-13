@@ -181,6 +181,7 @@
         input[type="text"]::placeholder {
             color: #fff;
             opacity: 0.7;
+           
         }
 
         button:hover {
@@ -268,6 +269,7 @@
     left:5px;
     border-radius:10px;
      padding-right:5px;
+    z-index:1;
 
 }
      .video-thumbnail{
@@ -438,11 +440,17 @@
   
 
     </div>
+        <h2>Add Playlist by Link</h2>
+        <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
+         <button onclick="addPlaylistByLink()">Add Playlist</button>
      <div class="backup-restore">
-        <input type="text" id="backupInput" placeholder="">
+        <input type="text" id="backupInput" placeholder="backup code">
         <button onclick="backupPlaylist()"><i class="fa-solid fa-file-export fa-xl"></i></button>
         <button onclick="restorePlaylist()"><i class="fa-solid fa-file-import fa-xl"></i></button>
+
+
     </div>
+     <br></br><br></br><br></br><br></br>
 
     <script>
         var currentVideoIndex = -1;
@@ -948,7 +956,7 @@ function hideMiniPlayer() {
 
  
             if (player) {
-                playVideo(playlistItems[currentVideoIndex].videoId);
+                playVideos(playlistItems[currentVideoIndex].videoId);
             }
         }
 
@@ -960,6 +968,66 @@ function hideMiniPlayer() {
                 array[j] = temp;
             }
         }
+      function addPlaylistByLink() {
+  var playlistLink = document.getElementById("playlistLinkInput").value;
+  var playlistId = extractPlaylistId(playlistLink);
+
+  if (playlistId) {
+    fetchPlaylistItems(playlistId);
+  } else {
+    alert("Invalid YouTube playlist link. Please enter a valid link.");
+  }
+}
+
+function extractPlaylistId(playlistLink) {
+  var regex = /[&?](?:list|p)=([a-zA-Z0-9_-]{34})/;
+  var match = playlistLink.match(regex);
+
+  if (match && match.length > 1) {
+    return match[1];
+  }
+
+  return null;
+}
+
+function fetchPlaylistItems(playlistId) {
+  var apiKey = apiKeys[currentApiKeyIndex];
+  var url =
+    "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" +
+    playlistId +
+    "&key=" +
+    apiKey;
+
+  $.ajax({
+    url: url,
+    success: function (response) {
+      processPlaylistItems(response.items);
+    },
+    error: function (xhr) {
+      console.log(xhr);
+    },
+  });
+}
+
+function processPlaylistItems(items) {
+  var playlist = localStorage.getItem("playlist");
+  playlistItems = playlist ? JSON.parse(playlist) : [];
+
+  for (var i = 0; i < items.length; i++) {
+    var video = items[i].snippet;
+    var videoId = video.resourceId.videoId;
+    var videoTitle = video.title;
+
+    playlistItems.push({
+      videoId: videoId,
+      videoTitle: videoTitle,
+    });
+  }
+
+  localStorage.setItem("playlist", JSON.stringify(playlistItems));
+
+  displayPlaylist();
+}
 
         displayPlaylist();
     </script>
