@@ -33,11 +33,12 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | ---------------------- | --- |
 | User Accounts          | ✅ |
 | play,pause button      | ✅ |
+| Shuffle play button    | ✅ |
 | Playlist Bookmarks     | ✅ |
-| youtube song Search    | ✅ |
+| Youtube song Search    | ✅ |
 | Video Player           | ✅ |
-| add youtube playlist   | ✅ |
-| backup playlist        | ✅ |
+| Add youtube playlist   | ✅ |
+| Backup playlist        | ✅ |
 
 
 <h1 align="center">
