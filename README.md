@@ -9,11 +9,6 @@ Photon Player is a minimal music player that uses the YouTube API to play music.
 You can go ahead and check out my website at https://shubham01015.github.io/photon_player/
 
 <h1 align="center">
-<sub>
-<img  src="fastlane/metadata/android/en-US/images/readme/about.svg"
-      height="30"
-      width="30">
-</sub>
    PHOTON PLAYER PREVIEW
 </h1>
 <p align="center">
@@ -22,6 +17,9 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
   </a>
 </p>
 
+<h1 align="center">
+   PHOTON PLAYER FEATURE
+</h1>
 
 | Feature                |     |
 | ---------------------- | --- |
