@@ -10,6 +10,10 @@
 </p>
 
 <h1 align="center">
+TAP THIS LOGO TO GO TO PHOTON PLAYER
+</h1>
+
+<h1 align="center">
    INFORMATION
 </h1>
 Photon Player is a minimal music player that uses the YouTube API to play music. It has basic features such as play, pause, and skip. The music player also has additional features such as save to playlist, shuffle play, add playlist by link, gesture support, and play music videos. This is my first project and I’m excited to share it with everyone 
