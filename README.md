@@ -22,7 +22,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
   </a>
 </p>
 
-
+<p align="center">
 | Feature           |     |
 | ----------------- | --- |
 | User Accounts     | ✅ |
@@ -31,3 +31,4 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | Channel Tabs      | ✅ |
 | Search            | ✅ |
 | Video Player      | ✅ |
+</p>
