@@ -43,4 +43,9 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 <h1 align="center">
   CONTACT INTO
 </h1>
-[![Telegram](https://libre-tube.github.io/assets/widgets/tg-widget.svg)](https://t.me/photon8617)
+
+<p align="center">
+  <a href="https://t.me/photon8617">
+    <img src="image/50674.ico">
+  </a>
+</p>
