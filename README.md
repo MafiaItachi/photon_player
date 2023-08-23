@@ -44,7 +44,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
   CONTACT INTO
 </h1>
 
-<p height="50" align="center">
+<p height="30" align="center">
   <a href="https://t.me/photon8617">
     <img src="image/50674.ico">
   </a>
