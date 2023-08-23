@@ -23,10 +23,12 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 </p>
 
 
-| Feature             |     |
-| ------------------- | --- |
-| User Accounts       | ✅ |
-| play,pause button   | ✅ |
-| Playlist Bookmarks  | ✅ |
-| youtube song Search | ✅ |
-| Video Player        | ✅ |
+| Feature                |     |
+| ---------------------- | --- |
+| User Accounts          | ✅ |
+| play,pause button      | ✅ |
+| Playlist Bookmarks     | ✅ |
+| youtube song Search    | ✅ |
+| Video Player           | ✅ |
+| add youtube playlist   | ✅ |
+| backup playlist        | ✅ |
