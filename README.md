@@ -21,3 +21,13 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
     <img src="image/preview.jpg">
   </a>
 </p>
+
+
+| Feature           |     |
+| ----------------- | --- |
+| User Accounts     | ✅ |
+| User Playlists    | ✅ |
+| Playlist Bookmarks| ✅ |
+| Channel Tabs      | ✅ |
+| Search            | ✅ |
+| Video Player      | ✅ |
