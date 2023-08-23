@@ -22,13 +22,11 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
   </a>
 </p>
 
-<pr align="center">
-| Feature           |     |
-| ----------------- | --- |
-| User Accounts     | ✅ |
-| User Playlists    | ✅ |
-| Playlist Bookmarks| ✅ |
-| Channel Tabs      | ✅ |
-| Search            | ✅ |
-| Video Player      | ✅ |
-</pr>
+
+| Feature             |     |
+| ------------------- | --- |
+| User Accounts       | ✅ |
+| play,pause button   | ✅ |
+| Playlist Bookmarks  | ✅ |
+| youtube song Search | ✅ |
+| Video Player        | ✅ |
