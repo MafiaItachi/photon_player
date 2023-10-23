@@ -704,27 +704,7 @@ h1 {
             $('#repeat-mode').change(changeRepeatMode);
         }
 
-        function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.PLAYING) {
-        isPlaying = true;
-        startProgressInterval();
-    } else {
-        isPlaying = false;
-        stopProgressInterval();
-    }
-
-    if (event.data === YT.PlayerState.ENDED) {
-        handleVideoEnd();
-    }
-    updateVideoTitle2();
-    updatePlayPauseButton();
-}
-function updateVideoTitle2() {
-  var videoTitle = player.getVideoData().title;
-  var videoTitleElement = document.querySelector('.video-title2');
-  videoTitleElement.textContent = videoTitle;
-}
-
+   
 function updateProgressBar() {
   var currentTime = player.getCurrentTime();
   var duration = player.getDuration();
@@ -1487,6 +1467,28 @@ function updateMiniPlayer(videoId, videoTitle) {
    </script>
 
    <script>
+
+            function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        isPlaying = true;
+        startProgressInterval();
+    } else {
+        isPlaying = false;
+        stopProgressInterval();
+    }
+
+    if (event.data === YT.PlayerState.ENDED) {
+        handleVideoEnd();
+    }
+    updateVideoTitle2();
+    updatePlayPauseButton();
+}
+function updateVideoTitle2() {
+  var videoTitle = player.getVideoData().title;
+  var videoTitleElement = document.querySelector('.video-title2');
+  videoTitleElement.textContent = videoTitle;
+}
+
        // Load the YouTube IFrame Player API asynchronously
        // Load the YouTube IFrame Player API asynchronously
        var tag = document.createElement('script');
