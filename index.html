@@ -619,7 +619,7 @@ h1 {
      <div class="shuffle">
      <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
      <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
-    <button onclick="shuffleAndPlay()"><i class="fa-solid fa-play fa-xl"></i></button>
+    <button onclick="shuffleAndPlay()"><i class="fa-solid fa-random fa-xl"></i></button>
       </div>
  
     <div id="playlist"></div>
@@ -959,7 +959,7 @@ function setInitialRepeatModeIcon() {
             playlistItem.className = "playlist-item";
             var thumbnail = document.createElement("img");
                 thumbnail.src = "https://img.youtube.com/vi/" + playlistItems[i].videoId + "/default.jpg";
-            thumbnail.setAttribute("onclick", "playVideos('" + playlistItems[i].videoId + "')");
+           playlistItem.setAttribute("onclick", "playVideos('" + playlistItems[i].videoId + "')");
 
             var listItem = document.createElement("p");
             var moreButton = document.createElement("button");
