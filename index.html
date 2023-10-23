@@ -1180,147 +1180,207 @@ function hideMiniPlayer() {
                 array[j] = temp;
             }
         }
+        function addPlaylistByLink() {
+            var playlistLink = document.getElementById("playlistLinkInput").value;
+            var playlistId = extractPlaylistId(playlistLink);
 
-        displayPlaylist();
-       
-        function handleVisibilityChange() {
-            if (document.visibilityState === 'visible') {
-                if (isPlaying) {
-                    player.playVideo();
-                }
+            if (playlistId) {
+                fetchPlaylistItems(playlistId);
             } else {
-                if (isPlaying) {
-                    player.pauseVideo();
-                }
+                alert("Invalid YouTube playlist link. Please enter a valid link.");
             }
         }
 
-        // Add event listener for visibility change
-        document.addEventListener('visibilitychange', handleVisibilityChange);
+        function extractPlaylistId(playlistLink) {
+            var regex = /[&?](?:list|p)=([a-zA-Z0-9_-]{34})/;
+            var match = playlistLink.match(regex);
 
-        // Load the YouTube IFrame Player API asynchronously
-        var tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-   
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
-        var playlistIds = {
-            rock: 'RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8&',
-            pop: 'OLAK5uy_m9GWwR5JEl40YaZTxC5js-E_jAxJy6yro&',
-            electronic: 'RDCLAK5uy_ksEjgm3H_7zOJ_RHzRjN1wY-_FFcs7aAU&',
-            hiphop: 'RDCLAK5uy_ksEjgm3H_7zOJ_RHzRjN1wY-_FFcs7aAU&'
-        };
+            if (match && match.length > 1) {
+                return match[1];
+            }
 
-        $(document).ready(function() {
-            loadPlaylist('rock', 'playlist-rock');
-            loadPlaylist('pop', 'playlist-pop');
-            loadPlaylist('electronic', 'playlist-electronic');
-            loadPlaylist('hiphop', 'playlist-hiphop');
-        });
+            return null;
+        }
 
-      function loadPlaylist(playlistType, containerId) {
-  var playlistContainer = document.getElementById(containerId);
-  var playlistThumbnail = playlistContainer.querySelector('.playlist-thumbnail');
-  var songListContainer = playlistContainer.querySelector('.song-list-container');
-  var songList = playlistContainer.querySelector('.song-list');
+        function fetchPlaylistItems(playlistId) {
+            var apiKey = apiKeys[currentApiKeyIndex];
+            var url =
+                "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" +
+                playlistId +
+                "&key=" +
+                apiKey;
 
-  var playlistUrl =
-    'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=' +
-    playlistIds[playlistType] +
-    '&key=' +
-    apiKey;
+            $.ajax({
+                url: url,
+                success: function (response) {
+                    processPlaylistItems(response.items);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                },
+            });
+        }
 
-  $.getJSON(playlistUrl, function (response) {
-    var items = response.items;
-    for (var i = 0; i < items.length; i++) {
-      var video = items[i].snippet;
-      var videoId = video.resourceId.videoId;
-      var videoTitle = video.title;
-      var videoThumbnail = video.thumbnails.default.url;
+        function processPlaylistItems(items) {
+            var playlist = localStorage.getItem("playlist");
+            playlistItems = playlist ? JSON.parse(playlist) : [];
 
-      var listItem = document.createElement('li');
-      listItem.innerHTML = `
-            <img class="song-thumbnail" src="${videoThumbnail}" alt="Video Thumbnail">
-            <div class="song-title">${videoTitle}</div>
-        `;
+            for (var i = 0; i < items.length; i++) {
+                var video = items[i].snippet;
+                var videoId = video.resourceId.videoId;
+                var videoTitle = video.title;
 
-      listItem.addEventListener(
-        'click',
-        (function (id) {
-          return function () {
-            playVideo(id);
-          };
-        })(videoId)
-      );
+                playlistItems.push({
+                    videoId: videoId,
+                    videoTitle: videoTitle,
+                });
+            }
 
-      songList.appendChild(listItem);
-    }
+            localStorage.setItem("playlist", JSON.stringify(playlistItems));
 
-    playlistThumbnail.src =
-      'https://img.youtube.com/vi/' +
-      items[0].snippet.resourceId.videoId +
-      '/mqdefault.jpg';
-  });
+            displayPlaylist();
+        }
 
-  playlistThumbnail.addEventListener('click', function () {
-    songListContainer.style.display =
-      songListContainer.style.display === 'block' ? 'none' : 'block';
-  });
+        displayPlaylist();
+       
+       function handleVisibilityChange() {
+           if (document.visibilityState === 'visible') {
+               if (isPlaying) {
+                   player.playVideo();
+               }
+           } else {
+               if (isPlaying) {
+                   player.pauseVideo();
+               }
+           }
+       }
 
-  var shuffleButton = document.createElement('button');
-  shuffleButton.textContent = 'Shuffle and Play';
-  shuffleButton.addEventListener('click', function () {
-    shuffleAndPlay2(playlistType);
-  });
+       // Add event listener for visibility change
+       document.addEventListener('visibilitychange', handleVisibilityChange);
 
-  playlistContainer.appendChild(shuffleButton);
+       // Load the YouTube IFrame Player API asynchronously
+       var tag = document.createElement('script');
+       tag.src = 'https://www.youtube.com/iframe_api';
+       var firstScriptTag = document.getElementsByTagName('script')[0];
+       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  
+   var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+       var playlistIds = {
+           rock: 'RDCLAK5uy_k1272v-yXtLJm7gmMiAxjOl-vh5aEC11A',
+           pop: 'RDCLAK5uy_mvsCHKeFgZxCoFoMA2CClIVPvhFaJCfV8',
+           electronic: 'RDCLAK5uy_lL718gGQZgQf4jkKYjVbOXHABQCFAYuj0',
+           hiphop: 'RDCLAK5uy_m6_xW9k1AulRRrn2tpl9gU_Lp3v110LpA'
+       };
+
+       $(document).ready(function() {
+           loadPlaylist('rock', 'playlist-rock');
+           loadPlaylist('pop', 'playlist-pop');
+           loadPlaylist('electronic', 'playlist-electronic');
+           loadPlaylist('hiphop', 'playlist-hiphop');
+       });
+
+     function loadPlaylist(playlistType, containerId) {
+ var playlistContainer = document.getElementById(containerId);
+ var playlistThumbnail = playlistContainer.querySelector('.playlist-thumbnail');
+ var songListContainer = playlistContainer.querySelector('.song-list-container');
+ var songList = playlistContainer.querySelector('.song-list');
+
+ var playlistUrl =
+   'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=' +
+   playlistIds[playlistType] +
+   '&key=' +
+   apiKey;
+
+ $.getJSON(playlistUrl, function (response) {
+   var items = response.items;
+   for (var i = 0; i < items.length; i++) {
+     var video = items[i].snippet;
+     var videoId = video.resourceId.videoId;
+     var videoTitle = video.title;
+     var videoThumbnail = video.thumbnails.default.url;
+
+     var listItem = document.createElement('li');
+     listItem.innerHTML = `
+           <img class="song-thumbnail" src="${videoThumbnail}" alt="Video Thumbnail">
+           <div class="song-title">${videoTitle}</div>
+       `;
+
+     listItem.addEventListener(
+       'click',
+       (function (id) {
+         return function () {
+           playVideo(id);
+         };
+       })(videoId)
+     );
+
+     songList.appendChild(listItem);
+   }
+
+   playlistThumbnail.src =
+     'https://img.youtube.com/vi/' +
+     items[0].snippet.resourceId.videoId +
+     '/mqdefault.jpg';
+ });
+
+ playlistThumbnail.addEventListener('click', function () {
+   songListContainer.style.display =
+     songListContainer.style.display === 'block' ? 'none' : 'block';
+ });
+
+ var shuffleButton = document.createElement('button');
+ shuffleButton.textContent = 'Shuffle and Play';
+ shuffleButton.addEventListener('click', function () {
+   shuffleAndPlay2(playlistType);
+ });
+
+ playlistContainer.appendChild(shuffleButton);
 }
 
 var shuffledPlaylist = []; // Define an array to store the shuffled playlist
 var currentVideoIndex = 0; // Initialize the index of the currently playing video
 
 function shuffleAndPlay2(playlistType) {
-  var playlistUrl =
-    'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=' +
-    playlistIds[playlistType] +
-    '&key=' +
-    apiKey;
+ var playlistUrl =
+   'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=' +
+   playlistIds[playlistType] +
+   '&key=' +
+   apiKey;
 
-  $.getJSON(playlistUrl, function (response) {
-    var items = response.items;
-    shuffledPlaylist = shuffleArray(items); // Shuffle the playlist
-    var videoIds = shuffledPlaylist.map(function (item) {
-      return item.snippet.resourceId.videoId;
-    });
+ $.getJSON(playlistUrl, function (response) {
+   var items = response.items;
+   shuffledPlaylist = shuffleArray(items); // Shuffle the playlist
+   var videoIds = shuffledPlaylist.map(function (item) {
+     return item.snippet.resourceId.videoId;
+   });
 
-    if (player) {
-      player.loadPlaylist(videoIds); // Load the shuffled playlist
-      player.setLoop(true);
-      player.playVideo();
+   if (player) {
+     player.loadPlaylist(videoIds); // Load the shuffled playlist
+     player.setLoop(true);
+     player.playVideo();
 
-      // Update the controls with the first video in the shuffled playlist
-      var firstVideoId = shuffledPlaylist[0].snippet.resourceId.videoId;
-      var firstVideoTitle = shuffledPlaylist[0].snippet.title;
+     // Update the controls with the first video in the shuffled playlist
+     var firstVideoId = shuffledPlaylist[0].snippet.resourceId.videoId;
+     var firstVideoTitle = shuffledPlaylist[0].snippet.title;
 
-      updateMiniPlayer(firstVideoId, firstVideoTitle);
-    }
-  });
+     updateMiniPlayer(firstVideoId, firstVideoTitle);
+   }
+ });
 }
 
 // Listen for the "onStateChange" event to track when a video ends
 if (player) {
-  player.addEventListener('onStateChange', function (event) {
-    if (event.data === YT.PlayerState.ENDED) {
-      // Video ended, play the next video in the shuffled playlist
-      currentVideoIndex = (currentVideoIndex + 1) % shuffledPlaylist.length;
-      var nextVideoId = shuffledPlaylist[currentVideoIndex].snippet.resourceId.videoId;
-      var nextVideoTitle = shuffledPlaylist[currentVideoIndex].snippet.title;
+ player.addEventListener('onStateChange', function (event) {
+   if (event.data === YT.PlayerState.ENDED) {
+     // Video ended, play the next video in the shuffled playlist
+     currentVideoIndex = (currentVideoIndex + 1) % shuffledPlaylist.length;
+     var nextVideoId = shuffledPlaylist[currentVideoIndex].snippet.resourceId.videoId;
+     var nextVideoTitle = shuffledPlaylist[currentVideoIndex].snippet.title;
 
-      player.loadVideoById(nextVideoId);
-      updateMiniPlayer(nextVideoId, nextVideoTitle);
-    }
-  });
+     player.loadVideoById(nextVideoId);
+     updateMiniPlayer(nextVideoId, nextVideoTitle);
+   }
+ });
 }
 
 
@@ -1328,75 +1388,73 @@ if (player) {
 
 
 function shuffleArray(array) {
-  var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
+ var currentIndex = array.length,
+   temporaryValue,
+   randomIndex;
 
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+ while (0 !== currentIndex) {
+   randomIndex = Math.floor(Math.random() * currentIndex);
+   currentIndex -= 1;
 
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+   temporaryValue = array[currentIndex];
+   array[currentIndex] = array[randomIndex];
+   array[randomIndex] = temporaryValue;
+ }
 
-  return array;
+ return array;
 }
 
 
 
 
-         function playVideo(videoId) {
-  if (player) {
-    player.loadVideoById(videoId);
-    player.playVideo();
+        function playVideo(videoId) {
+ if (player) {
+   player.loadVideoById(videoId);
+   player.playVideo();
 
-    // Fetch video title using YouTube API
-    var url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${apiKey}`;
+   // Fetch video title using YouTube API
+   var url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${apiKey}`;
 
-    $.ajax({
-      url: url,
-      success: function(response) {
-        var videoTitle = response.items[0].snippet.title;
-        updateMiniPlayer(videoId, videoTitle);
-      },
-      error: function(xhr) {
-        console.log(xhr);
-      }
-    });
-  }
+   $.ajax({
+     url: url,
+     success: function(response) {
+       var videoTitle = response.items[0].snippet.title;
+       updateMiniPlayer(videoId, videoTitle);
+     },
+     error: function(xhr) {
+       console.log(xhr);
+     }
+   });
+ }
 }
 
 function updateMiniPlayer(videoId, videoTitle) {
-  var miniThumbnail = document.querySelector('.video-thumbnail');
-  var miniTitle = document.querySelector('.video-title');
+ var miniThumbnail = document.querySelector('.video-thumbnail');
+ var miniTitle = document.querySelector('.video-title');
 
-  // Split the video title into words and limit to 5 words
-  var words = videoTitle.split(' ').slice(0, 5);
-  var truncatedTitle = words.join(' ');
+ // Split the video title into words and limit to 5 words
+ var words = videoTitle.split(' ').slice(0, 5);
+ var truncatedTitle = words.join(' ');
 
-  miniThumbnail.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
-  miniTitle.textContent = truncatedTitle;
+ miniThumbnail.src = `https://img.youtube.com/vi/${videoId}/default.jpg`;
+ miniTitle.textContent = truncatedTitle;
 }
 
 
-       
+      
 
-   
-   
-   
-    </script>
+  
+  
+  
+   </script>
 
-    <script>
-        // Load the YouTube IFrame Player API asynchronously
-        // Load the YouTube IFrame Player API asynchronously
-        var tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    </script>
+   <script>
+       // Load the YouTube IFrame Player API asynchronously
+       // Load the YouTube IFrame Player API asynchronously
+       var tag = document.createElement('script');
+       tag.src = 'https://www.youtube.com/iframe_api';
+       var firstScriptTag = document.getElementsByTagName('script')[0];
+       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+   </script>
 </body>
 </html>
-
- 
