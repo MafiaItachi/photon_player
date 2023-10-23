@@ -680,28 +680,42 @@
 
 
         function playVideos(videoId) {
-            if (player) {
-                currentVideoIndex = playlistItems.findIndex(item => item.videoId === videoId);
-                player.loadVideoById(videoId);
-                player.playVideo();
+    if (player) {
+        currentVideoIndex = playlistItems.findIndex(item => item.videoId === videoId);
+        player.loadVideoById(videoId);
+        player.playVideo();
 
-                // Display video title and thumbnail
-                var currentVideo = playlistItems.find(function (item) {
-                    return item.videoId === videoId;
-                });
+        // Display video title and thumbnail
+        var currentVideo = playlistItems.find(function (item) {
+            return item.videoId === videoId;
+        });
 
-                if (currentVideo) {
-                    var videoTitleElement = document.querySelector(".video-title");
-                    var videoThumbnailElement = document.querySelector(".video-thumbnail");
+        if (currentVideo) {
+            var videoTitleElement = document.querySelector(".video-title");
+            var videoThumbnailElement = document.querySelector(".video-thumbnail");
 
-                    var videoTitle = currentVideo.videoTitle;
-                    var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
+            var videoTitle = currentVideo.videoTitle;
+            var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
 
-                    videoTitleElement.textContent = truncatedTitle;
-                    videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
-                }
-            }
+            videoTitleElement.textContent = truncatedTitle;
+            videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
+
+            // Call the updateVideoTitle2 function here
+            updateVideoTitle2();
         }
+    }
+}
+
+function updateVideoTitle2() {
+    if (player && playlistItems[currentVideoIndex]) {
+        var videoTitle = playlistItems[currentVideoIndex].videoTitle;
+        var videoTitleElement = document.querySelector('.video-title');
+        videoTitleElement.textContent = videoTitle;
+
+        var videoThumbnailElement = document.querySelector('.video-thumbnail');
+        videoThumbnailElement.src = 'https://img.youtube.com/vi/' + playlistItems[currentVideoIndex].videoId + '/default.jpg';
+    }
+}
 
 
 
