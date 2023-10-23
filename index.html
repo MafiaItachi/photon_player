@@ -507,13 +507,10 @@
                 handleVideoEnd();
             }
             updateVideoTitle2();
+             updateVideoTitle3();
             updatePlayPauseButton();
         }
-        function updateVideoTitle2() {
-            var videoTitle = player.getVideoData().title;
-            var videoTitleElement = document.querySelector('.video-title2');
-            videoTitleElement.textContent = videoTitle;
-        }
+       
 
         function updateProgressBar() {
             var currentTime = player.getCurrentTime();
