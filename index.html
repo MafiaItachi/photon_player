@@ -814,7 +814,7 @@ function updateVideoTitle3() {
                     playlistItem.className = "playlist-item";
                     var thumbnail = document.createElement("img");
                     thumbnail.src = "https://img.youtube.com/vi/" + playlistItems[i].videoId + "/default.jpg";
-                    thumbnail.setAttribute("onclick", "playVideos('" + playlistItems[i].videoId + "')");
+                    playlistItem.setAttribute("onclick", "playVideos('" + playlistItems[i].videoId + "')");
 
                     var listItem = document.createElement("p");
                     var moreButton = document.createElement("button");
