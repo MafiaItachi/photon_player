@@ -702,6 +702,7 @@
 
             // Call the updateVideoTitle2 function here
             updateVideoTitle2();
+            updateVideoTitle3();
         }
     }
 }
@@ -710,13 +711,30 @@ function updateVideoTitle2() {
     if (player && playlistItems[currentVideoIndex]) {
         var videoTitle = playlistItems[currentVideoIndex].videoTitle;
         var videoTitleElement = document.querySelector('.video-title');
-        videoTitleElement.textContent = videoTitle;
+        var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
 
+            videoTitleElement.textContent = truncatedTitle;
         var videoThumbnailElement = document.querySelector('.video-thumbnail');
         videoThumbnailElement.src = 'https://img.youtube.com/vi/' + playlistItems[currentVideoIndex].videoId + '/default.jpg';
     }
 }
 
+
+
+
+
+function updateVideoTitle3() {
+    if (player && playlistItems[currentVideoIndex]) {
+        var videoTitle = playlistItems[currentVideoIndex].videoTitle;
+        var videoTitleElement = document.querySelector('.video-title2');
+        var truncatedTitle = videoTitle.split(' ').splice(0, 5).join(' ');
+
+            videoTitleElement.textContent = truncatedTitle;
+
+        var videoThumbnailElement = document.querySelector('.video-thumbnail');
+        videoThumbnailElement.src = 'https://img.youtube.com/vi/' + playlistItems[currentVideoIndex].videoId + '/default.jpg';
+    }
+}
 
 
         function displayResults(response) {
