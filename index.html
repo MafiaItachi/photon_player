@@ -1466,12 +1466,17 @@ function updateMiniPlayer(videoId, videoTitle) {
   
    </script>
 
-   <script>
-
-            function onPlayerStateChange(event) {
+ <script>
+     function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.PLAYING) {
         isPlaying = true;
         startProgressInterval();
+         // Get the video title and videoId
+         var videoTitle = player.getVideoData().title;
+        var videoId = player.getVideoData().video_id;
+        
+        // Update the video title and thumbnail in your controls
+        updateVideoTitleAndThumbnail(videoTitle, videoId);
     } else {
         isPlaying = false;
         stopProgressInterval();
@@ -1487,6 +1492,23 @@ function updateVideoTitle2() {
   var videoTitle = player.getVideoData().title;
   var videoTitleElement = document.querySelector('.video-title2');
   videoTitleElement.textContent = videoTitle;
+}
+function updateVideoTitleAndThumbnail(title, videoId) {
+    // Find the video title and thumbnail elements in your controls
+    var videoTitleElement = document.querySelector('.video-title');
+    var videoThumbnailElement = document.querySelector('.video-thumbnail');
+
+    // Split the title into words
+    var words = title.split(' ');
+
+    // If the title has more than 6 words, truncate it
+    if (words.length > 6) {
+        title = words.slice(0, 6).join(' ') + '...';
+    }
+
+    // Set the new video title and thumbnail
+    videoTitleElement.textContent = title;
+    videoThumbnailElement.src = "https://img.youtube.com/vi/" + videoId + "/default.jpg";
 }
 
        // Load the YouTube IFrame Player API asynchronously
