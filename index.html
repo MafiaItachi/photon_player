@@ -398,7 +398,6 @@
             height: 100%;
             background-color: #fff;
         }
-
 h1 {
             text-align: center;
         }
@@ -411,7 +410,7 @@ h1 {
 
         .playlist {
             display: inline-block;
-            width: 320px;
+           
             margin-right: 10px;
             vertical-align: top;
             background-color: #00B7C6;
@@ -475,8 +474,10 @@ h1 {
     margin: 20px 0;
     padding: 10px;
     background-color: #00B7C6;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 5px;
+    
+   
 }
 
 .playlist-container h2 {
@@ -485,17 +486,21 @@ h1 {
     padding: 10px;
     background-color: #003994;
     color: #fff;
-    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+
+     border-top-left-radius: 0px;
 }
 
 .playlist-thumbnail {
-    width: 100%;
+    width: 60%;
     height: auto;
     max-height: 180px;
     object-fit: cover;
     border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    
 }
 
 .song-list-container {
@@ -518,9 +523,7 @@ h1 {
     border-bottom: 1px solid #ddd;
 }
 
-.song-list li:hover {
-    background-color: #fff;
-}
+
 
 .song-thumbnail {
     width: 60px;
@@ -536,13 +539,14 @@ h1 {
 }
 
 .playlist-container button {
-    margin-top: 10px;
+    margin-top: 5px;
+    height: 100%;
     background-color: #003994;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0px 5px 5px 0px;
     font-size: 16px;
 }
 
@@ -560,53 +564,68 @@ h1 {
     text-overflow: ellipsis;
     max-width: 13em; /* Adjust the width as needed */
 }
+.nothing{
+    display: flex;
+    justify-content: space-around;
+    
+
+}
+
+.nothing2{
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+
+}
     </style>
 </head>
 <body>
-   
+   <h1>Discovery</h1>
     <div class="playlist-container">
         <div class="playlist" id="playlist-rock">
-            <h2>Rock</h2>
-            <img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+            
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
             <div class="song-list-container">
-                <button onclick="shuffleAndPlay2('rock')">Shuffle and Play</button>
+                
 
                 <ul class="song-list"></ul>
             </div>
         </div>
 
         <div class="playlist" id="playlist-pop">
-            <h2>Pop</h2>
-            <img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
             <div class="song-list-container">
-                <button onclick="shuffleAndPlay2('pop')">Shuffle and Play</button>
-
+                
                 <ul class="song-list"></ul>
             </div>
         </div>
 
         <div class="playlist" id="playlist-electronic">
-            <h2>Electronic</h2>
-            <img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
             <div class="song-list-container">
-                <button onclick="shuffleAndPlay2('electronic')">Shuffle and Play</button>
-
+                
                 <ul class="song-list"></ul>
             </div>
         </div>
 
         <div class="playlist" id="playlist-hiphop">
-            <h2>Hip Hop</h2>
-            <img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
             <div class="song-list-container">
-                <button onclick="shuffleAndPlay2('hiphop')">Shuffle and Play</button>
-
+                
                 <ul class="song-list"></ul>
             </div>
         </div>
     </div>
    
-   
+
     <h1>PHOTON PLAYER</h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
       <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
