@@ -664,6 +664,8 @@ h1 {
                 </div><br>
                 <div class="video-title2"></div>
            </div>
+       <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()">Add to Playlist</button>
+
                   <div class="mini-player-buttons">
                        <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i class="fa-solid fa-chevron-left fa-xl"></i></button>
                        <button class="mini-player-play-button" onclick="togglePlayPause()"><i class="fa-solid fa-play fa-xl"></i></button>
@@ -786,7 +788,30 @@ function playPreviousTrack() {
             clearInterval(progressInterval);
         }
 
-    
+    function addToPlaylistFromVideo() {
+    // Get the currently playing video's videoId
+    var videoId = player.getVideoData().video_id;
+
+    // Get the video title
+    var videoTitle = player.getVideoData().title;
+
+    // Get the existing playlist from local storage
+    var storedPlaylist = localStorage.getItem("playlist");
+    var playlistItems = storedPlaylist ? JSON.parse(storedPlaylist) : [];
+
+    // Add the new video to the playlist
+    playlistItems.push({
+        videoId: videoId,
+        videoTitle: videoTitle
+    });
+
+    // Update the playlist in local storage
+    localStorage.setItem("playlist", JSON.stringify(playlistItems));
+
+    // Display the updated playlist
+    displayPlaylist();
+}
+
 
         function seek(event) {
             var seekBar = $('#seek-bar');
