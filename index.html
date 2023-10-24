@@ -590,51 +590,7 @@ h1 {
     </style>
 </head>
 <body>
-   <h1>Discovery</h1>
-    <div class="playlist-container">
-        <div class="playlist" id="playlist-rock">
-            
-            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
-            <div class="song-list-container">
-                
-
-                <ul class="song-list"></ul>
-            </div>
-        </div>
-
-        <div class="playlist" id="playlist-pop">
-            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
-            <div class="song-list-container">
-                
-                <ul class="song-list"></ul>
-            </div>
-        </div>
-
-        <div class="playlist" id="playlist-electronic">
-            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
-            <div class="song-list-container">
-                
-                <ul class="song-list"></ul>
-            </div>
-        </div>
-
-        <div class="playlist" id="playlist-hiphop">
-            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
-            <div class="song-list-container">
-                
-                <ul class="song-list"></ul>
-            </div>
-        </div>
-    </div>
-   
+ 
 
     <h1>PHOTON PLAYER</h1>
     <input type="text" id="searchInput" placeholder="Enter song or artist">
@@ -688,6 +644,52 @@ h1 {
  
 
     </div>
+
+      <h1>Discovery</h1>
+    <div class="playlist-container">
+        <div class="playlist" id="playlist-rock">
+            
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+            <div class="song-list-container">
+                
+
+                <ul class="song-list"></ul>
+            </div>
+        </div>
+
+        <div class="playlist" id="playlist-pop">
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+            <div class="song-list-container">
+                
+                <ul class="song-list"></ul>
+            </div>
+        </div>
+
+        <div class="playlist" id="playlist-electronic">
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+            <div class="song-list-container">
+                
+                <ul class="song-list"></ul>
+            </div>
+        </div>
+
+        <div class="playlist" id="playlist-hiphop">
+            <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
+                <div class="nothing2"><div> <h2>Rock</h2></div>
+                <button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+            <div class="song-list-container">
+                
+                <ul class="song-list"></ul>
+            </div>
+        </div>
+    </div>
+   
     <h2>Add Playlist by Link</h2>
     <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
     <button onclick="addPlaylistByLink()">Add Playlist</button>
@@ -1239,7 +1241,7 @@ function hideMiniPlayer() {
         function fetchPlaylistItems(playlistId) {
             var apiKey = apiKeys[currentApiKeyIndex];
             var url =
-                "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=" +
+                "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=" +
                 playlistId +
                 "&key=" +
                 apiKey;
