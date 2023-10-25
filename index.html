@@ -184,6 +184,7 @@
             cursor: pointer;
             border-radius: 18px;
             height: 25px;
+         margin:5px ;
         }
         button {
             background-color: #008EC4;
@@ -194,6 +195,7 @@
             cursor: pointer;
             border-radius: 18px;
             height: 40px;
+            margin:5px ;
         }
 
         input[type="text"]::placeholder {
@@ -587,17 +589,21 @@ h1 {
     flex-direction:column;
 
 }
+        .sxq{
+    width: 100%;
+    display: flex;
+}
     </style>
 </head>
 <body>
  
 
-    <h1>PHOTON PLAYER</h1>
-    <input type="text" id="searchInput" placeholder="Enter song or artist">
+   <h1>PHOTON PLAYER</h1>
+    <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
       <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
-    </div>
+    
     <button onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
-
+</div>
     <div id="results"></div>
 
     <h2>PLAYLIST</h2>
