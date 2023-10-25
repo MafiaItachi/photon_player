@@ -122,7 +122,7 @@
             margin: 5px 0;
             padding: 10px;
             background-color: #00B7C6;
-            border-radius: 14px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             
@@ -139,7 +139,7 @@
             
             height: 40px;
             margin-right: 10px;
-            border-radius: 25%;
+            border-radius: 10px;
         }
 
         .playlist-item p {
@@ -599,6 +599,9 @@ h1 {
     width: 100%;
     display: flex;
 }
+        .linkinput{
+    display: flex;
+}
     </style>
 </head>
 <body>
@@ -612,7 +615,7 @@ h1 {
 </div>
     <div id="results"></div>
 
-    <h2>PLAYLIST</h2>
+    <h2><i class="fa-solid fa-list-music fa-xl"></i>PLAYLIST</h2>
      <div class="shuffle">
      <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
      <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
@@ -642,11 +645,11 @@ h1 {
                 </div><br>
                 <div class="video-title2"></div>
            </div>
-       <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i class="fa-solid fa-plus fa-xl"></i></button>
+       <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i class="fa-solid fa-bookmark fa-xl"></i></button>
 
                   <div class="mini-player-buttons">
                        <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i class="fa-solid fa-chevron-left fa-xl"></i></button>
-                       <button class="mini-player-play-button" onclick="togglePlayPause()"><i class="fa-solid fa-play fa-xl"></i></button>
+                       <button class="mini-player-play-button" onclick="togglePlayPause()"><i class="fa-solid fa-play-pause fa-xl"></i></button>
                        <button class="mini-player-next-button" onclick="playNextTrack()"><i class="fa-solid fa-chevron-right fa-xl"></i></button>
                   </div>
               
@@ -703,8 +706,8 @@ h1 {
     </div>
    
     <h2>Add Playlist by Link</h2>
-    <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-    <button onclick="addPlaylistByLink()">Add Playlist</button>
+    <div class="linkinput"><input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
+        <button onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button></div>
     <div class="backup-restore">
         <input type="text" id="backupInput" placeholder="backup code">
         <button onclick="backupPlaylist()"><i class="fa-solid fa-file-export fa-xl"></i></button>
