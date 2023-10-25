@@ -1112,7 +1112,7 @@ function setInitialRepeatModeIcon() {
                 displayPlaylist();
             }
         }
-       function backupPlaylist() {
+      function backupPlaylist() {
             var backupCode = btoa(JSON.stringify(playlistItems));
             document.getElementById("backupInput").value = backupCode;
         }
@@ -1124,7 +1124,6 @@ function setInitialRepeatModeIcon() {
             localStorage.setItem("playlist", JSON.stringify(playlistItems));
             displayPlaylist();
         }
-  
    
        function toggleDropdown(index) {
             var dropdowns = document.getElementsByClassName("more-dropdown");
