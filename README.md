@@ -25,7 +25,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 </h1>
 <p align="center">
   <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/preview.jpg">
+    <img src="image/preview2.jpg">
   </a>
 </p>
 
