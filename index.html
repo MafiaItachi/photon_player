@@ -13,9 +13,10 @@
     /* CSS styles specific to mobile devices with a screen width up to 480px */
     /* Adjust the text size or other styles here */
         }
-        #player {
-            width:370px;
-            margin: 10px;
+       
+      #player {
+            width: 100%;
+            margin: 10px 15px 10px 15px;
             overflow: hidden;
             border-radius: 10px;
         }
@@ -23,9 +24,9 @@
         body {
             align-items: center;
             margin: 5px;
-            background: #003994;
+            background: #181c28;
             /* width: 100%; */
-            padding: 5px;
+            /* padding: 5px; */
             font-family: "Sans Serif", Arial, sans-serif;
         }
 
@@ -70,10 +71,9 @@
         .progress-bar2 {
             width: 0%;
             height: 100%;
-            background-color: #0064B5;
+            background-color: #181c28;
             border-radius: 4px;
         }
-
 
 
 
@@ -83,7 +83,7 @@
             float: right;
             background: none;
             border: none;
-            color: #003994;
+            color: #181c28;
             cursor: pointer;
             padding: 0;
             font-size: .8rem;
@@ -123,22 +123,22 @@
         .playlist-item {
             margin: 5px 0;
             padding: 10px;
-            background-color: #00B7C6;
+            background-color: #455174;
             border-radius: 12px;
             display: flex;
             align-items: center;
-            
+
         }
 
         .playlist-item strong {
             font-weight: bold;
             margin-right: 8px;
             width: auto;
-            color: #190061;
+            color: #ffffff;
         }
 
         .playlist-item img {
-            
+
             height: 40px;
             margin-right: 10px;
             border-radius: 10px;
@@ -149,8 +149,9 @@
             align-items: center;
             margin: 0;
             flex-grow: 1;
-            color: #190061;
+            color: #ffffff;
             font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .playlist-controls {
@@ -180,9 +181,9 @@
             color: #ffffff;
         }
 
-     input[type="text"]{
+        input[type="text"] {
 
-            background-color: #008EC4;
+            background-color: #23a991;
             color: #fff;
             border: none;
             padding: 8px 16px;
@@ -191,10 +192,11 @@
             border-radius: 12px;
             height: 25px;
             width: 100%;
-            margin:5px ;
+            margin: 5px;
         }
+
         button {
-            background-color: #008EC4;
+            background-color: #23a991;
             color: #fff;
             border: none;
             padding: 8px 16px;
@@ -213,9 +215,9 @@
 
         }
 
-        button:hover {
+        /* button:hover {
             background-color: #0064B5;
-        }
+        } */
 
         button:focus {
             outline: none;
@@ -284,12 +286,14 @@
             margin-right: 10px;
         }
 
-        
+
 
         #controls {
             height: 75px;
-            widgh: 100%;
-            background-color: #190061;
+            /* background-color:  #1800619e;
+            backdrop-filter: blur(20px); */
+            background-color: #262d41;
+            backdrop-filter: blur(20px);
             position: fixed;
             bottom: 5px;
             right: 5px;
@@ -297,13 +301,15 @@
             border-radius: 10px;
             padding-right: 5px;
             z-index: 1;
+            /* margin: 5px; */
+
 
         }
 
         .video-thumbnail {
             width: 60px;
             height: 50px;
-            margin-left: 9px;
+            margin-left: 10px;
             margin-top: 0px;
             background-color: white;
 
@@ -314,17 +320,17 @@
             height: 100%;
             width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
 
         }
 
         .video-title {
-            width: 180px;
+            width: 100%;
             color: white;
             margin-left: 10px;
             display: flex;
-            align-item: center;
+           
 
         }
 
@@ -333,27 +339,29 @@
         /* Mini player styles */
         .mini-player {
             position: fixed;
-            bottom: 10px;
-            left: 5px;
-            right: 5px;
-            margin-bottom: -5px;
+            bottom: -5px;
+            /* left: 5px; */
+            /* right: 5px; */
             /* height: 380px; */
-            background-color: #190061;
             transform: translateY(100%);
             transition: transform 0.3s ease-in-out;
             display: flex;
             align-items: center;
-            padding: 0px;
-            
+            padding: 10px;
             box-sizing: border-box;
             flex-direction: column;
             border-radius: 10px;
+            background-color: #262d41;
+            width: 100%;
+
+
         }
 
         .mini-player-controls {
             flex-grow: 1;
             display: flex;
             align-items: center;
+
         }
 
         .mini-player-details {
@@ -373,14 +381,14 @@
             width: 75vw;
             display: flex;
             justify-content: space-around;
-             margin: 20px;
+            margin: 20px;
         }
 
         .mini-player-buttons button {
-            
+
             cursor: pointer;
             padding: 5px;
-            
+
 
         }
 
@@ -402,7 +410,7 @@
             text-align: center;
         }
 
-       #seek-bar {
+        #seek-bar {
             width: 75vw;
             height: 5px;
             background-color: #666;
@@ -415,7 +423,8 @@
             height: 100%;
             background-color: #fff;
         }
-h1 {
+
+        h1 {
             text-align: center;
         }
 
@@ -427,7 +436,7 @@ h1 {
 
         .playlist {
             display: inline-block;
-           
+
             margin-right: 7px;
             vertical-align: top;
             background-color: #00B7C6;
@@ -488,186 +497,213 @@ h1 {
 
 
         .playlist-container {
-    margin: 20px 0;
-    padding: 7px;
-    background-color: #00B7C6;
-    /* border: 1px solid #ddd; */
-    border-radius: 5px;
-    
-   
-}
-
-.playlist-container h2 {
-    font-size: 20px;
-    margin: 0;
-    padding: 10px;
-    background-color: #003994;
-    color: #fff;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-
-     border-top-left-radius: 0px;
-}
-
-.playlist-thumbnail {
-    width: 60%;
-    height: auto;
-    max-height: 180px;
-    object-fit: cover;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 0px;
-    
-}
-
-.song-list-container {
-    padding: 0px;
-    display: none;
-}
-
-.song-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.song-list li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-bottom: 1px solid #ddd;
-}
+            margin: 20px 0;
+            padding: 7px;
+            background-color: #455174;
+            /* border: 1px solid #ddd; */
+            border-radius: 5px;
 
 
+        }
 
-.song-thumbnail {
-    width: 60px;
-    height: 40px;
-    margin-right: 10px;
-}
+        .playlist-container h2 {
+            font-size: 20px;
+            margin: 0;
+            padding: 10px;
+            background-color: #23a991;
+            color: #fff;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
 
-.song-title {
-    flex-grow: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
+            border-top-left-radius: 0px;
+        }
 
-.playlist-container button {
-    margin-top: 5px;
-    height: 100%;
-    background-color: #003994;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 0px 5px 5px 0px;
-    font-size: 16px;
-}
+        .playlist-thumbnail {
+            width: 60%;
+            height: auto;
+            max-height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-top-right-radius: 0px;
 
-.playlist-container button:hover {
-    background-color: #002277;
-}
+        }
 
-.playlist-container button:focus {
-    outline: none;
-}
+        .song-list-container {
+            padding: 0px;
+            background-color: #262d41;
+            display: none;
+            font: white;
+        }
+
+        .song-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .song-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+
+        .song-thumbnail {
+            width: 60px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .song-title {
+            flex-grow: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .playlist-container button {
+            margin: 5px 5px 0px 0px;
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 0px 5px 5px 0px;
+            font-size: 16px;
+        }
+
+        
+
+        .playlist-container button:focus {
+            outline: none;
+        }
 
         .song-list-container .song-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 15em; /* Adjust the width as needed */
-}
-.nothing{
-    display: flex;
-    justify-content: space-around;
-    
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 15em;
+            color: white;
+            /* Adjust the width as needed */
+        }
 
-}
+        .nothing {
+            display: flex;
+            justify-content: space-around;
 
-.nothing2{
-    width: 100%;
-    display: flex;
-    flex-direction:column;
 
-}
-        .sxq{
-    width: 100%;
-    display: flex;
-}
-        .linkinput{
-    display: flex;
-}
+        }
+
+        .nothing2 {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .sxq {
+            width: 100%;
+            display: flex;
+        }
+
+        .linkinput {
+            display: flex;
+        }
+
+        h2 {
+            padding-left: 20px;
+            display: block;
+            font-size: 1.8em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
     </style>
 </head>
-<body>
- 
 
-   <h1>PHOTON PLAYER</h1>
+<body>
+
+
+    <h1><i class="fi fi-sr-list-music"></i>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
-      <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
-    
-    <button onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
-</div>
+        <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
+
+        <button onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+    </div>
     <div id="results"></div>
 
     <h2><i class="fa-solid fa-list-music fa-xl"></i>PLAYLIST</h2>
-     <div class="shuffle">
-     <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
-     <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
-    <button onclick="shuffleAndPlay()"><i class="fa-solid fa-random fa-xl"></i></button>
-      </div>
- 
+    <div class="shuffle">
+        <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
+        <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
+        <button onclick="shuffleAndPlay()"><i class="fa-solid fa-random fa-xl"></i></button>
+    </div>
+
     <div id="playlist"></div>
     <br></br>
-     <div id="controls">
+    <div id="controls">
         <div class="con">
-          <img class="video-thumbnail" src="image/songicon.jpg" >
-          <div class="video-title"></div>
-          <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><i class="fa-solid fa-repeat fa-lg"></i></button>
-         <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
-         </div>
-    
-       <div class="seekbar2">
-             <div class="progress-bar2"></div>
-         </div>
-   <div id="mini-player" class="mini-player">
-      <div id="player"></div>
-      
-        
-           <div class="player-controls">
-                <div id="seek-bar">
-                  <div id="progress-bar"></div>
-                </div><br>
-                <div class="video-title2"></div>
-           </div>
-       <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i class="fa-solid fa-bookmark fa-xl"></i></button>
-
-                  <div class="mini-player-buttons">
-                       <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i class="fa-solid fa-chevron-left fa-xl"></i></button>
-                       <button class="mini-player-play-button" onclick="togglePlayPause()"><i class="fa-solid fa-play-pause fa-xl"></i></button>
-                       <button class="mini-player-next-button" onclick="playNextTrack()"><i class="fa-solid fa-chevron-right fa-xl"></i></button>
-                  </div>
-              
-           
+            <img class="video-thumbnail" src="">
+            <div class="video-title"></div>
+            <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><i
+                    class="fa-solid fa-repeat fa-lg"></i></button>
+            <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
         </div>
 
- 
+        <div class="seekbar2">
+            <div class="progress-bar2"></div>
+        </div>
+        <div id="mini-player" class="mini-player">
+            <div id="player"></div>
+
+
+            <div class="player-controls">
+                <div id="seek-bar">
+                    <div id="progress-bar"></div>
+                </div><br>
+                <div class="video-title2"></div>
+            </div>
+            <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i
+                    class="fa-solid fa-bookmark fa-xl"></i></button>
+
+            <div class="mini-player-buttons">
+                <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
+                        class="fa-solid fa-chevron-left fa-xl"></i></button>
+                <button class="mini-player-play-button" onclick="togglePlayPause()"><i
+                        class="fa-solid fa-play-pause fa-xl"></i></button>
+                <button class="mini-player-next-button" onclick="playNextTrack()"><i
+                        class="fa-solid fa-chevron-right fa-xl"></i></button>
+            </div>
+
+
+        </div>
+
+
 
     </div>
 
-      <h1>Discovery</h1>
+    <h1>DISCOVERY</h1>
     <div class="playlist-container">
         <div class="playlist" id="playlist-rock">
-            
+
             <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+                <div class="nothing2">
+                    <div>
+                        <h2>T. Swift</h2>
+                    </div>
+                    <button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button>
+                </div>
+            </div>
             <div class="song-list-container">
-                
+
 
                 <ul class="song-list"></ul>
             </div>
@@ -675,38 +711,54 @@ h1 {
 
         <div class="playlist" id="playlist-pop">
             <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+                <div class="nothing2">
+                    <div>
+                        <h2>Rock</h2>
+                    </div>
+                    <button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button>
+                </div>
+            </div>
             <div class="song-list-container">
-                
+
                 <ul class="song-list"></ul>
             </div>
         </div>
 
         <div class="playlist" id="playlist-electronic">
             <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+                <div class="nothing2">
+                    <div>
+                        <h2>Rock</h2>
+                    </div>
+                    <button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-xl"></i></button>
+                </div>
+            </div>
             <div class="song-list-container">
-                
+
                 <ul class="song-list"></ul>
             </div>
         </div>
 
         <div class="playlist" id="playlist-hiphop">
             <div class="nothing"><img class="playlist-thumbnail" src="" alt="Playlist Thumbnail">
-                <div class="nothing2"><div> <h2>Rock</h2></div>
-                <button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-xl"></i></button></div></div>
+                <div class="nothing2">
+                    <div>
+                        <h2>Rock</h2>
+                    </div>
+                    <button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-xl"></i></button>
+                </div>
+            </div>
             <div class="song-list-container">
-                
+
                 <ul class="song-list"></ul>
             </div>
         </div>
     </div>
-   
-    <h2>Add Playlist by Link</h2>
+
+    <h2>ADD PLAYLIST BY LINK</h2>
     <div class="linkinput"><input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-        <button onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button></div>
+        <button onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button>
+    </div>
     <div class="backup-restore">
         <input type="text" id="backupInput" placeholder="backup code">
         <button onclick="backupPlaylist()"><i class="fa-solid fa-file-export fa-xl"></i></button>
