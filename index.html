@@ -651,6 +651,7 @@
         <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
         <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
         <button onclick="shuffleAndPlay()"><i class="fa-solid fa-random fa-xl"></i></button>
+        <button id="fullscreen-button"><i class="fa-solid fa-mobile fa-xl"></i></button>
     </div>
 
     <div id="playlist"></div>
@@ -772,10 +773,47 @@
 
 
     </div>
+    <div class="fullscreen-div" id="green-div"></div>
     <br></br><br></br><br></br><br></br>
 
 
     <script>
+        
+        const fullscreenButton = document.getElementById('fullscreen-button');
+        const greenDiv = document.getElementById('green-div');
+
+        // Function to enter full screen
+        function enterFullscreen() {
+            if (greenDiv.requestFullscreen) {
+                greenDiv.requestFullscreen();
+            } else if (greenDiv.mozRequestFullScreen) { // Firefox
+                greenDiv.mozRequestFullScreen();
+            } else if (greenDiv.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                greenDiv.webkitRequestFullscreen();
+            } else if (greenDiv.msRequestFullscreen) { // IE/Edge
+                greenDiv.msRequestFullscreen();
+            }
+        }
+
+        fullscreenButton.addEventListener('click', enterFullscreen);
+
+        // Event handler for exiting full screen
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                // The element is in full-screen mode
+                greenDiv.style.display = 'block';
+            } else {
+                // Full-screen mode exited
+                greenDiv.style.display = 'none';
+            }
+        });
+
+        // Event listener for double-click to exit full screen
+        document.addEventListener('dblclick', () => {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
+        });
         var currentVideoIndex = -1;
         var player;
         var isPlaying = false;
