@@ -43,6 +43,8 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | Video Player           | ✅ |
 | Add youtube playlist   | ✅ |
 | Backup playlist        | ✅ |
+| Background play        | ✅ |
+| Discovery section      | ✅ |
 
 
 <h1 align="center">
