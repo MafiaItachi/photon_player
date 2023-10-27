@@ -34,6 +34,7 @@ const artistPlaylists = [
     { name: 'Olivia Rodrigo', playlistId: 'RDCLAK5uy_mQTn6lqC0RbdmtrhBfbeLJRUzBIkzkm_M' },
     { name: 'Ritviz', playlistId: 'RDCLAK5uy_knmHvX39raQ7qEvKH5yJFsEy5ADmvoelc' },
     { name: 'Arijit', playlistId: 'RDCLAK5uy_kGLDDW42tws3jDBNB3m8eRcn3iDWMlwd8' },
+   { name: 'Anime', playlistId: 'PLK3BZE3cGU6jHgTJY9b2edPw163WUzb7a&si=HcT_ONBpj_LsozSv' },
     // Add more artists and playlist IDs as needed
 ];
 // ... (previous code)
