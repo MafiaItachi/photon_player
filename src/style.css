@@ -1,0 +1,93 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+li {
+    cursor: pointer;
+    padding: 4px;
+    background-color: #455174;
+    display: flex;
+    
+    align-items: center;
+    
+    margin: 0px 3px 0px 0px;
+    border-radius: 10px;
+    flex-direction: column;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+li:hover {
+    background-color: #23a991;
+}
+
+li img {
+    max-width: 180px;
+    max-height: 1800px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+
+
+
+
+.artist-section {
+    float: left;
+    width: 100%;
+
+}
+
+
+
+#playlist2 {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+#playlist2 li {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    width: 100%;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 5px 0px 5px 0px;
+}
+
+#playlist2 li img {
+    height: 40px;
+    width: 54px;
+    border-radius: 10px;
+    
+}
+
+/* Add CSS to hide the playlist container by default 
+        #playlist-container {
+            display: none;
+        }*/
+
+/* Add this CSS to hide the playlist by default */
+.playlist2 {
+    display: none;
+}
+
+/* Add this CSS to reveal the playlist after clicking on an artist's thumbnail */
+.playlist.show {
+    display: block;
+}
+
+.artist-list {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.playlist2 div .img {
+    border-radius: 10px;
+}
