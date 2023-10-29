@@ -15,13 +15,26 @@
             /* Adjust the text size or other styles here */
         }
 
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .example::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .example {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
         #central-song-list-container {
-           
-           
-            
-            
+
+
+
+
             /* text-align: center; */
-            
+
             /* Adjust the width as needed */
             margin: 0 auto;
             /* Center the container horizontally */
@@ -33,9 +46,9 @@
         }
 
         #central-playlist-thumbnail {
-            height: 180px;
+            height: 188px;
             /* Adjust the width of the thumbnail */
-            height: auto;
+            width: auto;
             /* Maintain the aspect ratio */
             display: block;
             margin: 0 auto;
@@ -51,15 +64,15 @@
         #central-song-list li {
             display: flex;
             align-items: center;
-            margin: 5px;
+            margin: 5px 0px 5px 0px;
             border-radius: 10px;
             background-color: #455174;
             padding: 10px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: bold;
 
         }
 
@@ -84,18 +97,22 @@
         }
 
 
-
+        .thumtitle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         #player {
             width: 100%;
-            margin: 10px 15px 10px 15px;
+            /* margin: 10px 15px 10px 15px; */
             overflow: hidden;
             border-radius: 10px;
         }
 
         body {
             align-items: center;
-            margin: 5px;
+            margin: 7px;
             background: #181c28;
             /* width: 100%; */
             /* padding: 5px; */
@@ -324,7 +341,7 @@
         }
 
         .result-details {
-            background-color: #0064B5;
+            background-color: #455174;
             padding: 10px;
 
             border-bottom-left-radius: 20px;
@@ -337,7 +354,7 @@
             margin-bottom: 5px;
         }
 
-        .result-buttons {
+        /* .result-buttons {
             margin-top: 10px;
             border-radius: 20px;
         }
@@ -345,7 +362,7 @@
         .result-buttons button {
             margin-right: 10px;
             border-radius: 20px;
-        }
+        } */
 
         .backup-restore {
             margin-top: 20px;
@@ -368,8 +385,8 @@
             backdrop-filter: blur(20px);
             position: fixed;
             bottom: 5px;
-            right: 5px;
-            left: 5px;
+            right: 7px;
+            left: 7px;
             border-radius: 10px;
             padding-right: 5px;
             z-index: 1;
@@ -379,12 +396,12 @@
         }
 
         .video-thumbnail {
-            width: 60px;
+            width: 65px;
             height: 50px;
             margin-left: 10px;
             margin-top: 0px;
             background-color: white;
-
+            object-fit: cover;
             border-radius: 10px;
         }
 
@@ -425,6 +442,7 @@
             border-radius: 10px;
             background-color: #262d41;
             width: 100%;
+            height: 620px;
 
 
         }
@@ -480,6 +498,7 @@
             font-weight: bold;
             margin-bottom: 10px;
             text-align: center;
+            height: 48px;
         }
 
         #seek-bar {
@@ -511,7 +530,7 @@
             background-color: #455174;
             padding: 8px;
             vertical-align: top;
-            height: 295px;
+            /* height: 295px; */
             border-radius: 5px;
 
         }
@@ -583,7 +602,7 @@
         }
 
         .playlist-thumbnail {
-            height: 180px;
+            height: 188px;
             object-fit: cover;
             border-radius: 10px;
 
@@ -638,8 +657,8 @@
             bottom: 100px; */
             color: #181c28;
             border: none;
-            height: 70px;
-            width: 70px;
+            height: 55px;
+            width: 55px;
             cursor: pointer;
             border-radius: 50%;
 
@@ -661,24 +680,27 @@
         }
 
         .nothing {
-             display: flex;
-            /*flex-direction: column; 
+            display: flex;
+            width: 100%;
             align-items: center;
-            justify-content:;
-            */
-           
+            justify-content: space-between;
+
 
         }
-     .pname {
-       
-    display: flex;
-    word-wrap: break-word;
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: bold;
-    width: 50px;
-       
-     }
+
+        .pname {
+
+            width: 120px;
+            inline-size: 120px;
+            overflow-wrap: break-word;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-wrap: balance;
+            padding-left: 3px;
+
+
+        }
 
         .linkinput {
             display: flex;
@@ -708,7 +730,7 @@
     </div>
     <div id="results"></div>
 
-    <h2><i class="fa-solid fa-list-music fa-xl"></i>PLAYLIST</h2>
+    <h1><i class="fa-solid fa-list-music fa-xl"></i>BOOKMARK</h1>
     <div class="shuffle">
         <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
         <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
@@ -720,7 +742,7 @@
     <br></br>
     <div id="controls">
         <div class="con">
-            <img class="video-thumbnail" src="image/songicon.jpg">
+            <img class="video-thumbnail" src="image/songicon.png">
             <div class="video-title">MADE BY SHUBHAM</div>
             <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><i
                     class="fa-solid fa-repeat fa-lg"></i></button>
@@ -747,7 +769,7 @@
                 <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
                         class="fa-solid fa-chevron-left fa-xl"></i></button>
                 <button class="mini-player-play-button" onclick="togglePlayPause()"><i
-                        class="fa-solid fa-play-pause fa-xl"></i></button>
+                        class="fa-solid fa-play fa-xl"></i></button>
                 <button class="mini-player-next-button" onclick="playNextTrack()"><i
                         class="fa-solid fa-chevron-right fa-xl"></i></button>
             </div>
@@ -765,37 +787,52 @@
         <div class="playlist" id="playlist-rock">
             <img class="playlist-thumbnail" id="playlist-rock-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
-                <div class="pname">PRESENTING LINKIN PARK</div><button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button>
-       
+                <div class="pname">PRESENTING LINKIN PARK</div>
+                <div><button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-xl"></i></button></div>
+
             </div>
-             </div>
+        </div>
 
         <div class="playlist" id="playlist-pop">
 
             <img class="playlist-thumbnail" src="" id="playlist-pop-thumbnail" alt="Playlist Thumbnail">
+            <div class="nothing">
+                <div class="pname">PRESENTING SELENA GOMEZ</div>
+                <div><button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button></div>
 
-            <div>Pop</div> <button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-xl"></i></button>
+            </div>
         </div>
 
         <div class="playlist" id="playlist-electronic">
 
             <img class="playlist-thumbnail" src="" id="playlist-electronic-thumbnail" alt="Playlist Thumbnail">
-            <div>Electronic</div><button onclick="shuffleAndPlay2('electronic')"><i
-                    class="fa-solid fa-random fa-xl"></i></button>
+            <div class="nothing">
+                <div class="pname">PRESENTING ED SHEERAN</div>
+                <div><button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-xl"></i></button>
+                </div>
+
+            </div>
 
         </div>
 
         <div class="playlist" id="playlist-hiphop">
 
             <img class="playlist-thumbnail" src="" id="playlist-hiphop-thumbnail" alt="Playlist Thumbnail">
-            <div>Hip Hop</div><button onclick="shuffleAndPlay2('hiphop')"><i
-                    class="fa-solid fa-random fa-xl"></i></button>
+            <div class="nothing">
+                <div class="pname">ANIME</div>
+                <div><button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-xl"></i></button></div>
+
+            </div>
         </div>
     </div>
 
     <div id="central-song-list-container">
-        <h2 id="central-playlist-title"></h2>
-        <img id="central-playlist-thumbnail" class="playlist-thumbnail" alt="Playlist Thumbnail" src="image/songicon.jpg">
+
+        <div class="thumtitle">
+            <img id="central-playlist-thumbnail" class="playlist-thumbnail" alt="Playlist Thumbnail"
+                src="image/songicon.png">
+            <h2 id="central-playlist-title"></h2>
+        </div>
         <ul id="central-song-list"></ul>
     </div>
     <h2>ADD PLAYLIST BY LINK</h2>
@@ -1087,7 +1124,7 @@
                 buttonsDiv.className = "result-buttons";
 
                 var addToPlaylistButton = document.createElement("button");
-                addToPlaylistButton.textContent = "Add to Playlist";
+                addToPlaylistButton.innerHTML = '<i class="fa-solid fa-bookmark fa-xl"></i>';
                 addToPlaylistButton.addEventListener("click", function (id, title, thumbnail) {
                     return function () {
                         addToPlaylist(id, title, thumbnail);
@@ -1095,7 +1132,7 @@
                 }(videoId, videoTitle, thumbnailUrl));
 
                 var playVideoButton = document.createElement("button");
-                playVideoButton.textContent = "Play Video";
+                playVideoButton.innerHTML = '<i class="fa-solid fa-play fa-xl"></i>';
                 playVideoButton.addEventListener("click", function (id, title, thumbnail) {
                     return function () {
                         playVideo(id, title, thumbnail);
