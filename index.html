@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -791,43 +792,52 @@
     <h1>DISCOVERY</h1>
 
     <div class="playlist-container">
-        <div class="playlist" id="playlist-rock">
-            <img class="playlist-thumbnail" id="playlist-rock-thumbnail" alt="Playlist Thumbnail">
+        <div class="playlist" id="playlist-plist1">
+            <img class="playlist-thumbnail" id="playlist-plist1-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
                 <div class="pname">PRESENTING LINKIN PARK</div>
-                <div><button onclick="shuffleAndPlay2('rock')"><i class="fa-solid fa-random fa-lg"></i></button></div>
+                <div><button onclick="shuffleAndPlay2('plist1')"><i class="fa-solid fa-random fa-lg"></i></button></div>
 
             </div>
         </div>
 
-        <div class="playlist" id="playlist-pop">
+        <div class="playlist" id="playlist-plist2">
 
-            <img class="playlist-thumbnail" src="" id="playlist-pop-thumbnail" alt="Playlist Thumbnail">
+            <img class="playlist-thumbnail" src="" id="playlist-plist2-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
                 <div class="pname">PRESENTING SELENA GOMEZ</div>
-                <div><button onclick="shuffleAndPlay2('pop')"><i class="fa-solid fa-random fa-lg"></i></button></div>
+                <div><button onclick="shuffleAndPlay2('plist2')"><i class="fa-solid fa-random fa-lg"></i></button></div>
 
             </div>
         </div>
 
-        <div class="playlist" id="playlist-electronic">
+        <div class="playlist" id="playlist-plist3">
 
-            <img class="playlist-thumbnail" src="" id="playlist-electronic-thumbnail" alt="Playlist Thumbnail">
+            <img class="playlist-thumbnail" src="" id="playlist-plist3-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
                 <div class="pname">PRESENTING ED SHEERAN</div>
-                <div><button onclick="shuffleAndPlay2('electronic')"><i class="fa-solid fa-random fa-lg"></i></button>
+                <div><button onclick="shuffleAndPlay2('plist3')"><i class="fa-solid fa-random fa-lg"></i></button>
                 </div>
 
             </div>
 
         </div>
 
-        <div class="playlist" id="playlist-hiphop">
+        <div class="playlist" id="playlist-plist4">
 
-            <img class="playlist-thumbnail" src="" id="playlist-hiphop-thumbnail" alt="Playlist Thumbnail">
+            <img class="playlist-thumbnail" src="" id="playlist-plist4-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
                 <div class="pname">ANIME</div>
-                <div><button onclick="shuffleAndPlay2('hiphop')"><i class="fa-solid fa-random fa-lg"></i></button></div>
+                <div><button onclick="shuffleAndPlay2('plist4')"><i class="fa-solid fa-random fa-lg"></i></button></div>
+
+            </div>
+        </div>
+        <div class="playlist" id="playlist-plist5">
+
+            <img class="playlist-thumbnail" src="" id="playlist-plist5-thumbnail" alt="Playlist Thumbnail">
+            <div class="nothing">
+                <div class="pname">ARIJIT SING</div>
+                <div><button onclick="shuffleAndPlay2('plist5')"><i class="fa-solid fa-random fa-lg"></i></button></div>
 
             </div>
         </div>
@@ -1490,10 +1500,12 @@
 
         var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
         var playlistIds = {
-            rock: 'RDCLAK5uy_loGaNxpVmNaawt9htfXXYRYfm-D8xmHLY',
-            pop: 'RDCLAK5uy_mvsCHKeFgZxCoFoMA2CClIVPvhFaJCfV8',
-            electronic: 'RDCLAK5uy_lL718gGQZgQf4jkKYjVbOXHABQCFAYuj0',
-            hiphop: 'PLhsvUSWlL3Wkisdq5KXYnMUaapmBL567g&si=9Oam4G8g3zVMprvM'
+            plist1: 'RDCLAK5uy_loGaNxpVmNaawt9htfXXYRYfm-D8xmHLY',
+            plist2: 'RDCLAK5uy_mvsCHKeFgZxCoFoMA2CClIVPvhFaJCfV8',
+            plist3: 'RDCLAK5uy_lL718gGQZgQf4jkKYjVbOXHABQCFAYuj0',
+            plist4: 'PLhsvUSWlL3Wkisdq5KXYnMUaapmBL567g&si=9Oam4G8g3zVMprvM',
+            plist5: 'RDCLAK5uy_kGLDDW42tws3jDBNB3m8eRcn3iDWMlwd8&playnext=1&si=DaJHiYAkpyLDcjw6',
+            
         };
         // Create references to the central elements
         var centralPlaylistTitle = document.getElementById('central-playlist-title');
@@ -1578,10 +1590,11 @@
         }
 
         $(document).ready(function () {
-            loadPlaylist('rock', 'playlist-rock');
-            loadPlaylist('pop', 'playlist-pop');
-            loadPlaylist('electronic', 'playlist-electronic');
-            loadPlaylist('hiphop', 'playlist-hiphop');
+            loadPlaylist('plist1', 'playlist-plist1');
+            loadPlaylist('plist2', 'playlist-plist2');
+            loadPlaylist('plist3', 'playlist-plist3');
+            loadPlaylist('plist4', 'playlist-plist4');
+            loadPlaylist('plist5', 'playlist-plist5');
         });
 
 
