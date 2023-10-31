@@ -47,7 +47,7 @@
         }
 
         .trending-song-list li {
-            margin-right: 8px;
+            margin-right: 5px;
             padding: 5px;
             background-color: #455174;
             width: 369px;
@@ -776,6 +776,15 @@
             margin-inline-end: 0px;
             font-weight: bold;
         }
+         .snap-inline{
+            scroll-snap-type: inline mandatory;
+            /* scroll-padding-inline: 3px; */
+
+        }
+        .snap-inline > *{
+            scroll-snap-align:start;
+            scroll-snap-stop: always;
+        }
     </style>
 </head>
 
@@ -847,7 +856,7 @@
     </div>
     <div class="trending-songs">
         <h1>TRENDING SONG</h1>
-        <div class="trending-songs-container">
+        <div class="trending-songs-container snap-inline">
             <div class="trending-song-row">
                 <!-- First Column -->
                 <ul class="trending-song-list column">
@@ -869,7 +878,7 @@
     
     <h1>DISCOVERY</h1>
 
-    <div class="playlist-container">
+    <div class="playlist-container snap-inline">
         <div class="playlist" id="playlist-plist1">
             <img class="playlist-thumbnail" id="playlist-plist1-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
