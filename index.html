@@ -28,7 +28,44 @@
             scrollbar-width: none;
             /* Firefox */
         }
+          .trending-songs-container {
+            width: 100%;
+            height: 370px;
+            overflow: auto;
+            white-space: nowrap;
+        }
 
+        .trending-song-list {
+            list-style: none;
+            display: flex;
+
+        }
+        .column{
+            padding:0 ;
+            margin: 0px 0px 5px 0px;
+        }
+
+        .trending-song-list li {
+            margin-right: 8px;
+            padding: 5px;
+            background-color: #455174;
+            width: 388px;
+            display: flex;
+            /* flex-wrap: nowrap; */
+            align-items: center;
+            border-radius: 10px;
+            color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+        }
+        .trending-song-list li img{
+                 border-radius: 10px;
+                 height: 80px;
+                 padding: 2px;
+        }
+        .trending-song-list .song-title{
+            padding-left: 5px;
+        }
         #central-song-list-container {
 
 
@@ -788,7 +825,28 @@
 
 
     </div>
-
+    <div class="trending-songs">
+        <h1>TRENDING SONG</h1>
+        <div class="trending-songs-container">
+            <div class="trending-song-row">
+                <!-- First Column -->
+                <ul class="trending-song-list column">
+                    <!-- Trending songs go here -->
+                </ul>
+    
+                <!-- Second Column -->
+                <ul class="trending-song-list column">
+                    <!-- Trending songs go here -->
+                </ul>
+    
+                <!-- Third Column -->
+                <ul class="trending-song-list column">
+                    <!-- Trending songs go here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    
     <h1>DISCOVERY</h1>
 
     <div class="playlist-container">
