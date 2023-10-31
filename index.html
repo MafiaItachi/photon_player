@@ -483,6 +483,9 @@
             background-color: #262d41;
             width: 100%;
             height: 620px;
+            height: 844px;
+            justify-content: space-evenly;
+
 
 
         }
@@ -505,14 +508,23 @@
             font-weight: bold;
             margin-bottom: 5px;
         }
-
         .mini-player-buttons {
             align-items: center;
             width: 75vw;
             display: flex;
             justify-content: space-around;
             margin: 20px;
+            flex-direction: column;
         }
+        .bbutton{
+            margin: 30px;
+        }
+        .ppnbutton{
+            display: flex;
+            width: 90vw;
+            justify-content: space-evenly;
+        }
+  
 
         .mini-player-buttons button {
 
@@ -812,13 +824,19 @@
             <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i
                     class="fa-solid fa-bookmark fa-xl"></i></button>
 
-            <div class="mini-player-buttons">
-                <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
-                        class="fa-solid fa-chevron-left fa-xl"></i></button>
-                <button class="mini-player-play-button" onclick="togglePlayPause()"><i
-                        class="fa-solid fa-play fa-xl"></i></button>
-                <button class="mini-player-next-button" onclick="playNextTrack()"><i
-                        class="fa-solid fa-chevron-right fa-xl"></i></button>
+            div class="mini-player-buttons">
+                <div class="bbutton">
+                    <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i
+                            class="fa-solid fa-bookmark fa-xl"></i></button>
+                </div>
+                <div class="ppnbutton">
+                    <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
+                            class="fa-solid fa-chevron-left fa-xl"></i></button>
+                    <button class="mini-player-play-button" onclick="togglePlayPause()"><i
+                            class="fa-solid fa-play fa-xl"></i></button>
+                    <button class="mini-player-next-button" onclick="playNextTrack()"><i
+                            class="fa-solid fa-chevron-right fa-xl"></i></button>
+                </div>
             </div>
 
 
