@@ -37,18 +37,18 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 </h1>
 
 <p align="center">| Feature                |     |
-| ---------------------- | --- |
-| User Accounts          | ✅ |
-| play,pause button      | ✅ |
-| Shuffle play button    | ✅ |
-| Playlist Bookmarks     | ✅ |
-| Youtube song Search    | ✅ |
-| Video Player           | ✅ |
-| Add youtube playlist   | ✅ |
-| Backup playlist        | ✅ |
-| Background play        | ✅ |
-| Discovery section      | ✅ |
-| Trending section       | ✅ |</p>
+                  | ---------------------- | --- |
+                  | User Accounts          | ✅ |
+                  | play,pause button      | ✅ |
+                  | Shuffle play button    | ✅ |
+                  | Playlist Bookmarks     | ✅ |
+                  | Youtube song Search    | ✅ |
+                  | Video Player           | ✅ |
+                  | Add youtube playlist   | ✅ |
+                  | Backup playlist        | ✅ |
+                  | Background play        | ✅ |
+                  | Discovery section      | ✅ |
+                  | Trending section       | ✅ |</p>
 
 
 
