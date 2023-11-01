@@ -36,7 +36,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
    PHOTON PLAYER FEATURE
 </h1>
 
-| Feature                |     |
+<p align="center">| Feature                |     |
 | ---------------------- | --- |
 | User Accounts          | ✅ |
 | play,pause button      | ✅ |
@@ -48,6 +48,8 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | Backup playlist        | ✅ |
 | Background play        | ✅ |
 | Discovery section      | ✅ |
+| Trending section       | ✅ |</p>
+
 
 
 <h1 align="center">
