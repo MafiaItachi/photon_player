@@ -48,6 +48,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | Backup playlist        | ✅ |
 | Background play        | ✅ |
 | Discovery section      | ✅ |
+| Trending section       | ✅ |
 
 
 <h1 align="center">
