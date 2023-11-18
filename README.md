@@ -54,7 +54,10 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | Discovery section      | ✅ |
 | Trending section       | ✅ |
 
-
+### :camera: Screenshots
+<div align="center"> <a href=""><img src="image/01.png" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="image/06.jpg" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="image/07.jpg" alt='image' width='800'/></a> </div>
 <h1 align="center">
   CONTACT INTO
 </h1>
