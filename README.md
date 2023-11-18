@@ -35,6 +35,21 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
   </a>
    
 </p>
+<br clear="both">
+
+<img align="left" height="200"  src="image/01.png"  />
+
+###
+
+<br clear="both">
+
+<img align="left" height="200"  src="image/06.jpg"  />
+
+###
+
+<img align="left" height="200"  src="image/07.jpg"  />
+
+###
 
 <h1 align="center">
    PHOTON PLAYER FEATURE
