@@ -23,14 +23,23 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 <h1 align="center">
    PHOTON PLAYER PREVIEW
 </h1>
-<p align="center">
+<pre>
   <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/preview4.jpg">
+    <img src="image/01.jpg">
   </a>
 <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/preview5.jpg">
+    <img src="image/02.jpg">
   </a>
-</p>
+   <a href="https://shubham01015.github.io/photon_player/">
+    <img src="image/03.jpg">
+  </a>
+   <a href="https://shubham01015.github.io/photon_player/">
+    <img src="image/04.jpg">
+  </a>
+   <a href="https://shubham01015.github.io/photon_player/">
+    <img src="image/05.jpg">
+  </a>
+</pre>
 
 <h1 align="center">
    PHOTON PLAYER FEATURE
