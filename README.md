@@ -71,16 +71,19 @@ Photon Player is a minimal music player that uses the YouTube API to play music.
 
 You can go ahead and check out my website at https://shubham01015.github.io/photon_player/
 
-<h1 align="center">
-   PHOTON PLAYER PREVIEW
-</h1>
+### :camera: Screenshots
 <p align="center">
   <a href="https://shubham01015.github.io/photon_player/">
     <img src="image/01.png">
+    
   </a>
+  ###
+<h2 align="left">YOU CAN SEARCH SONG AND ARTIST AND ADD THEM TO BOOKMARK</h2>
 <a href="https://shubham01015.github.io/photon_player/">
     <img src="image/06.jpg">
   </a>
+    ###
+<h2 align="left">USE OUR TRENDING SECTION TO FIND NEW SONGS AND DISCOVER YOUR FAV ARTIST</h2>
    <a href="https://shubham01015.github.io/photon_player/">
     <img src="image/07.jpg">
   </a>
@@ -105,13 +108,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 | Discovery section      | ✅ |
 | Trending section       | ✅ |
 
-### :camera: Screenshots
-<div align="center"> <a href=""><img src="image/01.png" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="image/06.jpg" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="image/07.jpg" alt='image' width='800'/></a> </div>
-<h1 align="center">
-  CONTACT INTO
-</h1>
+
 
 <img src="https://raw.githubusercontent.com/shubham01015/shubham01015/output/snake.svg" alt="Snake animation" />
 
