@@ -1,10 +1,10 @@
-
-<h2 align="left">Hi 👋! My name is SHUBHAM GHOSH and I'm a STUDENT from BU</h2>
-
-###
 <img align="right" height="181" src="image/profile.jpg"  />
 
 ###
+<h2 align="left">Hi 👋! My name is SHUBHAM GHOSH and I'm a STUDENT from BU</h2>
+
+###
+
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=shubham01015&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" height="150" alt="stats graph"  />
   <img src="https://streak-stats.demolab.com?user=shubham01015&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
