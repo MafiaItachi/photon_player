@@ -25,19 +25,19 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 </h1>
 <pre>
   <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/01.jpg">
+    <img src="image/01.png">
   </a>
 <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/02.jpg">
+    <img src="image/02.png">
   </a>
    <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/03.jpg">
+    <img src="image/03.png">
   </a>
    <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/04.jpg">
+    <img src="image/04.png">
   </a>
    <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/05.jpg">
+    <img src="image/05.png">
   </a>
 </pre>
 
