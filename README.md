@@ -1,4 +1,4 @@
-<img align="right" height="150" src="image/profile.jpg"  />
+<img align="right" height="90" src="image/profile.jpg"  />
 
 ###
 <h2 align="left">Hi 👋! My name is SHUBHAM GHOSH and I'm a STUDENT from BU</h2>
