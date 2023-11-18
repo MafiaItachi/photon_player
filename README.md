@@ -1,4 +1,4 @@
-<img align="right" height="181" src="image/profile.jpg"  />
+<img align="right" height="150" src="image/profile.jpg"  />
 
 ###
 <h2 align="left">Hi 👋! My name is SHUBHAM GHOSH and I'm a STUDENT from BU</h2>
@@ -33,9 +33,6 @@
 
 ###
 
-<img align="right" height="181" src="image/profile.jpg"  />
-
-###
 
 <div align="left">
   <img src="https://img.shields.io/static/v1?message=Youtube&logo=youtube&label=&color=FF0000&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="youtube logo"  />
