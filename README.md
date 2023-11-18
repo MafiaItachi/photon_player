@@ -120,4 +120,3 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
 
 <img src="https://raw.githubusercontent.com/shubham01015/shubham01015/output/snake.svg" alt="Snake animation" />
 
-###
