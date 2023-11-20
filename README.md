@@ -86,7 +86,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
     <br>
 <h2 align="left">USE OUR TRENDING SECTION TO FIND NEW SONGS AND DISCOVER YOUR FAV ARTIST</h2>
    <a href="https://shubham01015.github.io/photon_player/">
-    <img src="[image/07.jpg](https://github.com/shubham01015/photon_player/blob/main/image/07.jpg)">
+    <img src="https://github.com/shubham01015/photon_player/blob/main/image/07.jpg">
   </a>
    
 </p>
