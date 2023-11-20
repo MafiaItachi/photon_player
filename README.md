@@ -81,7 +81,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
   <br>
 <h2 align="left">YOU CAN SEARCH SONG AND ARTIST AND ADD THEM TO BOOKMARK</h2>
 <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/06.jpg">
+    <img src="./image/06.jpg">
   </a>
     <br>
 <h2 align="left">USE OUR TRENDING SECTION TO FIND NEW SONGS AND DISCOVER YOUR FAV ARTIST</h2>
