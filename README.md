@@ -57,7 +57,7 @@
 
 <p  height="150" align="center">
   <a href="https://shubham01015.github.io/photon_player/">
-    <img src="image/songicon.jpg">
+    <img src="image/songicon.JPG">
   </a>
 </p>
 
