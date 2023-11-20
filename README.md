@@ -91,6 +91,7 @@ You can go ahead and check out my website at https://shubham01015.github.io/phot
    <a href="https://shubham01015.github.io/photon_player/">
     <img src="/image/07.jpg">
      ![07](https://github.com/shubham01015/photon_player/assets/74341381/9f528e5b-bb49-490c-822e-defbdc887137)
+![07](https://github.com/shubham01015/photon_player/assets/74341381/11f184bb-9f8a-47a8-84fd-9bff7d1d8825)
 
   </a>
    
