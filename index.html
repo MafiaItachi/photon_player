@@ -875,7 +875,7 @@
     </div>
 
     <div id="playlist"></div>
-    <div class="bookmarklink"><input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
+    <div class="bookmarklink"><input type="text" id="2playlistLinkInput" placeholder="Enter YouTube Playlist Link">
         <button onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button>
     </div>
     <br></br>
@@ -1597,7 +1597,7 @@
             }
         }
         function addPlaylistByLink() {
-            var playlistLink = document.getElementById("playlistLinkInput").value;
+            var playlistLink = document.getElementById("2playlistLinkInput").value;
             var playlistId = extractPlaylistId(playlistLink);
 
             if (playlistId) {
