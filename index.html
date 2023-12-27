@@ -1030,13 +1030,14 @@
     </div>
     <div class="backup-restore">
         <h3>BACKUP RESTORE</h3>
-        <!-- <input type="file" id="fileInput" accept=".json" onchange="restorePlaylist(event)"> -->
-        <button onclick="backupPlaylist()"><i class="fa-solid fa-file-export fa-xl"></i></button>
-        <!-- Replace the file input with a hidden input -->
-        <input type="file" id="fileInput" accept=".json" style="display: none;">
-        <button id="fileInputButton" onclick="selectFile()"><i class="fa-solid fa-file-import fa-xl"></i></button>
+        <!-- Backup button -->
+        <button onclick="backupLocalStorage()"><i class="fa-solid fa-file-export fa-xl"></i></button>
 
+        <!-- Restore button -->
+        <button onclick="document.getElementById('fileInput').click()"><i class="fa-solid fa-file-export fa-xl"></i></button>
 
+        <!-- Hidden file input -->
+        <input type="file" id="fileInput" style="display: none" onchange="restoreLocalStorage(event)">
     </div>
     <div class="fullscreen-div" id="green-div"></div>
     <br></br><br></br><br></br><br></br>
@@ -1479,65 +1480,40 @@
                 displayPlaylist();
             }
         }
-         // Function to open file selection dialog when the button is clicked
-        function selectFile() {
+        function backupLocalStorage() {
+            const localStorageData = JSON.stringify(localStorage);
+            const blob = new Blob([localStorageData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'localStorageBackup.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function restoreLocalStorage() {
             document.getElementById('fileInput').click();
         }
 
-        // Function to handle file upload and restore playlist data
         document.getElementById('fileInput').addEventListener('change', function (event) {
             const file = event.target.files[0];
             const reader = new FileReader();
-
             reader.onload = function (e) {
-                const restoredData = JSON.parse(e.target.result);
-                // Restore playlist data from the uploaded file
-                if (restoredData && restoredData.playlists) {
-                    localStorage.setItem('savedPlaylists', JSON.stringify(restoredData.playlists));
-                    // Perform any necessary action after restoring data
-                    console.log('Playlist data restored successfully!');
+                const contents = e.target.result;
+                const localStorageData = JSON.parse(contents);
+                for (const key in localStorageData) {
+                    if (localStorageData.hasOwnProperty(key)) {
+                        localStorage.setItem(key, localStorageData[key]);
+                    }
                 }
+                alert('Local Storage has been restored!');
             };
-
             reader.readAsText(file);
         });
-        // Function to backup playlist data and localStorage and save as a file
-        function backupPlaylist() {
-            const backupData = {
-                playlists: JSON.parse(localStorage.getItem('savedPlaylists')) || [],
-                localStorageData: { ...localStorage }, // Save entire localStorage
-            };
 
-            const dataBlob = new Blob([JSON.stringify(backupData)], { type: 'application/json' });
-            const downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(dataBlob);
-            downloadLink.download = 'backup_data.json';
-            downloadLink.click();
-        }
-
-        // Function to handle file upload and restore playlist data
-        function restorePlaylist() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    const restoredData = JSON.parse(e.target.result);
-                    if (restoredData.playlists) {
-                        localStorage.setItem('savedPlaylists', JSON.stringify(restoredData.playlists));
-                        // Perform any necessary action after restoring playlist data
-                        console.log('Playlist data restored successfully!');
-                    } else {
-                        console.log('Invalid file or data format.');
-                    }
-                };
-
-                reader.readAsText(file);
-            } else {
-                console.log('No file selected.');
-            }
-        }
+    
 
         function toggleDropdown(index) {
             var dropdowns = document.getElementsByClassName("more-dropdown");
