@@ -826,6 +826,27 @@
     /* Other styles for playlist container */
 }
 
+        #plistbylink{
+            height: 253px;
+            width: 270px;
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            /* display: inline-block; */
+            background-color: #455174;
+            
+            vertical-align: top;
+            /* height: 295px; */
+            border-radius: 10px;
+            padding-bottom: 5px;
+
+        }
+        #plistbylink input[type="text"]{
+            height: 173px;
+            width: 239px;
+            margin: 0px 0px 14px 0px;
+        }
+
 
 
 
@@ -899,19 +920,24 @@
 
 
     </div>
-       <h1>YOUR PLAYLIST</h1>
-    <div id="youtube">
-        <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-        <button onclick="addPlaylist()"><i class="fa-solid fa-plus fa-xl"></i></button>
-    </div>
+        <h1>YOUR PLAYLIST</h1>
+    
     <!-- Section to display added playlists -->
     <!-- HTML structure for the playlist container -->
     <div class="added-playlists-container">
+        
 
         <div id="addedPlaylists" class="added-playlists">
             <!-- Playlist items will be displayed here -->
         </div>
+        <div class="playlist" >
+            <div id="plistbylink">
+                <input type="text" id="playlist-link" placeholder="Enter YouTube Playlist Link">
+            <button onclick="addPlaylist()"><i class="fa-solid fa-plus fa-xl"></i></button>
+            </div>
+        </div>
     </div>
+
 
     <!-- Container to display the song list -->
     <div id="songListContainer"></div>
