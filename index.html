@@ -845,7 +845,7 @@
                 <div class="ppnbutton">
                     <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
                             class="fa-solid fa-chevron-left fa-xl"></i></button>
-                    <button class="mini-player-play-button" onclick="togglePlayPause()"><i
+                    <button class="mini-player-play-button"  id="play-pause2" onclick="togglePlayPause()"><i
                             class="fa-solid fa-play fa-xl"></i></button>
                     <button class="mini-player-next-button" onclick="playNextTrack()"><i
                             class="fa-solid fa-chevron-right fa-xl"></i></button>
@@ -1022,6 +1022,7 @@
         function onPlayerReady(event) {
             // Player is ready to receive commands
             $('#play-pause').click(togglePlayPause);
+            $('#play-pause2').click(togglePlayPause);
             $('#seek-bar').click(seek);
             $('#volume-bar').click(setVolume);
             $('#repeat-mode').change(changeRepeatMode);
@@ -1048,6 +1049,7 @@
             } else {
                 isPlaying = false;
                 updatePlayPauseButton();
+                updatePlayPauseButton2();
             }
         }
         // Function to play the next track
@@ -1081,6 +1083,12 @@
 
             button.html(isPlaying ? '<i class="fa-solid fa-pause fa-xl"></i>' : '<i class="fa-solid fa-play fa-xl"></i>');
         }
+        function updatePlayPauseButton2() {
+            var button = $('#play-pause2');
+
+            button.html(isPlaying ? '<i class="fa-solid fa-pause fa-xl"></i>' : '<i class="fa-solid fa-play fa-xl"></i>');
+        }
+
 
         function startProgressInterval() {
             progressInterval = setInterval(updateProgressBar, 1000);
@@ -1872,6 +1880,7 @@ input.addEventListener("keyup", function(event) {
             }
             updateVideoTitle2();
             updatePlayPauseButton();
+            updatePlayPauseButton2();
         }
         function updateVideoTitle2() {
             var videoTitle = player.getVideoData().title;
