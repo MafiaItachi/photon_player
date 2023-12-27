@@ -796,6 +796,40 @@
             scroll-snap-align:start;
             scroll-snap-stop: always;
         }
+                /* Example CSS for the delete button */
+        .delete-button {
+            padding: 5px 10px;
+           
+            margin-top: 5px;
+        }
+    #youtube{
+        display: flex;
+    }
+        /* CSS styles for the playlist container and playlist items */
+.added-playlists-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%; /* Set the maximum width as needed */
+}
+
+.added-playlists {
+    display: inline-block;
+    white-space: nowrap;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.playlist {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the spacing between playlists */
+    /* Other styles for playlist container */
+}
+
+
+
+
+        
     </style>
 </head>
 
@@ -865,6 +899,23 @@
 
 
     </div>
+       <div id="youtube">
+        <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
+        <button onclick="addPlaylist()"><i class="fa-solid fa-plus fa-xl"></i></button>
+    </div>
+    <!-- Section to display added playlists -->
+    <!-- HTML structure for the playlist container -->
+<div class="added-playlists-container">
+    <h1>YOUR PLAYLIST</h1>
+    <div id="addedPlaylists" class="added-playlists">
+        <!-- Playlist items will be displayed here -->
+    </div>
+</div>
+
+    <!-- Container to display the song list -->
+    <div id="songListContainer"></div>
+
+
     <div class="trending-songs">
         <h1>TRENDING SONG</h1>
         <div class="trending-songs-container snap-inline">
@@ -1918,8 +1969,10 @@ input.addEventListener("keyup", function(event) {
         tag.src = 'https://www.youtube.com/iframe_api';
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        displaySavedPlaylists();
     </script>
     <script src="src/trending.js"></script>
+    <script src="src/your-playlist.js"></script>
 </body>
 
 </html>
