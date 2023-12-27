@@ -874,6 +874,9 @@
     </div>
 
     <div id="playlist"></div>
+    <div class="playlist-item"><input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
+        <button onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button>
+    </div>
     <br></br>
     <div id="controls">
         <div class="con">
@@ -1025,10 +1028,6 @@
             <h2 id="central-playlist-title"></h2>
         </div>
         <ul id="central-song-list"></ul>
-    </div>
-    <h2>ADD PLAYLIST BY LINK</h2>
-    <div class="linkinput"><input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-        <button onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button>
     </div>
     <div class="backup-restore">
         <input type="text" id="backupInput" placeholder="backup code">
@@ -1450,7 +1449,7 @@
                     playlistDiv.appendChild(playlistItem);
                 }
             } else {
-                playlistDiv.innerHTML =  "<li>BOOKMARK SONGS WILL APPEAR HERE</li> <li>SWIPE UP THE MINI PLAYER TO SEE VIDEO</li> <li>BOOKMARK SONGS WILL APPEAR HERE</li> <li>BOOKMARK SONGS WILL APPEAR HERE</li>  ";
+                playlistDiv.innerHTML =  "<li>BOOKMARK SONGS WILL APPEAR HERE</li> <li>SWIPE UP THE MINI PLAYER TO SEE VIDEO</li> <li>BOOKMARK SONGS WILL APPEAR HERE</li>  <li>BOOKMARK SONGS WILL APPEAR HERE</li> <li>ENTER YOUTUBE LINK TO ADD SONG IN BOOKMARK</li>  ";
             }
         }
 
