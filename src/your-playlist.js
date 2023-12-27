@@ -177,39 +177,4 @@ function removePlaylist(playlistId) {
 // Call the function to display saved playlists on page load
 displaySavedPlaylists();
 
-function shuffleAndPlay(playlistId) {
-  var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
-  var selectedPlaylist = savedPlaylists.find(function (playlist) {
-      return playlist.id === playlistId;
-  });
-
-  if (selectedPlaylist) {
-      // Implement shuffling of playlist songs here
-      var shuffledSongs = shuffleArray(selectedPlaylist.songs); // Replace 'selectedPlaylist.songs' with your playlist songs array
-
-      // Display a message or perform an action for shuffled songs (e.g., play them)
-      console.log('Shuffled songs:', shuffledSongs);
-      // Here you can implement logic to play the shuffled songs one by one
-  }
-}
-
-// Function to shuffle an array (Fisher-Yates shuffle algorithm)
-function shuffleArray(array) {
-  var currentIndex = array.length;
-  var temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      // Swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
 
