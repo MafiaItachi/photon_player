@@ -30,7 +30,7 @@ function addPlaylist() {
       playlistContainer.setAttribute('data-id', playlistId);
 
       var playlistThumbnailElement = document.createElement('img');
-      playlistThumbnailElement.classList.add('playlist-thumbnail');
+      playlistThumbnailElement.classList.add('yourplaylist-thumbnail');
       playlistThumbnailElement.src = playlistThumbnail;
       playlistThumbnailElement.alt = playlistTitle;
 
@@ -127,7 +127,7 @@ savedPlaylists.forEach(function (playlist) {
     playlistContainer.setAttribute('data-id', playlist.id);
 
     var playlistThumbnailElement = document.createElement('img');
-    playlistThumbnailElement.classList.add('playlist-thumbnail');
+    playlistThumbnailElement.classList.add('yourplaylist-thumbnail');
     playlistThumbnailElement.src = playlist.thumbnail;
     playlistThumbnailElement.alt = playlist.title;
 
