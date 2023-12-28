@@ -538,9 +538,11 @@ margin-left: 8px;
     margin: 30px;
 }
 .ppnbutton{
+    
     display: flex;
     width: 90vw;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 
@@ -572,7 +574,7 @@ margin-left: 8px;
 }
 
 #seek-bar {
-    width: 75vw;
+    width: 85vw;
     height: 5px;
     background-color: #666;
     border-radius: 5px;
@@ -898,3 +900,15 @@ padding: 0px;
 button:active {
     transform: translateY(1px);
     }
+.mini-player-play-button{
+    border-radius: 50%;
+    HEIGHT: 80PX;
+    WIDTH: 80PX;
+    font-size: large;
+}
+.mini-player-previous-button, .mini-player-next-button {
+    border-radius: 50%;
+    HEIGHT: 60PX;
+    WIDTH: 60PX;
+font-size: larger;
+}
