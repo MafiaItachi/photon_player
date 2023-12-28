@@ -94,6 +94,7 @@
 
         #central-playlist-thumbnail {
             height: 188px;
+            width: 188px;
             /* Adjust the width of the thumbnail */
             width: auto;
             /* Maintain the aspect ratio */
@@ -1005,7 +1006,7 @@
         <div class="discoverplaylist" id="playlist-plist1">
             <img class="playlist-thumbnail" id="playlist-plist1-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
-                <div class="pname">PRESENTING LINKIN PARK</div>
+                <div class="pname">PRESENTING TAYLOR SWIFT</div>
                 <div><button onclick="shuffleAndPlay2('plist1')"><i class="fa-solid fa-random fa-lg"></i></button></div>
 
             </div>
@@ -1037,16 +1038,25 @@
 
             <img class="playlist-thumbnail" src="" id="playlist-plist4-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
-                <div class="pname">ANIME</div>
+                <div class="pname">PRESENTING ANUV JAIN</div>
                 <div><button onclick="shuffleAndPlay2('plist4')"><i class="fa-solid fa-random fa-lg"></i></button></div>
 
             </div>
         </div>
         <div class="discoverplaylist" id="playlist-plist5">
 
-            <img class="playlist-thumbnail" src="" id="playlist-plist5-thumbnail" alt="Playlist Thumbnail">
+            <img class="mbnail" src="" id="playlist-plist5-thumbnail" alt="Playlist Thumbnail">
             <div class="nothing">
                 <div class="pname">ARIJIT SING</div>
+                <div><button onclick="shuffleAndPlay2('plist5')"><i class="fa-solid fa-random fa-lg"></i></button></div>
+
+            </div>
+        </div>
+        <div class="discoverplaylist" id="playlist-plist6">
+
+            <img class="mbnail" src="" id="playlist-plist6-thumbnail" alt="Playlist Thumbnail">
+            <div class="nothing">
+                <div class="pname">PRESENTING LINKIN PARK</div>
                 <div><button onclick="shuffleAndPlay2('plist5')"><i class="fa-solid fa-random fa-lg"></i></button></div>
 
             </div>
@@ -1056,7 +1066,7 @@
     <div id="central-song-list-container">
 
         <div class="thumtitle">
-            <img id="central-playlist-thumbnail" class="playlist-thumbnail" alt="Playlist Thumbnail"
+            <img id="central-mbnail" class="mbnail" alt="Playlist Thumbnail"
                 src="image/songicon.jpg">
             <h2 id="central-playlist-title"></h2>
         </div>
@@ -1745,16 +1755,17 @@
 
         var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
         var playlistIds = {
-            plist1: 'RDCLAK5uy_loGaNxpVmNaawt9htfXXYRYfm-D8xmHLY',
+            plist1: 'RDCLAK5uy_k1272v-yXtLJm7gmMiAxjOl-vh5aEC11A',
             plist2: 'RDCLAK5uy_mvsCHKeFgZxCoFoMA2CClIVPvhFaJCfV8',
             plist3: 'RDCLAK5uy_lL718gGQZgQf4jkKYjVbOXHABQCFAYuj0',
-            plist4: 'PLhsvUSWlL3Wkisdq5KXYnMUaapmBL567g&si=9Oam4G8g3zVMprvM',
+            plist4: 'OLAK5uy_kMnLEm82tefvbEOKVUxJTPnDy64UHN1GY&si=9Oam4G8g3zVMprvM',
             plist5: 'RDCLAK5uy_kGLDDW42tws3jDBNB3m8eRcn3iDWMlwd8&playnext=1&si=DaJHiYAkpyLDcjw6',
+            plist6: 'RDCLAK5uy_loGaNxpVmNaawt9htfXXYRYfm-D8xmHLY',
             
         };
         // Create references to the central elements
         var centralPlaylistTitle = document.getElementById('central-playlist-title');
-        var centralPlaylistThumbnail = document.getElementById('central-playlist-thumbnail');
+        var centralPlaylistThumbnail = document.getElementById('central-mbnail');
         var centralSongList = document.getElementById('central-song-list');
 
         function loadAndDisplayCentralSongList(playlistId, playlistTitle) {
@@ -1840,6 +1851,7 @@
             loadPlaylist('plist3', 'playlist-plist3');
             loadPlaylist('plist4', 'playlist-plist4');
             loadPlaylist('plist5', 'playlist-plist5');
+            loadPlaylist('plist6', 'playlist-plist6');
         });
 
 
