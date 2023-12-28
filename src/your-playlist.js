@@ -19,7 +19,7 @@ function addPlaylist() {
       '&key=' +
       apiKey;
 
-  $.getJSON(playlistDetailsUrl, function (response) {
+  $.getJSON(playlistDetailsUrl, function(response) {
       var playlist = response.items[0];
       var playlistThumbnail = playlist.snippet.thumbnails.medium.url;
       var playlistTitle = playlist.snippet.title;
@@ -34,7 +34,7 @@ function addPlaylist() {
       playlistThumbnailElement.src = playlistThumbnail;
       playlistThumbnailElement.alt = playlistTitle;
 
-      playlistThumbnailElement.addEventListener('click', function () {
+      playlistThumbnailElement.addEventListener('click', function() {
           revealSongs(playlistId);
       });
 
@@ -71,7 +71,7 @@ function revealSongs(playlistId) {
       '&key=' +
       apiKey;
 
-  $.getJSON(playlistItemsUrl, function (response) {
+  $.getJSON(playlistItemsUrl, function(response) {
       var items = response.items;
 
       if (items.length === 0) {
@@ -82,7 +82,7 @@ function revealSongs(playlistId) {
       var songList = document.createElement('ul');
       songList.classList.add('song-list');
 
-      items.forEach(function (item) {
+      items.forEach(function(item) {
           var video = item.snippet;
           var videoId = video.resourceId.videoId;
           var videoTitle = video.title;
@@ -104,7 +104,7 @@ function revealSongs(playlistId) {
           listItem.appendChild(title);
 
           // Add click event to play the song
-          listItem.addEventListener('click', function () {
+          listItem.addEventListener('click', function() {
               playVideo(videoId);
           });
 
@@ -117,64 +117,141 @@ function revealSongs(playlistId) {
 }
 
 function displaySavedPlaylists() {
-  var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
-  var playlistsSection = document.getElementById('addedPlaylists');
-  playlistsSection.innerHTML = ''; // Clear existing content
+var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
+var playlistsSection = document.getElementById('addedPlaylists');
+playlistsSection.innerHTML = ''; // Clear existing content
 
-  savedPlaylists.forEach(function (playlist) {
-      var playlistContainer = document.createElement('div');
-      playlistContainer.classList.add('playlist');
-      playlistContainer.setAttribute('data-id', playlist.id);
+savedPlaylists.forEach(function (playlist) {
+    var playlistContainer = document.createElement('div');
+    playlistContainer.classList.add('playlist');
+    playlistContainer.setAttribute('data-id', playlist.id);
 
-      var playlistThumbnailElement = document.createElement('img');
-      playlistThumbnailElement.classList.add('playlist-thumbnail');
-      playlistThumbnailElement.src = playlist.thumbnail;
-      playlistThumbnailElement.alt = playlist.title;
+    var playlistThumbnailElement = document.createElement('img');
+    playlistThumbnailElement.classList.add('playlist-thumbnail');
+    playlistThumbnailElement.src = playlist.thumbnail;
+    playlistThumbnailElement.alt = playlist.title;
 
-      playlistThumbnailElement.addEventListener('click', function () {
-          revealSongs(playlist.id);
-      });
+    playlistThumbnailElement.addEventListener('click', function () {
+        revealSongs(playlist.id);
+    });
 
-      var playlistTitleElement = document.createElement('div');
-      playlistTitleElement.classList.add('playlist-title');
-      playlistTitleElement.textContent = playlist.title;
+    var playlistTitleElement = document.createElement('div');
+    playlistTitleElement.classList.add('playlist-title');
+    playlistTitleElement.textContent = playlist.title;
 
-      var deleteButton = document.createElement('button');
-      deleteButton.innerHTML = '<i class="fa-solid fa-trash fa-xl">';
-      deleteButton.classList.add('delete-button');
-      deleteButton.addEventListener('click', function () {
-          removePlaylist(playlist.id);
-      });
+    var deleteButton = document.createElement('button');
+    deleteButton.innerHTML = '<i class="fa-solid fa-trash fa-xl">';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', function () {
+        removePlaylist(playlist.id);
+    });
 
-      var shuffleButton = document.createElement('button');
-      shuffleButton.innerHTML = '<i class="fa-solid fa-random fa-xl"></i>';
-      shuffleButton.classList.add('shuffle-button');
-      shuffleButton.addEventListener('click', function () {
-          shuffleAndPlay(playlist.id);
-      });
+    var shuffleButton = document.createElement('button');
+    shuffleButton.innerHTML = '<i class="fa-solid fa-random fa-xl"></i>';
+    shuffleButton.classList.add('shuffle-button');
+    shuffleButton.addEventListener('click', function () {
+        shuffleAndPlaySongs(playlist.id);
+    });
 
 
-      playlistContainer.appendChild(playlistThumbnailElement);
-      playlistContainer.appendChild(playlistTitleElement);
-      playlistContainer.appendChild(deleteButton);
+    playlistContainer.appendChild(playlistThumbnailElement);
+    playlistContainer.appendChild(playlistTitleElement);
+    playlistContainer.appendChild(deleteButton);
 
-      playlistContainer.appendChild(shuffleButton);
+    playlistContainer.appendChild(shuffleButton);
 
-      playlistsSection.appendChild(playlistContainer);
-  });
+    playlistsSection.appendChild(playlistContainer);
+});
 }
 
 function removePlaylist(playlistId) {
-  var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
-  var updatedPlaylists = savedPlaylists.filter(function (playlist) {
-      return playlist.id !== playlistId;
-  });
+var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
+var updatedPlaylists = savedPlaylists.filter(function (playlist) {
+    return playlist.id !== playlistId;
+});
 
-  localStorage.setItem('savedPlaylists', JSON.stringify(updatedPlaylists));
-  displaySavedPlaylists(); // Update the displayed list after removal
+localStorage.setItem('savedPlaylists', JSON.stringify(updatedPlaylists));
+displaySavedPlaylists(); // Update the displayed list after removal
 }
 
 // Call the function to display saved playlists on page load
 displaySavedPlaylists();
 
+
+
+
+var shuffledPlaylist = [];
+
+// Function to shuffle playlist items
+// Function to shuffle and play songs from a playlist
+function shuffleAndPlaySongs(playlistId) {
+    // Fetch playlist items using YouTube Data API
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var playlistItemsUrl =
+        'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' +
+        playlistId +
+        '&key=' +
+        apiKey;
+
+    $.getJSON(playlistItemsUrl, function (response) {
+        var items = response.items;
+
+        if (items.length === 0) {
+            alert('No songs found in this playlist.');
+            return;
+        }
+
+        // Store the playlist items and shuffle them
+        shuffledPlaylist = shuffleArray(items);
+
+        // Start playing the shuffled songs
+        playNextSong();
+    });
+}
+
+// Function to play the next song from shuffled playlist
+function playNextSong() {
+    if (shuffledPlaylist.length > 0) {
+        var videoId = shuffledPlaylist[0].snippet.resourceId.videoId;
+        playVideo(videoId);
+
+        // Remove the played song from the shuffled playlist
+        shuffledPlaylist.shift();
+
+        // Listen for the end of the video to play the next song
+        player.addEventListener('onStateChange', function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                player.removeEventListener('onStateChange', onPlayerStateChange);
+                playNextSong(); // Play the next song after the current one ends
+            }
+        });
+    }
+}
+
+// Shuffle function to shuffle an array
+function shuffleArray(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+// Function to play a video in the YouTube iframe player
+function playVideo(videoId) {
+    if (player) {
+        player.loadVideoById(videoId);
+        player.playVideo();
+    }
+}
+
+// Example usage (call this function when clicking the shuffle button)
+shuffleAndPlaySongsFromPlaylist('YOUR_PLAYLIST_ID');
 
