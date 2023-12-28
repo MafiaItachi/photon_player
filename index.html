@@ -1250,14 +1250,17 @@
                 repeatToggle.innerHTML = '<i class="fa-solid fa-redo fa-lg"></i>';
             } else {
                 repeatMode = 'no-repeat';
-                repeatToggle.innerHTML = '<i class="fa-solid fa-times-circle fa-lg"></i>';
+                repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-flip-vertical fa-lg" style="color: #383838;"></i>';
             }
         }
 
+        var repeatMode = "no-repeat"; // Set the default repeat mode to "no-repeat"
+
+        // Function to set the initial repeat mode icon based on the default value
         function setInitialRepeatModeIcon() {
             const repeatToggle = document.getElementById('repeat-toggle');
             if (repeatMode === 'no-repeat') {
-                repeatToggle.innerHTML = '<i class="fa-solid fa-times-circle fa-lg"></i>';
+                repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-flip-vertical fa-lg" style="color: #383838;"></i>';
             } else if (repeatMode === 'repeat-all') {
                 repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-lg"></i>';
             } else {
@@ -1265,6 +1268,8 @@
             }
         }
 
+        // Call the function to set the initial icon based on the default mode
+        setInitialRepeatModeIcon();
         var apiKeys = ['AIzaSyB8I395JE6CdPKh2mULCPIss6i3rz5m7UY', 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA',]; // Array of API keys
         var currentApiKeyIndex = 0; // Index of the current API key being used
 
