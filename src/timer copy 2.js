@@ -60,6 +60,6 @@ function toggleTimer() {
 // Function to update the button text with remaining time
 function updateButtonText(time) {
     var minutes = Math.floor(time / 60000); // Calculate remaining minutes
-    var buttonText = minutes + ' min)'; // Update button text
+    var buttonText = minutes + ' min'; // Update button text
     document.getElementById('toggle-timer-btn').innerText = buttonText; // Update button text content
 }
