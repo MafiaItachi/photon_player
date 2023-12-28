@@ -114,10 +114,12 @@
 
 
 .sxq {
-    width: 100%;
+    /* width: 100vw; */
     display: flex;
+    background-color: #455174;
+    padding: 5px;
+    border-radius: 10px;
 }
-
 
 .thumtitle {
     display: flex;
