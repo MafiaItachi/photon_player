@@ -121,6 +121,7 @@
     border-radius: 10px;
 }
 
+
 .thumtitle {
     display: flex;
     flex-direction: column;
@@ -836,6 +837,10 @@ font-size: 0.9rem;
 font-weight: bold;
 }
 
+.added-playlists text{
+    padding: 5px;
+}
+
 .playlist {
 display: inline-block;
 margin-right: 5px; /* Adjust the spacing between playlists */
@@ -914,3 +919,53 @@ button:active {
     WIDTH: 60PX;
 font-size: larger;
 }
+
+
+/* Styles for Playlist Container 
+.playlist {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+*/
+/* Styles for Playlist Thumbnail 
+.yourplaylist-thumbnail {
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+    cursor: pointer;
+}*/
+
+/* Styles for Playlist Information */
+/* CSS Styles */
+
+/* Style for the playlist container */
+
+  .playlist-info{
+    display: flex;
+    justify-content: space-between;
+
+    align-items:center;
+  }
+  .playlist-title{
+    
+    /* inline-size: 120px; */
+    /* overflow-wrap: break-word; */
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-wrap: balance;
+    padding-left: 9px;
+  }
+  .playlist-buttons button{
+    color: #181c28;
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    padding: 0;
+    margin: 4px;
+    margin-left: 10px;
+  }

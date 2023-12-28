@@ -117,52 +117,62 @@ function revealSongs(playlistId) {
 }
 
 function displaySavedPlaylists() {
-var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
-var playlistsSection = document.getElementById('addedPlaylists');
-playlistsSection.innerHTML = ''; // Clear existing content
-
-savedPlaylists.forEach(function (playlist) {
-    var playlistContainer = document.createElement('div');
-    playlistContainer.classList.add('playlist');
-    playlistContainer.setAttribute('data-id', playlist.id);
-
-    var playlistThumbnailElement = document.createElement('img');
-    playlistThumbnailElement.classList.add('yourplaylist-thumbnail');
-    playlistThumbnailElement.src = playlist.thumbnail;
-    playlistThumbnailElement.alt = playlist.title;
-
-    playlistThumbnailElement.addEventListener('click', function () {
+    var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
+    var playlistsSection = document.getElementById('addedPlaylists');
+    playlistsSection.innerHTML = ''; // Clear existing content
+  
+    savedPlaylists.forEach(function (playlist) {
+      var playlistContainer = document.createElement('div');
+      playlistContainer.classList.add('playlist');
+      playlistContainer.setAttribute('data-id', playlist.id);
+  
+      var playlistThumbnailElement = document.createElement('img');
+      playlistThumbnailElement.classList.add('yourplaylist-thumbnail');
+      playlistThumbnailElement.src = playlist.thumbnail;
+      playlistThumbnailElement.alt = playlist.title;
+  
+      playlistThumbnailElement.addEventListener('click', function () {
         revealSongs(playlist.id);
-    });
-
-    var playlistTitleElement = document.createElement('div');
-    playlistTitleElement.classList.add('playlist-title');
-    playlistTitleElement.textContent = playlist.title;
-
-    var deleteButton = document.createElement('button');
-    deleteButton.innerHTML = '<i class="fa-solid fa-trash fa-xl">';
-    deleteButton.classList.add('delete-button');
-    deleteButton.addEventListener('click', function () {
+      });
+  
+      playlistContainer.appendChild(playlistThumbnailElement);
+  
+      var playlistInfo = document.createElement('div');
+      playlistInfo.classList.add('playlist-info');
+  
+      var playlistTitleElement = document.createElement('div');
+      playlistTitleElement.classList.add('playlist-title');
+      playlistTitleElement.textContent = playlist.title;
+  
+      var buttonsDiv = document.createElement('div');
+      buttonsDiv.classList.add('playlist-buttons');
+  
+      var deleteButton = document.createElement('button');
+      deleteButton.innerHTML = '<i class="fa-solid fa-trash fa-xl"></i>';
+      deleteButton.classList.add('delete-button');
+      deleteButton.addEventListener('click', function () {
         removePlaylist(playlist.id);
-    });
-
-    var shuffleButton = document.createElement('button');
-    shuffleButton.innerHTML = '<i class="fa-solid fa-random fa-xl"></i>';
-    shuffleButton.classList.add('shuffle-button');
-    shuffleButton.addEventListener('click', function () {
+      });
+  
+      var shuffleButton = document.createElement('button');
+      shuffleButton.innerHTML = '<i class="fa-solid fa-random fa-xl"></i>';
+      shuffleButton.classList.add('shuffle-button');
+      shuffleButton.addEventListener('click', function () {
         shuffleAndPlaySongs(playlist.id);
+      });
+  
+      buttonsDiv.appendChild(deleteButton);
+      buttonsDiv.appendChild(shuffleButton);
+  
+      playlistInfo.appendChild(playlistTitleElement);
+      playlistInfo.appendChild(buttonsDiv); // Adding buttons inside playlist-info
+  
+      playlistContainer.appendChild(playlistInfo);
+  
+      playlistsSection.appendChild(playlistContainer);
     });
-
-
-    playlistContainer.appendChild(playlistThumbnailElement);
-    playlistContainer.appendChild(playlistTitleElement);
-    playlistContainer.appendChild(deleteButton);
-
-    playlistContainer.appendChild(shuffleButton);
-
-    playlistsSection.appendChild(playlistContainer);
-});
-}
+  }
+  
 
 function removePlaylist(playlistId) {
 var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
