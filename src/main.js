@@ -917,6 +917,39 @@ input.addEventListener("keyup", function(event) {
     document.getElementById("myBtn").click();
   }
 });
+
+
+
+var input = document.getElementById("playlistLinkInput");
+
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("myplist").click();
+  }
+});
+var input = document.getElementById("2playlistLinkInput");
+
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("mybm").click();
+  }
+});
+
+
+
+
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 isPlaying = true;
@@ -988,33 +1021,6 @@ input.addEventListener("keyup", function(event) {
         // window.open(videoURL);
     }
 }
-var input = document.getElementById("playlistLinkInput");
-
-
-// Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("myplist").click();
-  }
-});
-var input = document.getElementById("2playlistLinkInput");
-
-
-// Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("mybm").click();
-  }
-});
-
 
 
 
