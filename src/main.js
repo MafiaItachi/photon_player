@@ -1003,25 +1003,38 @@ input.addEventListener("keyup", function(event) {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         displaySavedPlaylists();
 
-         function shareCurrentVideo() {
-    if (player) {
-        var currentVideoId = playlistItems[currentVideoIndex].videoId;
-        var videoURL = 'https://www.youtube.com/watch?v=' + currentVideoId;
-
-        // You can use navigator.clipboard to copy the URL to the clipboard
-        navigator.clipboard.writeText(videoURL)
-            .then(() => {
-                alert('Video URL copied to clipboard: ' + videoURL);
-            })
-            .catch((error) => {
-                console.error('Failed to copy: ', error);
-            });
-
-        // Alternatively, open the URL in a new window for sharing
-        // window.open(videoURL);
+       function shareCurrentVideo() {
+    var currentVideoId = getCurrentVideoId();
+    if (currentVideoId) {
+        var videoUrl = `https://www.youtube.com/watch?v=${currentVideoId}`;
+        copyToClipboard(videoUrl);
+        alert("Video link has been copied to the clipboard!");
+    } else {
+        alert("Unable to get the current video ID.");
     }
 }
 
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+        .then(() => {
+            console.log('Text copied to clipboard:', text);
+        })
+        .catch(err => {
+            console.error('Unable to copy to clipboard:', err);
+        });
+}
+
+function getCurrentVideoId() {
+    if (player && player.getVideoData) {
+        var videoData = player.getVideoData();
+        if (videoData && videoData.video_id) {
+            return videoData.video_id;
+        }
+    }
+    return null;
+}
+
+  
 
 
 
