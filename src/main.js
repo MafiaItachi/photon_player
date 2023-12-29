@@ -969,3 +969,56 @@ input.addEventListener("keyup", function(event) {
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         displaySavedPlaylists();
+
+         function shareCurrentVideo() {
+    if (player) {
+        var currentVideoId = playlistItems[currentVideoIndex].videoId;
+        var videoURL = 'https://www.youtube.com/watch?v=' + currentVideoId;
+
+        // You can use navigator.clipboard to copy the URL to the clipboard
+        navigator.clipboard.writeText(videoURL)
+            .then(() => {
+                alert('Video URL copied to clipboard: ' + videoURL);
+            })
+            .catch((error) => {
+                console.error('Failed to copy: ', error);
+            });
+
+        // Alternatively, open the URL in a new window for sharing
+        // window.open(videoURL);
+    }
+}
+var input = document.getElementById("playlistLinkInput");
+
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("myplist").click();
+  }
+});
+var input = document.getElementById("2playlistLinkInput");
+
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("mybm").click();
+  }
+});
+
+
+
+
+
+
+
+
