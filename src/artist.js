@@ -126,7 +126,7 @@ function displayArtistChannel(channelName, channelId, channelImage) {
         }
 
         function loadFavoriteArtistSongs(channelId) {
-            var apiKey = 'AIzaSyDe24T4GwvUSE6QFXwsyJIIJVQelZWq5pk'; // Replace with your YouTube API key
+            var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o'; // Replace with your YouTube API key
             var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
             fetch(apiUrl)
