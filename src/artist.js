@@ -236,6 +236,17 @@ function displayArtistChannel(channelName, channelId, channelImage) {
        loadFavoriteArtistsOnLoad();
 
 
+   
+        function removeFavoriteArtist(index) {
+            var favoriteArtists = JSON.parse(localStorage.getItem("favoriteArtists")) || [];
+            favoriteArtists.splice(index, 1);
+            localStorage.setItem("favoriteArtists", JSON.stringify(favoriteArtists));
+            loadFavoriteArtistsOnLoad();
+        }
+
+
+
+
 
 
 
