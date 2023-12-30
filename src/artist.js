@@ -1,7 +1,7 @@
  // Function to search artist's channel
  function searchArtistChannel() {
     var channelName = document.getElementById("artistSearchInput").value;
-    var apiKey = 'AIzaSyDe24T4GwvUSE6QFXwsyJIIJVQelZWq5pk';
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -46,7 +46,7 @@ function displayArtistChannel(channelName, channelLink, channelImage) {
 
 // Function to load artist's videos from channel
 function loadArtistVideos(channelId) {
-    var apiKey = 'AIzaSyDe24T4GwvUSE6QFXwsyJIIJVQelZWq5pk';
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
