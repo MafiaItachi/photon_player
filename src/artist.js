@@ -23,6 +23,12 @@
         });
 }
 
+
+  function clearArtistSearchResults() {
+            document.getElementById("artistChannel").innerHTML = "";
+            document.getElementById("artistVideos").innerHTML = "";
+        }
+
 function displayArtistChannel(channelName, channelLink, channelImage) {
     var artistChannel = document.getElementById("artistChannel");
     artistChannel.innerHTML = "";
