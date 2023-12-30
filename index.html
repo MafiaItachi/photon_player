@@ -29,6 +29,18 @@
 </head>
 
 <body>
+    <div id="favoriteArtistsContainer">
+        <h3>Favorite Artists</h3>
+        <div id="favoriteArtists"></div>
+        <div id="favoriteArtistSongs" style="display: none;"></div>
+    </div>
+    <div id="artistsearchbox">
+        <input type="text" id="artistSearchInput" placeholder="Enter artist name">
+        <button onclick="searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+    </div>
+    <div id="artistChannel"></div>
+    <div id="artistVideos" style="display: none;"></div>
+
     <h1><i class="fi fi-sr-list-music"></i>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
         <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
@@ -225,6 +237,7 @@
     <script src="src/trending.js"></script>
     <script src="src/your-playlist.js"></script>
     <script src="src/timer.js"></script>
+    <script src="src/artist.js"></script>
 </body>
 
 </html>
