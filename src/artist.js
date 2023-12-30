@@ -1,7 +1,7 @@
  // Function to search artist's channel
  function searchArtistChannel() {
     var channelName = document.getElementById("artistSearchInput").value;
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -24,35 +24,9 @@
 }
 
 
-  function clearArtistSearchResults() {
-            document.getElementById("artistChannel").innerHTML = "";
-            document.getElementById("artistVideos").innerHTML = "";
-        }
-
-function displayArtistChannel(channelName, channelLink, channelImage) {
-    var artistChannel = document.getElementById("artistChannel");
-    artistChannel.innerHTML = "";
-
-    var channelElement = document.createElement("div");
-    channelElement.innerHTML = `<img src="${channelImage}" alt="Channel Image" style="width: 75px; height: 75px;"><p> ${channelName}</p> <button class="favoriteButton"><i class="fa-solid fa-heart fa-lg"></i></button>`;
-
-    artistChannel.appendChild(channelElement);
-    var favoriteButton = artistChannel.querySelector(".favoriteButton");
-    favoriteButton.addEventListener("click", function () {
-        addFavoriteArtist(channelName, channelImage);
-    });
-
-    // Toggle visibility of artistVideos div
-    artistChannel.addEventListener("click", function () {
-        var videosDiv = document.getElementById("artistVideos");
-        videosDiv.style.display = (videosDiv.style.display === "none") ? "block" : "none";
-    });
-}
-
-
 // Function to load artist's videos from channel
 function loadArtistVideos(channelId) {
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -79,6 +53,7 @@ function displayArtistChannel(channelName, channelId, channelImage) {
                 <img src="${channelImage}" alt="Channel Image" style="width: 75px; height: 75px;">
                 <p>${channelName}</p>
                 <button class="favoriteButton"><i class="fa-solid fa-heart fa-lg"></i></button>
+                <button class="play-shuffle-button"><i class="fa-solid fa-random fa-lg"></i></button>
             `;
 
             artistChannel.appendChild(channelElement);
@@ -87,6 +62,13 @@ function displayArtistChannel(channelName, channelId, channelImage) {
             favoriteButton.addEventListener("click", function () {
                 addFavoriteArtist(channelName, channelId, channelImage);
             });
+             // Create a Play Shuffle button
+    var playShuffleButton = artistChannel.querySelector(".play-shuffle-button");
+    playShuffleButton.addEventListener("click", function () {
+        playArtistVideosShuffled(channelId);
+    });
+
+    
 
             // Toggle visibility of artistVideos div
             artistChannel.addEventListener("click", function () {
@@ -132,7 +114,7 @@ function displayArtistChannel(channelName, channelId, channelImage) {
         }
 
         function loadFavoriteArtistSongs(channelId) {
-            var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o'; // Replace with your YouTube API key
+            var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA'; // Replace with your YouTube API key
             var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
             fetch(apiUrl)
@@ -214,6 +196,17 @@ function displayArtistChannel(channelName, channelId, channelImage) {
                var channelParagraph = document.createElement("p");
                channelParagraph.textContent = artist.name;
 
+               var playButton = document.createElement("button");
+        playButton.innerHTML = '<i class="fas fa-play"></i>'; // Font Awesome icon for play
+        playButton.className = "play-artist-videos";
+        playButton.title = "Play All Videos";
+        playButton.addEventListener("click", function (id) {
+            return function () {
+                playFavoriteArtistVideos(id);
+            };
+        }(artist.id));
+
+
                var removeButton = document.createElement("button");
                removeButton.innerHTML = '<i class="fa-solid fa-circle-xmark fa-lg"></i>';
                removeButton.className = "remove-btn";
@@ -234,6 +227,7 @@ function displayArtistChannel(channelName, channelId, channelImage) {
                artistDiv.appendChild(channelImg);
                artistDiv.appendChild(channelParagraph);
                artistDiv.appendChild(removeButton);
+               artistDiv.appendChild(playButton);
 
                favoriteArtistsDiv.appendChild(artistDiv);
            }
@@ -242,20 +236,72 @@ function displayArtistChannel(channelName, channelId, channelImage) {
        loadFavoriteArtistsOnLoad();
 
 
-   
-        function removeFavoriteArtist(index) {
-            var favoriteArtists = JSON.parse(localStorage.getItem("favoriteArtists")) || [];
-            favoriteArtists.splice(index, 1);
-            localStorage.setItem("favoriteArtists", JSON.stringify(favoriteArtists));
-            loadFavoriteArtistsOnLoad();
+       function removeFavoriteArtist(index) {
+        var favoriteArtists = JSON.parse(localStorage.getItem("favoriteArtists")) || [];
+        favoriteArtists.splice(index, 1);
+        localStorage.setItem("favoriteArtists", JSON.stringify(favoriteArtists));
+        loadFavoriteArtistsOnLoad();
+    }
+
+
+
+
+
+
+
+    function playArtistVideosShuffled(channelId) {
+        var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+        var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
+    
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.items && data.items.length > 0) {
+                    var videos = data.items;
+                    shuffleArray(videos);
+                    playShuffledVideos(videos);
+                } else {
+                    alert("No videos found for the artist.");
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching videos:', error);
+            });
+    }
+    
+    function playShuffledVideos(videos) {
+        var videoIds = videos.map(video => video.id.videoId);
+        var currentIndex = 0;
+    
+        function playNextVideo() {
+            if (currentIndex < videoIds.length) {
+                playVideoFromId(videoIds[currentIndex]);
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Reset index for looping
+            }
         }
-
-
-
-
-
-
-
+    
+        // Initial play and continue to next video on video ended
+        player.addEventListener('onStateChange', function (event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                playNextVideo();
+            }
+        });
+    
+        // Start playing the shuffled videos
+        playNextVideo();
+    }
+    
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+    
 
 
 
@@ -290,3 +336,110 @@ function playVideoOnPlayer(videoId) {
         player.playVideo();
     }
 }
+
+
+function playArtistVideosShuffled(channelId) {
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.items && data.items.length > 0) {
+                var videos = data.items;
+                shuffleArray(videos);
+                playShuffledVideos(videos);
+            } else {
+                alert("No videos found for the artist.");
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error);
+        });
+}
+
+function playShuffledVideos(videos) {
+    var videoIds = videos.map(video => video.id.videoId);
+    var currentIndex = 0;
+
+    function playNextVideo() {
+        if (currentIndex < videoIds.length) {
+            playVideoFromId(videoIds[currentIndex]);
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Reset index for looping
+        }
+    }
+
+    // Initial play and continue to next video on video ended
+    player.addEventListener('onStateChange', function (event) {
+        if (event.data === YT.PlayerState.ENDED) {
+            playNextVideo();
+        }
+    });
+
+    // Start playing the shuffled videos
+    playNextVideo();
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+
+
+function playFavoriteArtistVideos(artistId) {
+    var favoriteArtists = JSON.parse(localStorage.getItem("favoriteArtists")) || [];
+    var artist = favoriteArtists.find(artist => artist.id === artistId);
+
+    if (artist) {
+        var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+        var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${artistId}&type=video&key=${apiKey}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.items && data.items.length > 0) {
+                    var videoIds = data.items.map(item => item.id.videoId);
+                    playVideosSequentially(videoIds);
+                } else {
+                    alert("No videos found for the artist.");
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching videos:', error);
+            });
+    }
+}
+
+function playVideosSequentially(videoIds) {
+    var currentVideoIndex = 0;
+
+    function playNextVideo() {
+        if (currentVideoIndex < videoIds.length) {
+            playVideoFromId(videoIds[currentVideoIndex]);
+            currentVideoIndex++;
+        }
+    }
+
+    playNextVideo(); // Play the first video
+
+    player.addEventListener('onStateChange', function (event) {
+        if (event.data === YT.PlayerState.ENDED) {
+            playNextVideo(); // Play the next video when the current one ends
+        }
+    });
+}
+
+function removeFavoriteArtist(index) {
+    var favoriteArtists = JSON.parse(localStorage.getItem("favoriteArtists")) || [];
+    favoriteArtists.splice(index, 1);
+    localStorage.setItem("favoriteArtists", JSON.stringify(favoriteArtists));
+    loadFavoriteArtistsOnLoad();
+}
+
