@@ -326,7 +326,10 @@ button {
     border-radius: 8px;
     height: 40px;
     width: 54.4px;
-    margin: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 0px;
 }
 
 input[type="text"]::placeholder {
@@ -962,6 +965,9 @@ font-size: larger;
     font-weight: bold;
     text-wrap: balance;
     padding-left: 9px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .playlist-buttons button{
     color: #181c28;
@@ -1031,18 +1037,22 @@ font-size: larger;
 #artistChannel div{
     display: flex;
     color: #455174;
-    
-    padding: 10px;
+    margin: 5px;
+    padding-top: 2px;
+    padding-right: 0px;
+    padding-bottom: 2px;
+    padding-left: 2px;
     align-items: center;
 }
 #artistChannel img{
-    border-radius: 50%;
+    border-radius: 8px;
     height: 100px;
 }
 #artistChannel p{
     color: #eee;
     padding: 5px;
     font-size: 1.1em;
+    font-weight: bold;
 }
 #artistChannel element {
     width: 75px;
