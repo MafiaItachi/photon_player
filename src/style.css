@@ -621,10 +621,13 @@ padding: 3px;
 .backup-restore{
 display: flex;
 align-items: center;
-justify-content: space-around;
 
      background-color: #455174;
 border-radius: 10px;
+        margin-top: 80px;
+    
+    justify-content: space-between;
+    HEIGHT: 51PX;
 
 }
 
