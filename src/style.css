@@ -633,6 +633,9 @@ border-radius: 10px;
     HEIGHT: 51PX;
 
 }
+.backup-restore button{
+    margin-left: 5PX;
+}
 
 .playlist h2 {
     padding: 10px;
@@ -989,6 +992,7 @@ font-size: larger;
     background-color: #455174;
     border-radius: 10PX;
     padding: 2PX;
+    margin-bottom: 10PX;
   }
 .artistVideoTitle {
     color: #ffffff;
@@ -1037,22 +1041,25 @@ font-size: larger;
 #artistChannel div{
     display: flex;
     color: #455174;
-    margin: 5px;
-    padding-top: 2px;
-    padding-right: 0px;
-    padding-bottom: 2px;
-    padding-left: 2px;
+    padding: 2PX;
+   
     align-items: center;
 }
 #artistChannel img{
+    margin: 3PX;
     border-radius: 8px;
     height: 100px;
+}
+#artistChannel button{
+     height: 70PX;
+     width: 65PX;
 }
 #artistChannel p{
     color: #eee;
     padding: 5px;
     font-size: 1.1em;
     font-weight: bold;
+    WIDTH: 100%;
 }
 #artistChannel element {
     width: 75px;
@@ -1074,16 +1081,36 @@ font-size: larger;
 
 /* 
 css for favorite-artist */
-
+#favoriteArtists{
+    
+    overflow-x: auto;
+    white-space: nowrap;
+}
+#favoriteArtistsContainer{
+    margin-bottom: 10px;
+}
+#favoriteArtistsContainer button{
+    width: 48%;
+    margin-bottom: 0%;
+}
+.play-artist-videos {
+      margin-right: 0%;
+}
 
 .favorite-artist {
-    display: flex;
+    display: inline-block;
+    align-items: center;
+    white-space: nowrap;
+    width: 150PX;
+    overflow: hidden;
     margin-bottom: 5px;
-    padding: 5px;
+    margin-right: 5px;
+    padding: 8px;
     border-radius: 10px;
     background-color: #455174;
 
 }
+
 .favorite-artist p {
     display: flex;
     align-items: center;
@@ -1093,10 +1120,15 @@ css for favorite-artist */
     font-size: 0.9rem;
     font-weight: bold;
     width: 100%;
-    padding-left: 5px;
+    padding: 5px;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .favorite-artist img{
-    border-radius: 5px;
+    border-radius: 8px;
+
 }
 .favorite-artist-song {
     display: flex;
