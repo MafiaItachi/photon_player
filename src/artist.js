@@ -93,7 +93,7 @@ function addFavoriteArtist(channelName, channelId, channelImage) {
     var channelParagraph = document.createElement("p");
     channelParagraph.textContent = channelName;
      // Determine the column for each song
-     var column = trendingSongLists[index % 3];
+     
 
     // Append image and name to the favorite artist div
     artistDiv.appendChild(channelImg);
