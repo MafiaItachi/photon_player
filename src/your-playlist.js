@@ -148,7 +148,7 @@ function displaySavedPlaylists() {
       buttonsDiv.classList.add('playlist-buttons');
   
       var deleteButton = document.createElement('button');
-      deleteButton.innerHTML = '<i class="fa-solid fa-trash fa-xl"></i>';
+      deleteButton.innerHTML = '<i class="fa-solid fa-circle-xmark fa-lg"></i>';
       deleteButton.classList.add('delete-button');
       deleteButton.addEventListener('click', function () {
         removePlaylist(playlist.id);

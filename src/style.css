@@ -117,7 +117,7 @@
     /* width: 100vw; */
     display: flex;
     background-color: #455174;
-    padding: 5px;
+    
     border-radius: 10px;
 }
 
@@ -691,8 +691,9 @@ border-radius: 10px;
 
 }
 .yourplaylist-thumbnail {
-    height: 168px;
     
+    height: 182px;
+    WIDTH: 202px;
     object-fit: cover;
     border-radius: 5px;
 
@@ -851,8 +852,8 @@ margin-right: 5px; /* Adjust the spacing between playlists */
 }
 
 #plistbylink{
-    height: 234px;
-    width: 270px;
+    height: 232px;
+    width: 204px;
     display: flex;
     flex-direction: column; 
     align-items: center;
@@ -866,14 +867,14 @@ margin-right: 5px; /* Adjust the spacing between playlists */
 
 }
 #plistbylink input[type="text"]{
-    height: 173px;
-    width: 239px;
+    height: 194px;
+    width: 172px;
     margin: 0px 0px 14px 0px;
 }
 
 .bookmarklink{
     margin: 5px 0;
-padding: 3px;
+padding: 2px;
 background-color: #455174;
 border-radius: 10px;
 display: flex;
@@ -957,7 +958,7 @@ font-size: larger;
     /* inline-size: 120px; */
     /* overflow-wrap: break-word; */
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     text-wrap: balance;
     padding-left: 9px;
@@ -965,12 +966,12 @@ font-size: larger;
   .playlist-buttons button{
     color: #181c28;
     border: none;
-    height: 50px;
-    width: 50px;
+    height: 43px;
+    width: 45px;
     border-radius: 50%;
     padding: 0;
     margin: 4px;
-    margin-left: 10px;
+   
   }
 
 
@@ -979,6 +980,9 @@ font-size: larger;
   
   #artistsearchbox {
     display: flex;
+    background-color: #455174;
+    border-radius: 10PX;
+    padding: 2PX;
   }
 .artistVideoTitle {
     color: #ffffff;
@@ -1106,4 +1110,13 @@ css for favorite-artist */
     font-weight: bold;
     width: 100%;
     padding-left: 5px;
+}
+.playlist-item p text{
+    width: 100%;
+}
+.myplist {
+    width: 202px;
+}
+.bbutton button{
+    width: 100px;
 }

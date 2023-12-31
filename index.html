@@ -28,23 +28,11 @@
     </style>
 </head>
 
-<body>
-    <div id="favoriteArtistsContainer">
-        <h3>Favorite Artists</h3>
-        <div id="favoriteArtists"></div>
-        <div id="favoriteArtistSongs" style="display: none;"></div>
-    </div>
-    <div id="artistsearchbox">
-        <input type="text" id="artistSearchInput" placeholder="Enter artist name">
-         <button onclick="clearArtistSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button> <!-- Add Clear button -->
-        <button onclick="searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
-    </div>
-    <div id="artistChannel"></div>
-    <div id="artistVideos" style="display: none;"></div>
-
+<body> 
+    
     <h1><i class="fi fi-sr-list-music"></i>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
-        <button onclick="clearSearchResults()"><i class="fa-regular fa-circle-xmark fa-xl"></i></button>
+        <button onclick="clearSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
 
         <button id="myBtn" onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
     </div>
@@ -124,7 +112,7 @@
         <div class="playlist" >
             <div id="plistbylink">
                 <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-            <button id="myplist" onclick="addPlaylist()"><i class="fa-solid fa-plus fa-xl"></i></button>
+            <button style="width: 202px;" id="myplist" onclick="addPlaylist()"><i class="fa-solid fa-plus fa-xl"></i></button>
             </div>
         </div>
     </div>
@@ -155,8 +143,22 @@
             </div>
         </div>
     </div>
+    <h1>FAVORITE ARTISTS</h1>
+    <div id="favoriteArtistsContainer">
+       
+        <div id="favoriteArtists"></div>
+        <div id="favoriteArtistSongs" style="display: none;"></div>
+    </div>
+    <div id="artistsearchbox">
+        <input type="text" id="artistSearchInput" placeholder="Enter artist name">
+         <button onclick="clearArtistSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button> <!-- Add Clear button -->
+        <button onclick="searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+    </div>
+    <div id="artistChannel"></div>
+    <div id="artistVideos" style="display: none;"></div>
+
     
-    <h1>DISCOVERY</h1>
+    <!-- <h1>DISCOVERY</h1>
 
     <div class="playlist-container snap-inline">
         <div class="discoverplaylist" id="playlist-plist1">
@@ -218,7 +220,7 @@
             <h2 id="central-playlist-title"></h2>
         </div>
         <ul id="central-song-list"></ul>
-    </div>
+    </div> -->
     <div class="backup-restore">
         
         <!-- Backup button -->
