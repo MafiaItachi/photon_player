@@ -1,7 +1,7 @@
 // Function to search artist's channel
 function searchArtistChannel() {
     var channelName = document.getElementById("artistSearchInput").value;
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -26,7 +26,7 @@ function searchArtistChannel() {
 
 // Function to load artist's videos from channel
 function loadArtistVideos(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -92,8 +92,8 @@ function addFavoriteArtist(channelName, channelId, channelImage) {
     // Create a paragraph element for the channel name
     var channelParagraph = document.createElement("p");
     channelParagraph.textContent = channelName;
-     // Determine the column for each song
-     
+    // Determine the column for each song
+
 
     // Append image and name to the favorite artist div
     artistDiv.appendChild(channelImg);
@@ -116,7 +116,7 @@ function addFavoriteArtist(channelName, channelId, channelImage) {
 }
 
 function loadFavoriteArtistSongs(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA'; // Replace with your YouTube API key
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o'; // Replace with your YouTube API key
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -144,7 +144,7 @@ function playVideoFromId(videoId) {
 // Function to display favorite artist's songs
 function displayFavoriteArtistSongs(items) {
     var favoriteArtistSongsDiv = document.getElementById("favoriteArtistSongs");
-    favoriteArtistSongsDiv.innerHTML = "<h1>SONGS</h1>";
+    favoriteArtistSongsDiv.innerHTML = "<span style='margin-left: 35%;margin-right: 6px;color: white;font-size: larger;'>SONGS</span><button onclick='clearfavsong()'style='margin: 11px;height: 30px;padding: 7px;width: 33px;'><i class='fa-solid fa-circle-xmark fa-lg'></i></button>";
 
     for (var i = 0; i < items.length; i++) {
         var video = items[i];
@@ -252,7 +252,7 @@ function removeFavoriteArtist(index) {
 
 
 function playArtistVideosShuffled(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -341,7 +341,7 @@ function playVideoOnPlayer(videoId) {
 
 
 function playArtistVideosShuffled(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -400,7 +400,7 @@ function playFavoriteArtistVideos(artistId) {
     var artist = favoriteArtists.find(artist => artist.id === artistId);
 
     if (artist) {
-        var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+        var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
         var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${artistId}&type=video&key=${apiKey}`;
 
         fetch(apiUrl)
@@ -445,7 +445,14 @@ function removeFavoriteArtist(index) {
     loadFavoriteArtistsOnLoad();
 }
 
-        function clearArtistSearchResults() {
-            document.getElementById("artistChannel").innerHTML = "";
-            document.getElementById("artistVideos").innerHTML = "";
-        }
+
+function clearArtistSearchResults() {
+    document.getElementById("artistChannel").innerHTML = "";
+    document.getElementById("artistVideos").innerHTML = "";
+}
+
+
+function clearfavsong() {
+    document.getElementById("favoriteArtistSongs").innerHTML = "";
+
+}

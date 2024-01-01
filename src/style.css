@@ -12,7 +12,7 @@
 }
          .trending-songs-container {
     width: 100%;
-    height: 240px;
+    
     overflow: auto;
     white-space: nowrap;
 }
@@ -513,6 +513,11 @@ margin-left: 8px;
 
 
 }
+
+
+
+
+
 
 .mini-player-controls {
     flex-grow: 1;
@@ -1112,7 +1117,7 @@ css for favorite-artist */
     white-space: nowrap;
     width: 150PX;
     overflow: hidden;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     margin-right: 5px;
     padding: 8px;
     border-radius: 10px;
