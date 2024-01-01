@@ -445,3 +445,7 @@ function removeFavoriteArtist(index) {
     loadFavoriteArtistsOnLoad();
 }
 
+        function clearArtistSearchResults() {
+            document.getElementById("artistChannel").innerHTML = "";
+            document.getElementById("artistVideos").innerHTML = "";
+        }
