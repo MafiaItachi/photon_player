@@ -12,24 +12,49 @@
     <link rel="stylesheet" href="src/style.css">
     <style>
         @media screen and (max-width: 480px) {
+
             /* CSS styles specific to mobile devices with a screen width up to 480px */
             /* Adjust the text size or other styles here */
             #player {
-           
+
                 height: 164%;
-            /* margin: 10px 15px 10px 15px; */
-            overflow: hidden;
-            border-radius: 10px;
+                /* margin: 10px 15px 10px 15px; */
+                overflow: hidden;
+                border-radius: 10px;
                 margin-top: 90px;
-        }
+            }
         }
 
-        
+        .bottom {
+            background-color:#262d41;
+            margin: 0%;
+            padding: 0%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            border-top-left-radius:15px ;
+            border-top-right-radius:15px ;
+            height: 80%;
+    justify-content: space-around;
+            
+        }
+        .youtube{
+            width: 90%;
+            height: 80%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+
+        }
     </style>
 </head>
 
-<body> 
-    
+<body>
+
     <h1><i class="fi fi-sr-list-music"></i>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
         <button onclick="clearSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
@@ -67,52 +92,59 @@
             <div class="progress-bar2"></div>
         </div>
         <div id="mini-player" class="mini-player">
-            <div id="player"></div>
-
-
-            <div class="player-controls">
-                <div id="seek-bar">
-                    <div id="progress-bar"></div>
-                </div><br>
-                <div class="video-title2"></div>
-            </div>
-            
-
-            <div class="mini-player-buttons">
-                <div class="bbutton">
-                    <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i class="fa-solid fa-bookmark fa-xl"></i></button>
-                   <button id="share-video" onclick="shareCurrentVideo()"><i class="fa-solid fa-share fa-xl"></i></button>
-                </div>
-                <div class="ppnbutton">
-                    <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
-                            class="fa-solid fa-chevron-left fa-xl"></i></button>
-                    <button class="mini-player-play-button"  id="play-pause2" onclick="togglePlayPause()"><i
-                            class="fa-solid fa-play fa-xl"></i></button>
-                    <button class="mini-player-next-button" onclick="playNextTrack()"><i
-                            class="fa-solid fa-chevron-right fa-xl"></i></button>
-                </div>
+            <div class="youtube">
+                <div id="player"></div>
             </div>
 
+
+            <div class="bottom">
+                <div class="player-controls">
+                    <div id="seek-bar">
+                        <div id="progress-bar"></div>
+                    </div><br>
+                    <div class="video-title2"></div>
+                </div>
+
+
+                <div class="mini-player-buttons">
+                    <div class="bbutton">
+                        <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i
+                                class="fa-solid fa-bookmark fa-xl"></i></button>
+                        <button id="share-video" onclick="shareCurrentVideo()"><i
+                                class="fa-solid fa-share fa-xl"></i></button>
+                    </div>
+                    <div class="ppnbutton">
+                        <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
+                                class="fa-solid fa-chevron-left fa-xl"></i></button>
+                        <button class="mini-player-play-button" id="play-pause2" onclick="togglePlayPause()"><i
+                                class="fa-solid fa-play fa-xl"></i></button>
+                        <button class="mini-player-next-button" onclick="playNextTrack()"><i
+                                class="fa-solid fa-chevron-right fa-xl"></i></button>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 
 
 
     </div>
-        <h1>YOUR PLAYLIST</h1>
-    
+    <h1>YOUR PLAYLIST</h1>
+
     <!-- Section to display added playlists -->
     <!-- HTML structure for the playlist container -->
     <div class="added-playlists-container snap-inline">
-        
+
 
         <div id="addedPlaylists" class="added-playlists snap-inline">
             <!-- Playlist items will be displayed here -->
         </div>
-        <div class="playlist" >
+        <div class="playlist">
             <div id="plistbylink">
                 <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-            <button style="width: 202px;" id="myplist" onclick="addPlaylist()"><i class="fa-solid fa-plus fa-xl"></i></button>
+                <button style="width: 202px;" id="myplist" onclick="addPlaylist()"><i
+                        class="fa-solid fa-plus fa-xl"></i></button>
             </div>
         </div>
     </div>
@@ -130,12 +162,12 @@
                 <ul class="trending-song-list column snap-inline">
                     <!-- Trending songs go here -->
                 </ul>
-    
+
                 <!-- Second Column -->
                 <ul class="trending-song-list column snap-inline">
                     <!-- Trending songs go here -->
                 </ul>
-    
+
                 <!-- Third Column -->
                 <ul class="trending-song-list column snap-inline">
                     <!-- Trending songs go here -->
@@ -145,19 +177,20 @@
     </div>
     <h1>FAVORITE ARTISTS</h1>
     <div id="favoriteArtistsContainer">
-       
+
         <div id="favoriteArtists"></div>
         <div id="favoriteArtistSongs" style="display: none;"></div>
     </div>
     <div id="artistsearchbox">
         <input type="text" id="artistSearchInput" placeholder="Enter artist name">
-         <button onclick="clearArtistSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button> <!-- Add Clear button -->
+        <button onclick="clearArtistSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
+        <!-- Add Clear button -->
         <button onclick="searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
     </div>
     <div id="artistChannel"></div>
     <div id="artistVideos" style="display: none;"></div>
 
-    
+
     <!-- <h1>DISCOVERY</h1>
 
     <div class="playlist-container snap-inline">
@@ -222,12 +255,13 @@
         <ul id="central-song-list"></ul>
     </div> -->
     <div class="backup-restore">
-        
+
         <!-- Backup button -->
         <button onclick="backupLocalStorage()"><i class="fa-solid fa-file-export fa-xl"></i></button>
-         <h3>BACKUP  —  RESTORE</h3>
+        <h3>BACKUP — RESTORE</h3>
         <!-- Restore button -->
-        <button onclick="document.getElementById('fileInput').click()"><i class="fa-solid fa-file-import fa-xl"></i></button>
+        <button onclick="document.getElementById('fileInput').click()"><i
+                class="fa-solid fa-file-import fa-xl"></i></button>
 
         <!-- Hidden file input -->
         <input type="file" id="fileInput" style="display: none" onchange="restoreLocalStorage(event)">
