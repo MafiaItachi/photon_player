@@ -989,11 +989,14 @@ font-size: larger;
   .playlist-buttons button{
     color: #181c28;
     border: none;
-    height: 43px;
-    width: 45px;
+        height: 40px;
+    width: 40px;
     border-radius: 50%;
     padding: 0;
-    margin: 4px;
+    margin-top: 4px;
+    margin-right: 0px;
+    margin-bottom: 4px;
+    margin-left: 4px;
    
   }
 
