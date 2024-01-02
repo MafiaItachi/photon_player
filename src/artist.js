@@ -435,6 +435,7 @@ function removeFavoriteArtist(index) {
 function clearArtistSearchResults() {
     document.getElementById("artistChannel").innerHTML = "";
     document.getElementById("artistVideos").innerHTML = "";
+     document.getElementById("artistSearchInput").value = "";
 }
 
 
