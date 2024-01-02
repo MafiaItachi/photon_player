@@ -1033,26 +1033,22 @@ function getCurrentVideoId() {
     }
     return null;
 }
-// Detect changes in window size (orientation change or keyboard display)
-window.addEventListener('resize', function() {
-  var controlsDiv = document.getElementById('controls');
-  var searchInput = document.getElementById('searchInput');
-  
-  // Check if the search input is focused (keyboard displayed)
-  if (document.activeElement === searchInput) {
-    controlsDiv.style.display = 'none'; // Hide controls when keyboard is displayed
-  } else {
-    controlsDiv.style.display = 'block'; // Show controls when keyboard is hidden
-  }
+// Get the input field
+var searchInput = document.getElementById('searchInput');
+
+// Add an event listener for when the input field is focused
+searchInput.addEventListener('focus', function() {
+    // Hide the controls when the keyboard appears
+    var controlsDiv = document.getElementById('controls');
+    controlsDiv.style.display = 'none';
 });
 
-// Detect when the search input is focused (keyboard displayed)
-document.getElementById('searchInput').addEventListener('focusin', function() {
-  var controlsDiv = document.getElementById('controls');
-  controlsDiv.style.display = 'none'; // Hide controls when keyboard is displayed
+// Add an event listener for when the input field loses focus
+searchInput.addEventListener('blur', function() {
+    // Show the controls when the keyboard disappears
+    var controlsDiv = document.getElementById('controls');
+    controlsDiv.style.display = 'block';
 });
-  
-
 
 
 
