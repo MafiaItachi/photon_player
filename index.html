@@ -78,15 +78,17 @@
 
 <body>
 
-    <h1><i class="fi fi-sr-list-music"></i>PHOTON PLAYER</h1>
+    <h1>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
         <button id="clearSearchResults" onclick="clearSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
 
-        <button id="myBtn" onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+        <button id="myBtn" onclick="search();searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
     </div>
+    <div id="artistChannel"></div>
+    <div id="artistVideos" style="display: none;"></div>
     <div id="results"></div>
 
-    <h1><i class="fa-solid fa-list-music fa-xl"></i>BOOKMARK</h1>
+    <h1>BOOKMARK</h1>
     <div class="shuffle">
         <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
         <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
@@ -204,15 +206,15 @@
         <div id="favoriteArtists"></div>
         
     </div>
-    <div id="artistsearchbox">
+    <!-- <div id="artistsearchbox">
         <input type="text" id="artistSearchInput" placeholder="Enter artist name">
         <button  id="clearSearchResults" onclick="clearArtistSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
-        <!-- Add Clear button -->
+         Add Clear button 
         <button  onclick="searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
-    </div>
-    <div id="artistChannel"></div>
+    </div> -->
+    
     <div id="favoriteArtistSongs" style="display: none;"></div>
-    <div id="artistVideos" style="display: none;"></div>
+   
 
 
     <!-- <h1>DISCOVERY</h1>
@@ -282,7 +284,7 @@
 
         <!-- Backup button -->
         <button onclick="backupLocalStorage()"><i class="fa-solid fa-file-export fa-xl"></i></button>
-        <h3>BACKUP — RESTORE</h3>
+        <h4>BACKUP — RESTORE</h4>
         <!-- Restore button -->
         <button onclick="document.getElementById('fileInput').click()"><i
                 class="fa-solid fa-file-import fa-xl"></i></button>

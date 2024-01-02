@@ -1,6 +1,6 @@
 // Function to search artist's channel
 function searchArtistChannel() {
-    var channelName = document.getElementById("artistSearchInput").value;
+    var channelName = document.getElementById("searchInput").value;
     var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
 
@@ -308,7 +308,7 @@ function playShuffledVideos(videos) {
 
 function displayArtistVideos(videos) {
     var artistVideos = document.getElementById("artistVideos");
-    artistVideos.innerHTML = "<h3>Artist's Videos</h3>";
+    artistVideos.innerHTML = "<h1>ARTIST SONGS</h1>";
 
     videos.forEach(video => {
         var videoTitle = video.snippet.title;

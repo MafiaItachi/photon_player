@@ -489,6 +489,9 @@ function displayResults(response) {
             var results = document.getElementById("results");
             results.innerHTML = "";
             document.getElementById("searchInput").value = "";
+            document.getElementById("artistChannel").innerHTML = "";
+            document.getElementById("artistVideos").innerHTML = "";
+             document.getElementById("artistSearchInput").value = "";
         }
 
         // Initialize Hammer.js on the controls section

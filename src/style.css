@@ -293,7 +293,9 @@ body {
 
 h1,
 h2 ,
-h3{
+h3 ,
+h4
+{
     color: #ffffff;
 }
 li {
@@ -347,7 +349,7 @@ button:focus {
 }*/
 
 #results {
-margin-top: 20px;
+margin-top: 10px;
 }
 
 .result-item {
@@ -1054,6 +1056,7 @@ font-size: larger;
 #artistChannel{
     background-color: #455174;
     border-radius: 10px;
+    margin-top: 10px;
 }
 #artistChannel div{
     display: flex;
@@ -1191,6 +1194,7 @@ css for favorite-artist */
 .result-item,
 .playlist-item,
 #controls,
+
 .video-thumbnail,
 .playlist-container,
 .song-list-container,
@@ -1217,7 +1221,7 @@ input[type="text"],
     /* Ensure to include all the elements where you want this box-shadow effect */
     /* Example usage: */
     /* Adding the advanced box-shadow to multiple elements */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
 }
 #searchInput,
 #artistSearchInput
@@ -1228,8 +1232,8 @@ input[type="text"],
     /* Ensure to include all the elements where you want this box-shadow effect */
     /* Example usage: */
     /* Adding the advanced box-shadow to multiple elements */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    clip-path: inset(-6px 0px -6px -6px);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+    clip-path: inset(0px 0px -15px -5px);
 
 }
 .trending-song-list li img {
