@@ -51,6 +51,23 @@
             justify-content: flex-end;
 
         }
+         #searchInput,
+        #artistSearchInput
+        {
+            margin-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 24px;
+        }
+
+      #clearSearchResults{
+        border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: 0;
+      }
+      .shuffle button{
+        margin-right: 0;
+      }
     </style>
 </head>
 
@@ -58,7 +75,7 @@
 
     <h1><i class="fi fi-sr-list-music"></i>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
-        <button onclick="clearSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
+        <button id="clearSearchResults" onclick="clearSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
 
         <button id="myBtn" onclick="search()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
     </div>
@@ -144,7 +161,7 @@
         <div class="playlist">
             <div id="plistbylink">
                 <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-                <button style="width: 202px;" id="myplist" onclick="addPlaylist()"><i
+                <button style="width: 202px;  margin: 0;" id="myplist" onclick="addPlaylist()"><i
                         class="fa-solid fa-plus fa-xl"></i></button>
             </div>
         </div>
