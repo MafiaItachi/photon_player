@@ -1,5 +1,6 @@
 function addPlaylist() {
   var playlistLink = document.getElementById('playlistLinkInput').value;
+  document.getElementById("playlistLinkInput").value = "";
   if (playlistLink.trim() === '') {
       alert('Please enter a valid YouTube playlist link.');
       return;
