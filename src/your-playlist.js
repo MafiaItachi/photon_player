@@ -156,7 +156,7 @@ function displaySavedPlaylists() {
       });
   
       var shuffleButton = document.createElement('button');
-      shuffleButton.innerHTML = '<i class="fa-solid fa-random fa-xl"></i>';
+      shuffleButton.innerHTML = '<i class="fa-solid fa-play fa-lg"></i>';
       shuffleButton.classList.add('shuffle-button');
       shuffleButton.addEventListener('click', function () {
         shuffleAndPlaySongs(playlist.id);
