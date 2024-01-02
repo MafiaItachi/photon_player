@@ -43,39 +43,49 @@ function loadArtistVideos(channelId) {
         });
 }
 
-
 function displayArtistChannel(channelName, channelId, channelImage) {
     var artistChannel = document.getElementById("artistChannel");
     artistChannel.innerHTML = "";
 
     var channelElement = document.createElement("div");
     channelElement.innerHTML = `
-                <img src="${channelImage}" alt="Channel Image" style="width: 75px; height: 75px;">
-                <p>${channelName}</p>
-                <button class="favoriteButton"><i class="fa-solid fa-heart fa-lg"></i></button>
-                <button class="play-shuffle-button"><i class="fa-solid fa-random fa-lg"></i></button>
-            `;
+        <img src="${channelImage}" alt="Channel Image" style="width: 75px; height: 75px;">
+        <p>${channelName}</p>
+        <button class="favoriteButton"><i class="fa-solid fa-heart fa-lg"></i></button>
+        <button class="play-shuffle-button"><i class="fa-solid fa-random fa-lg"></i></button>
+    `;
 
     artistChannel.appendChild(channelElement);
 
     var favoriteButton = artistChannel.querySelector(".favoriteButton");
-    favoriteButton.addEventListener("click", function () {
+    favoriteButton.addEventListener("click", function (event) {
+        // Prevent the default behavior of the favorite button
+        event.preventDefault();
+        // Add the artist to favorites
         addFavoriteArtist(channelName, channelId, channelImage);
+        // Stop the propagation of the click event
+        event.stopPropagation();
     });
-    // Create a Play Shuffle button
+
     var playShuffleButton = artistChannel.querySelector(".play-shuffle-button");
-    playShuffleButton.addEventListener("click", function () {
+    playShuffleButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        // Add the artist to favorites
         playArtistVideosShuffled(channelId);
+        // Stop the propagation of the click event
+        event.stopPropagation();
+      
+        // Play the artist's videos shuffled
+        
     });
-
-
 
     // Toggle visibility of artistVideos div
     artistChannel.addEventListener("click", function () {
         var videosDiv = document.getElementById("artistVideos");
-        videosDiv.style.display = (videosDiv.style.display === "none") ? "block" : "none";
+        videosDiv.style.display = videosDiv.style.display === "none" ? "block" : "none";
     });
 }
+
 
 function addFavoriteArtist(channelName, channelId, channelImage) {
     // Create a new div element for the favorite artist
