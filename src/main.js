@@ -583,7 +583,7 @@ function displayResults(response) {
         function addPlaylistByLink() {
             var playlistLink = document.getElementById("2playlistLinkInput").value;
             var playlistId = extractPlaylistId(playlistLink);
-
+            document.getElementById("2playlistLinkInput").value = "";
             if (playlistId) {
                 fetchPlaylistItems(playlistId);
             } else {
