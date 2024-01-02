@@ -1179,3 +1179,59 @@ css for favorite-artist */
 .bbutton button{
     width: 100px;
 }
+/* Define a class for the advanced box-shadow */
+.advanced-box-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/* Apply the advanced box-shadow class to elements where you want the effect */
+.example,
+.trending-song-list li,
+#central-song-list li,
+.mini-player,
+.result-item,
+.playlist-item,
+#controls,
+.video-thumbnail,
+.playlist-container,
+.song-list-container,
+.favorite-artist,
+.favorite-artist-song,
+.trending-song-list li img,
+.favorite-artist img,
+.result-item img,
+.playlist-item img,
+.favorite-artist-song img,
+#artistChannel img,
+#artistVideos img,
+
+button,
+input[type="text"],
+
+#player,
+.yourplaylist-thumbnail
+/* Add other selectors here */
+{
+    /* Apply the advanced box-shadow class */
+    /* You can also add other existing classes or IDs alongside */
+    /* You may need to adjust these selectors based on your specific HTML structure */
+    /* Ensure to include all the elements where you want this box-shadow effect */
+    /* Example usage: */
+    /* Adding the advanced box-shadow to multiple elements */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#searchInput,
+#artistSearchInput
+{
+    /* Apply the advanced box-shadow class */
+    /* You can also add other existing classes or IDs alongside */
+    /* You may need to adjust these selectors based on your specific HTML structure */
+    /* Ensure to include all the elements where you want this box-shadow effect */
+    /* Example usage: */
+    /* Adding the advanced box-shadow to multiple elements */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    clip-path: inset(-6px 0px -6px -6px);
+
+}
+.trending-song-list li img {
+    padding: 0px;
+}
