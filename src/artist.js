@@ -213,7 +213,7 @@ function loadFavoriteArtistsOnLoad() {
         removeButton.innerHTML = '<i class="fa-solid fa-circle-xmark fa-lg"></i>';
         removeButton.className = "remove-btn";
         // Add event listener to load the channel's videos when clicked
-        artistDiv.addEventListener("click", function (artistId) {
+         channelImg.addEventListener("click", function (artistId) {
             return function () {
                 loadFavoriteArtistSongs(artistId);
             };
