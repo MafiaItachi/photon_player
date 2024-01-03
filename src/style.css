@@ -1276,6 +1276,7 @@ input[type="text"],
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+        PADDING-BOTTOM: 20PX;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     height: 80%;
