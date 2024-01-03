@@ -193,15 +193,16 @@ body {
 
 
 .more-button {
-    height: auto;
-    width: auto;
+    height: 40px;
+    width: 16px;
     float: right;
     background: none;
     border: none;
-    color: #181c28;
+    color: #000000;
      /*cursor: pointer;*/
     padding: 0;
     font-size: .8rem;
+    margin: 0;
 }
 
 .more-button:focus {
@@ -210,11 +211,8 @@ body {
 
 .more-dropdown {
     display: none;
-    position: relative;
-    right: 5px;
-    top: 10px;
-    background-color: #00B7C6;
-    padding: 5px;
+   
+    
 
     text-align: right;
 }
@@ -228,7 +226,7 @@ body {
 }
 
 .more-dropdown a:hover {
-    background-color: #eee;
+    background-color: #eeeeee7e;
 }
 
 #shuffle button {
@@ -483,9 +481,22 @@ margin-left: 8px;
 .video-title {
     width: 100%;
     color: white;
-    margin-left: 10px;
+   margin: 5px;
     display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
+
+}
+.bvideo-title{
+    width: 100%;
+    color: white;
+   
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
 }
 
@@ -1221,7 +1232,7 @@ input[type="text"],
     /* Ensure to include all the elements where you want this box-shadow effect */
     /* Example usage: */
     /* Adding the advanced box-shadow to multiple elements */
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #searchInput,
 #artistSearchInput
@@ -1232,10 +1243,14 @@ input[type="text"],
     /* Ensure to include all the elements where you want this box-shadow effect */
     /* Example usage: */
     /* Adding the advanced box-shadow to multiple elements */
-    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
-    clip-path: inset(0px 0px -15px -5px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    clip-path: inset(-15px 0px -15px -15px); 
 
 }
 .trending-song-list li img {
     padding: 0px;
+}
+.more-button{
+    box-shadow: none;
 }
