@@ -414,11 +414,11 @@ function displayPlaylist() {
                     toggleDropdown(index);
                 };
              }(i));
-
             removeOption.innerHTML = '<span class="material-symbols-outlined">cancel</span>';
             removeOption.href = "#";
             removeOption.addEventListener("click", function (index) {
-                return function () {
+                return function (event) {
+                    event.stopPropagation(); // Stop event propagation to prevent triggering playlistItem onclick
                     removeFromPlaylist(index);
                     toggleDropdown(index);
                 };
