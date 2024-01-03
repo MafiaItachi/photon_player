@@ -408,7 +408,7 @@ function displayPlaylist() {
             }(i));
             var downloadOption = document.createElement("a");
             downloadOption.innerHTML = '<i class="fa-solid fa-circle-down"style="color: #181c28;"></i>';
-            downloadOption.href = "https://yout.com/video/" + playlistItems[i].videoId; // Using yout.com URL
+            downloadOption.href = "https://v3.mp3youtube.cc/download/" + playlistItems[i].videoId; // Using yout.com URL
 
             downloadOption.setAttribute("target", "_blank"); // Open in a new tab
             downloadOption.setAttribute("rel", "noopener noreferrer"); // Security best practice
