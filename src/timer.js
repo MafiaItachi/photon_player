@@ -64,7 +64,7 @@ function toggleTimer() {
     } else if (clickCount === 5) {
         stopTimer(); // Stop the timer after the 5th click
         stopInterval(); // Stop the interval when the timer is manually stopped
-        document.getElementById('toggle-timer-btn').innerHTML = '<i class="fa-solid fa-stopwatch fa-xl"></i>'; // Change button text to 'Start Timer'
+        document.getElementById('toggle-timer-btn').innerHTML = '<span class="material-symbols-outlined">timer</span>'; // Change button text to 'Start Timer'
         console.log('Timer stopped after 5 clicks.');
     }
 }

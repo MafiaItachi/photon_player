@@ -119,12 +119,12 @@ function togglePlayPause() {
 function updatePlayPauseButton() {
     var button = $('#play-pause');
 
-    button.html(isPlaying ? '<i class="fa-solid fa-pause fa-xl"></i>' : '<i class="fa-solid fa-play fa-xl"></i>');
+    button.html(isPlaying ? '<span class="material-symbols-outlined">pause</span>' : '<span class="material-symbols-outlined">play_arrow</span>');
 }
 function updatePlayPauseButton2() {
     var button = $('#play-pause2');
 
-    button.html(isPlaying ? '<i class="fa-solid fa-pause fa-xl"></i>' : '<i class="fa-solid fa-play fa-xl"></i>');
+    button.html(isPlaying ?  '<span class="material-symbols-outlined">pause</span>' : '<span class="material-symbols-outlined">play_arrow</span>');
 }
 
 
@@ -201,13 +201,13 @@ function toggleRepeatMode() {
     const repeatToggle = document.getElementById('repeat-toggle');
     if (repeatMode === 'no-repeat') {
         repeatMode = 'repeat-all';
-        repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-lg"></i>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_on</span>';
     } else if (repeatMode === 'repeat-all') {
         repeatMode = 'repeat-one';
-        repeatToggle.innerHTML = '<i class="fa-solid fa-redo fa-lg"></i>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_one</span>';
     } else {
         repeatMode = 'no-repeat';
-        repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-flip-vertical fa-lg" style="color: #383838;"></i>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
     }
 }
 
@@ -217,11 +217,11 @@ var repeatMode = "no-repeat"; // Set the default repeat mode to "no-repeat"
 function setInitialRepeatModeIcon() {
     const repeatToggle = document.getElementById('repeat-toggle');
     if (repeatMode === 'no-repeat') {
-        repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-flip-vertical fa-lg" style="color: #383838;"></i>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
     } else if (repeatMode === 'repeat-all') {
-        repeatToggle.innerHTML = '<i class="fa-solid fa-repeat fa-lg"></i>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_on</span>';
     } else {
-        repeatToggle.innerHTML = '<i class="fa-solid fa-redo fa-lg"></i>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_one</span>';
     }
 }
 
@@ -303,7 +303,7 @@ function displayResults(response) {
         buttonsDiv.className = "result-buttons";
 
         var addToPlaylistButton = document.createElement("button");
-        addToPlaylistButton.innerHTML = '<i class="fa-solid fa-bookmark fa-xl"></i>';
+        addToPlaylistButton.innerHTML = '<span class="material-symbols-outlined">bookmark</span>';
         addToPlaylistButton.addEventListener("click", function (id, title, thumbnail) {
             return function () {
                 addToPlaylist(id, title, thumbnail);
@@ -311,7 +311,7 @@ function displayResults(response) {
         }(videoId, videoTitle, thumbnailUrl));
 
         var playVideoButton = document.createElement("button");
-        playVideoButton.innerHTML = '<i class="fa-solid fa-play fa-xl"></i>';
+        playVideoButton.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
         playVideoButton.addEventListener("click", function (id, title, thumbnail) {
             return function () {
                 playVideo(id, title, thumbnail);
@@ -393,7 +393,7 @@ function displayPlaylist() {
             videoTitleDiv.className = "bvideo-title";
             videoTitleDiv.textContent = truncatedTitle;
 
-            moreButton.innerHTML = '<i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>';
+            moreButton.innerHTML = '<span class="material-symbols-outlined">more_vert</span>';
             moreButton.className = "more-button";
             moreButton.addEventListener("click", function (index) {
                 return function (event) {
@@ -405,7 +405,7 @@ function displayPlaylist() {
 
             moreDropdown.className = "more-dropdown";
 
-             playOption.innerHTML = '<i class="fa-solid fa-play fa-sm "style="color: #181c28;"></i>';
+             playOption.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>';
             playOption.href = "#";
             playOption.addEventListener("click", function (index) {
                 return function () {
@@ -415,7 +415,7 @@ function displayPlaylist() {
                 };
              }(i));
 
-            removeOption.innerHTML = '<i class="fa-solid fa-circle-xmark fa-sm"style="color: #181c28;"></i>';
+            removeOption.innerHTML = '<span class="material-symbols-outlined">cancel</span>';
             removeOption.href = "#";
             removeOption.addEventListener("click", function (index) {
                 return function () {
@@ -424,7 +424,7 @@ function displayPlaylist() {
                 };
             }(i));
             var downloadOption = document.createElement("a");
-            downloadOption.innerHTML = '<i class="fa-solid fa-circle-down"style="color: #181c28;"></i>';
+            downloadOption.innerHTML = '<span class="material-symbols-outlined">download</span>';
             downloadOption.href = "https://v3.mp3youtube.cc/download/" + playlistItems[i].videoId; // Using yout.com URL
 
             downloadOption.setAttribute("target", "_blank"); // Open in a new tab

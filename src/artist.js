@@ -51,8 +51,12 @@ function displayArtistChannel(channelName, channelId, channelImage) {
     channelElement.innerHTML = `
         <img src="${channelImage}" alt="Channel Image" style="width: 75px; height: 75px;">
         <p>${channelName}</p>
-        <button class="favoriteButton"><i class="fa-solid fa-heart fa-lg"></i></button>
-        <button class="play-shuffle-button"><i class="fa-solid fa-random fa-lg"></i></button>
+        <button class="favoriteButton"><span class="material-symbols-outlined">
+        favorite
+        </span></button>
+        <button class="play-shuffle-button"><span class="material-symbols-outlined">
+        shuffle
+        </span></button>
     `;
 
     artistChannel.appendChild(channelElement);
@@ -154,7 +158,7 @@ function playVideoFromId(videoId) {
 // Function to display favorite artist's songs
 function displayFavoriteArtistSongs(items) {
     var favoriteArtistSongsDiv = document.getElementById("favoriteArtistSongs");
-    favoriteArtistSongsDiv.innerHTML = "<span style='margin-left: 35%;margin-right: 6px;color: white;font-size: larger;'>SONGS</span><button onclick='clearfavsong()'style='margin: 11px;height: 30px;padding: 7px;width: 33px;'><i class='fa-solid fa-circle-xmark fa-lg'></i></button>";
+    favoriteArtistSongsDiv.innerHTML = "<span style='margin-left: 35%;margin-right: 6px;color: white;font-size: larger;'>SONGS</span><button onclick='clearfavsong()'style='margin: 11px;height: 30px;padding: 7px;width: 33px;'><span class='material-symbols-outlined'>cancel</span></button>";
 
     for (var i = 0; i < items.length; i++) {
         var video = items[i];
@@ -209,7 +213,7 @@ function loadFavoriteArtistsOnLoad() {
         channelParagraph.textContent = artist.name;
 
         var playButton = document.createElement("button");
-        playButton.innerHTML = '<i class="fas fa-play"></i>'; // Font Awesome icon for play
+        playButton.innerHTML = '<span class="material-symbols-outlined">play_arrow</span>'; // Font Awesome icon for play
         playButton.className = "play-artist-videos";
         playButton.title = "Play All Videos";
         playButton.addEventListener("click", function (id) {
@@ -220,7 +224,7 @@ function loadFavoriteArtistsOnLoad() {
 
 
         var removeButton = document.createElement("button");
-        removeButton.innerHTML = '<i class="fa-solid fa-circle-xmark fa-lg"></i>';
+        removeButton.innerHTML = '<span class="material-symbols-outlined">cancel</span>';
         removeButton.className = "remove-btn";
         // Add event listener to load the channel's videos when clicked
          channelImg.addEventListener("click", function (artistId) {

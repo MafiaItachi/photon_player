@@ -39,7 +39,7 @@
     border-radius: 10px;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .trending-song-list li img {
@@ -94,7 +94,7 @@
     transition: background-color 0.3s ease;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
 
 }
 
@@ -142,7 +142,7 @@ body {
     background: #181c28;
     /* width: 100%; */
     /* padding: 5px; */
-    font-family: "Sans Serif", Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;;
 }
 
 #repeat-mode {
@@ -221,7 +221,7 @@ body {
     display: block;
     padding: 5px 10px;
     text-decoration: none;
-    color: #333;
+    color: #000000;
     transition: background-color 0.3s ease;
 }
 
@@ -244,7 +244,7 @@ body {
 }
 
 .playlist-item strong {
-    font-weight: bold;
+    font-weight: normal;
     margin-right: 8px;
     width: auto;
     color: #ffffff;
@@ -264,7 +264,7 @@ body {
     flex-grow: 1;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .playlist-controls {
@@ -398,7 +398,7 @@ color: #ffffff;
 margin-top:0px;
 margin-bottom:5px;
 margin-left: 5px;
-font-weight: bold;
+font-weight: normal;
 overflow: hidden;
 text-overflow: ellipsis;
 display: -webkit-box;
@@ -547,7 +547,7 @@ margin-left: 8px;
 }
 
 .mini-player-title {
-    font-weight: bold;
+    font-weight: normal;
     margin-bottom: 5px;
 }
 .mini-player-buttons {
@@ -604,7 +604,7 @@ margin-left: 8px;
 
 .video-title2 {
     color: white;
-    font-weight: bold;
+    font-weight: normal;
     margin: 10px;
     padding: 5px;
     text-align: center;
@@ -756,7 +756,7 @@ border-radius: 10px;
     padding: 5px;
 
     transition: background-color 0.3s ease;
-    font-weight: bold;
+    font-weight: normal;
     margin-top: 5px;
     border-radius: 10px;
     background-color: #455174;
@@ -825,7 +825,7 @@ border-radius: 5px;
     overflow-wrap: break-word;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
     text-wrap: balance;
     padding-left: 3px;
 
@@ -844,7 +844,7 @@ h2 {
     margin-block-end: 0.83em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    font-weight: bold;
+    font-weight: normal;
 }
  .snap-inline{
     scroll-snap-type: inline mandatory;
@@ -876,7 +876,7 @@ display: inline-block;
 white-space: nowrap;
 color: #ffffff;
 font-size: 0.9rem;
-font-weight: bold;
+font-weight: normal;
 }
 
 .added-playlists text{
@@ -887,6 +887,7 @@ font-weight: bold;
 display: inline-block;
 margin-right: 5px; /* Adjust the spacing between playlists */
 /* Other styles for playlist container */
+width: 204px;
 }
 
 #plistbylink{
@@ -930,9 +931,9 @@ border-radius: 10px;
 /* CSS for the button text */
 #toggle-timer-btn {
 /* Specify desired font properties */
-font-family: Arial, sans-serif;
+font-family: 'Poppins', sans-serif;
 font-size: 19px;
-font-weight: bold;
+font-weight: normal;
 
 /* Set hover effect */
 transition: background-color 0.3s ease;
@@ -944,7 +945,7 @@ transition: background-color 0.3s ease;
 transform: translateY(1px);
 }
 #toggle-timer-btn{
-padding: 0px;
+    padding: 8px;
 }
 button:active {
     transform: translateY(1px);
@@ -997,7 +998,7 @@ font-size: larger;
     /* overflow-wrap: break-word; */
     color: #ffffff;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: normal;
     text-wrap: balance;
     padding-left: 9px;
     overflow: hidden;
@@ -1045,7 +1046,7 @@ font-size: larger;
 /* Style for the artist's name */
 .artistName {
     margin-left: 10px;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 /* Style for the artist's video thumbnails and titles */
@@ -1066,7 +1067,7 @@ font-size: larger;
     margin: 0;
     font-size: 14px;
     padding: 5px;
-    font-weight: bold;
+    font-weight: normal;
 
 }
 #artistChannel{
@@ -1094,7 +1095,7 @@ font-size: larger;
     color: #eee;
     padding: 5px;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: normal;
     WIDTH: 100%;
 }
 #artistChannel element {
@@ -1154,7 +1155,7 @@ css for favorite-artist */
     flex-grow: 1;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
     width: 100%;
     padding: 5px;
     flex-grow: 1;
@@ -1185,7 +1186,7 @@ css for favorite-artist */
     flex-grow: 1;
     color: #ffffff;
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
     width: 100%;
     padding-left: 5px;
 }

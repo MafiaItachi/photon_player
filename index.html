@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>PHOTON PLAYER</title>
     <script src="https://kit.fontawesome.com/bac1e9dfb2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
@@ -80,9 +84,13 @@
 
     <h1>PHOTON PLAYER</h1>
     <div class="sxq"><input type="text" id="searchInput" placeholder="Enter song or artist">
-        <button id="clearSearchResults" onclick="clearSearchResults()"><i class="fa-solid fa-circle-xmark fa-xl"></i></button>
+        <button id="clearSearchResults" onclick="clearSearchResults()"><span class="material-symbols-outlined">
+            cancel
+            </span></button>
 
-        <button id="myBtn" onclick="search();searchArtistChannel()"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+        <button id="myBtn" onclick="search();searchArtistChannel()"><span class="material-symbols-outlined">
+            search
+            </span></button>
     </div>
     <div id="artistChannel"></div>
     <div id="artistVideos" style="display: none;"></div>
@@ -90,27 +98,42 @@
 
     <h1>BOOKMARK</h1>
     <div class="shuffle">
-        <button onclick="clearPlaylist()"><i class="fa-solid fa-trash fa-xl"></i></button>
-        <button onclick="stopVideo()"><i class="fa-solid fa-pause fa-xl"></i></button>
-        <button onclick="shuffleAndPlay()"><i class="fa-solid fa-random fa-xl"></i></button>
-        <button id="fullscreen-button"><i class="fa-solid fa-mobile fa-xl"></i></button>
+        <button onclick="clearPlaylist()"><span class="material-symbols-outlined">
+            delete
+            </span></button>
+        <button onclick="stopVideo()"><span class="material-symbols-outlined">
+            pause
+            </span></button>
+        <button onclick="shuffleAndPlay()"><span class="material-symbols-outlined">
+            shuffle
+            </span></button>
+        <button id="fullscreen-button"><span class="material-symbols-outlined">
+            phone_iphone
+            </span></button>
         <!-- Add this button in your HTML -->
-        <button id="toggle-timer-btn" onclick="toggleTimer()"><i class="fa-solid fa-stopwatch fa-xl"></i></button>
+        <button id="toggle-timer-btn" onclick="toggleTimer()"><span class="material-symbols-outlined">
+            timer
+            </span></button>
 
     </div>
 
     <div id="playlist"></div>
     <div class="bookmarklink"><input type="text" id="2playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-        <button id="mybm" onclick="addPlaylistByLink()"><i class="fa-solid fa-plus fa-xl"></i></button>
+        <button id="mybm" onclick="addPlaylistByLink()"><span class="material-symbols-outlined">
+            add
+            </span></button>
     </div>
     <br></br>
     <div id="controls">
         <div class="con">
             <img class="video-thumbnail" src="image/songicon.jpg">
             <div class="video-title">MADE BY SHUBHAM</div>
-            <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><i
-                    class="fa-solid fa-repeat fa-lg"></i></button>
-            <button id="play-pause"><i class="fa-solid fa-play fa-xl"></i></button>
+            <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><span class="material-icons">
+                repeat
+                </span></button>
+            <button id="play-pause"><span class="material-symbols-outlined">
+                play_arrow
+                </span></button>
         </div>
 
         <div class="seekbar2">
@@ -133,19 +156,26 @@
 
                 <div class="mini-player-buttons">
                     <div class="bbutton">
-                        <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><i
-                                class="fa-solid fa-bookmark fa-xl"></i></button>
-                        <button id="share-video" onclick="shareCurrentVideo()"><i
-                                class="fa-solid fa-share fa-xl"></i></button>
-                        <button onclick=" downloadCurrentSong() "><i class="fa-solid fa-circle-down fa-lg"></i></button>
+                        <button id="addToPlaylistButton" onclick="addToPlaylistFromVideo()"><span class="material-symbols-outlined">
+                            bookmark
+                            </span></button>
+                        <button id="share-video" onclick="shareCurrentVideo()"><span class="material-symbols-outlined">
+                            share
+                            </span></button>
+                        <button onclick=" downloadCurrentSong() "><span class="material-symbols-outlined">
+                            download
+                            </span></button>
                     </div>
                     <div class="ppnbutton">
-                        <button class="mini-player-previous-button" onclick="playPreviousTrack()"><i
-                                class="fa-solid fa-chevron-left fa-xl"></i></button>
-                        <button class="mini-player-play-button" id="play-pause2" onclick="togglePlayPause()"><i
-                                class="fa-solid fa-play fa-xl"></i></button>
-                        <button class="mini-player-next-button" onclick="playNextTrack()"><i
-                                class="fa-solid fa-chevron-right fa-xl"></i></button>
+                        <button class="mini-player-previous-button" onclick="playPreviousTrack()"><span class="material-symbols-outlined">
+                            skip_previous
+                            </span></button>
+                        <button class="mini-player-play-button" id="play-pause2" onclick="togglePlayPause()"><span class="material-symbols-outlined">
+                            play_arrow
+                            </span></button>
+                        <button class="mini-player-next-button" onclick="playNextTrack()"><span class="material-symbols-outlined">
+                            skip_next
+                            </span></button>
                     </div>
                 </div>
 
@@ -169,8 +199,9 @@
         <div class="playlist">
             <div id="plistbylink">
                 <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
-                <button style="width: 202px;  margin: 0;" id="myplist" onclick="addPlaylist()"><i
-                        class="fa-solid fa-plus fa-xl"></i></button>
+                <button style="width: 202px;  margin: 0;" id="myplist" onclick="addPlaylist()"><span class="material-symbols-outlined">
+                    add_box
+                    </span></button>
             </div>
         </div>
     </div>
@@ -284,11 +315,14 @@
     <div class="backup-restore">
 
         <!-- Backup button -->
-        <button onclick="backupLocalStorage()"><i class="fa-solid fa-file-export fa-xl"></i></button>
+        <button onclick="backupLocalStorage()"><span class="material-symbols-outlined">
+            edit_document
+            </span></button>
         <h4>BACKUP — RESTORE</h4>
         <!-- Restore button -->
-        <button onclick="document.getElementById('fileInput').click()"><i
-                class="fa-solid fa-file-import fa-xl"></i></button>
+        <button onclick="document.getElementById('fileInput').click()"><span class="material-symbols-outlined">
+            restore_page
+            </span></button>
 
         <!-- Hidden file input -->
         <input type="file" id="fileInput" style="display: none" onchange="restoreLocalStorage(event)">

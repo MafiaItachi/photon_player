@@ -149,14 +149,14 @@ function displaySavedPlaylists() {
       buttonsDiv.classList.add('playlist-buttons');
   
       var deleteButton = document.createElement('button');
-      deleteButton.innerHTML = '<i class="fa-solid fa-circle-xmark fa-lg"></i>';
+      deleteButton.innerHTML = '<span class="material-symbols-outlined">cancel</span>';
       deleteButton.classList.add('delete-button');
       deleteButton.addEventListener('click', function () {
         removePlaylist(playlist.id);
       });
   
       var shuffleButton = document.createElement('button');
-      shuffleButton.innerHTML = '<i class="fa-solid fa-play fa-lg"></i>';
+      shuffleButton.innerHTML =  '<span class="material-symbols-outlined">play_arrow</span>'; 
       shuffleButton.classList.add('shuffle-button');
       shuffleButton.addEventListener('click', function () {
         shuffleAndPlaySongs(playlist.id);
