@@ -383,7 +383,7 @@ function displayResults(response) {
 
                     moreDropdown.className = "more-dropdown";
 
-                    playOption.textContent = "Play";
+                    playOption.innerHTML='<i class="fa-solid fa-play fa-sm "></i>';
                     playOption.href = "#";
                     playOption.addEventListener("click", function (index) {
                         return function () {
@@ -393,7 +393,7 @@ function displayResults(response) {
                         };
                     }(i));
 
-                    removeOption.textContent = "Remove";
+                    removeOption.innerHTML='<i class="fa-solid fa-circle-xmark fa-sm"></i>';
                     removeOption.href = "#";
                     removeOption.addEventListener("click", function (index) {
                         return function () {
@@ -401,9 +401,20 @@ function displayResults(response) {
                             toggleDropdown(index);
                         };
                     }(i));
+                        var downloadOption = document.createElement("a");
+                     downloadOption.innerHTML='<i class="fa-solid fa-circle-down"></i>';
+                     downloadOption.href = "https://yout.com/video/" + playlistItems[i].videoId; // Using yout.com URL
+
+                      downloadOption.setAttribute("target", "_blank"); // Open in a new tab
+                       downloadOption.setAttribute("rel", "noopener noreferrer"); // Security best practice
+ 
+                        downloadOption.addEventListener("click", function(event) {
+                        event.stopPropagation();
+                        });
 
                     moreDropdown.appendChild(playOption);
                     moreDropdown.appendChild(removeOption);
+                          moreDropdown.appendChild(downloadOption);
 
                     listItem.appendChild(moreButton);
                     listItem.appendChild(moreDropdown);
