@@ -419,7 +419,10 @@ border-radius: 20px;
 background-color: #23a991;
 color: #181c28;
 border: none;
-padding: 8px 16px;
+padding-top: 5px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-left: 16px;
 font-size: 15px;
 /* cursor: pointer; */
 border-radius: 8px;
@@ -1016,7 +1019,10 @@ font-size: larger;
     margin-right: 0px;
     margin-bottom: 4px;
     margin-left: 4px;
-   
+    padding-top: 6px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
   }
 
 
@@ -1260,3 +1266,52 @@ input[type="text"],
 .more-button{
     box-shadow: none;
 }
+
+.bottom {
+    background-color: #262d41;
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 80%;
+    justify-content: space-around;
+
+}
+
+.youtube {
+    width: 90%;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+ #searchInput,
+#artistSearchInput
+{
+    margin-right: 0;
+border-top-right-radius: 0;
+border-bottom-right-radius: 0;
+height: 24px;
+}
+
+#clearSearchResults{
+border-top-left-radius: 0;
+border-bottom-left-radius: 0;
+margin-left: 0;
+}
+.shuffle button{
+margin-right: 0;
+}
+input:focus,
+textarea:focus,
+select:focus,
+a:focus {
+outline: none;}
