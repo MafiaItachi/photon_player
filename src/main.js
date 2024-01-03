@@ -135,7 +135,24 @@ function startProgressInterval() {
 function stopProgressInterval() {
     clearInterval(progressInterval);
 }
+function downloadCurrentSong() {
+    if (player) {
+        var videoId = player.getVideoData().video_id;
+        if (videoId) {
+            var youtDownloadLink = 'https://v3.mp3youtube.cc/download/' + videoId;
 
+            // Create an anchor element to trigger the download
+            var downloadLink = document.createElement('a');
+            downloadLink.href = youtDownloadLink;
+            downloadLink.target = '_blank'; // Open in a new tab
+            downloadLink.click();
+        } else {
+            console.error('No video is currently playing.');
+        }
+    } else {
+        console.error('Player not initialized.');
+    }
+}
 function addToPlaylistFromVideo() {
     // Get the currently playing video's videoId
     var videoId = player.getVideoData().video_id;
