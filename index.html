@@ -7,6 +7,7 @@
     <title>PHOTON PLAYER</title>
     <script src="https://kit.fontawesome.com/bac1e9dfb2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -128,12 +129,13 @@
         <div class="con">
             <img class="video-thumbnail" src="image/songicon.jpg">
             <div class="video-title">MADE BY SHUBHAM</div>
-            <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><span class="material-icons">
-                repeat
-                </span></button>
+            
             <button id="play-pause"><span class="material-symbols-outlined">
                 play_arrow
                 </span></button>
+                <button  onclick="playNextTrack()"><span class="material-symbols-outlined">
+                     navigate_next
+                    </span></button>
         </div>
 
         <div class="seekbar2">
@@ -165,6 +167,9 @@
                         <button onclick=" downloadCurrentSong() "><span class="material-symbols-outlined">
                             download
                             </span></button>
+                            <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><span class="material-icons">
+                                repeat
+                                </span></button>
                     </div>
                     <div class="ppnbutton">
                         <button class="mini-player-previous-button" onclick="playPreviousTrack()"><span class="material-symbols-outlined">
@@ -200,7 +205,7 @@
             <div id="plistbylink">
                 <input type="text" id="playlistLinkInput" placeholder="Enter YouTube Playlist Link">
                 <button style="width: 202px;  margin: 0;" id="myplist" onclick="addPlaylist()"><span class="material-symbols-outlined">
-                    add_box
+                    add
                     </span></button>
             </div>
         </div>
