@@ -563,6 +563,11 @@ margin-left: 8px;
 }
 .bbutton{
     margin: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;  
+
+
 }
 .ppnbutton{
     
@@ -1191,7 +1196,7 @@ css for favorite-artist */
     width: 202px;
 }
 .bbutton button{
-    width: 100px;
+    width: 100%;
 }
 /* Define a class for the advanced box-shadow */
 .advanced-box-shadow {
