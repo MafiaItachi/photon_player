@@ -29,6 +29,18 @@
                 margin-top: 90px;
             }
         }
+        #lyrics-container {
+  padding: 20px;
+  color: #f5f5f5;
+
+  margin-top: 20px;
+  
+
+  line-height: 1.6;
+  overflow-y: auto;
+  max-height: 300px; /* Adjust the maximum height as needed */
+}
+
 
     </style>
 </head>
@@ -94,7 +106,7 @@
             <div class="progress-bar2"></div>
         </div>
         <div id="mini-player" class="mini-player">
-            <div class="youtube">
+            <div class="youtube"><div id="lyrics-container" style="display: none;"></div>
                 <div id="player"></div>
             </div>
 
@@ -122,6 +134,9 @@
                             <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><span class="material-icons">
                                 repeat
                                 </span></button>
+                                <button id="toggle-lyrics-btn" onclick="toggleLyrics(); togglePlayer()"><span class="material-symbols-outlined">
+                                    lyrics
+                                    </span></button>
                     </div>
                     <div class="ppnbutton">
                         <button class="mini-player-previous-button" onclick="playPreviousTrack()"><span class="material-symbols-outlined">
@@ -294,6 +309,7 @@
     <script src="src/timer.js"></script>
     <script src="src/artist.js"></script>
     <script src="src/script.js"></script>
+    <script src="src/lyrics.js"></script>
 </body>
 
 </html>

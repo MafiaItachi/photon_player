@@ -1010,11 +1010,11 @@ function onPlayerStateChange(event) {
     updatePlayPauseButton();
     updatePlayPauseButton2();
 }
-function updateVideoTitle2() {
-    var videoTitle = player.getVideoData().title;
-    var videoTitleElement = document.querySelector('.video-title2');
-    videoTitleElement.textContent = videoTitle;
-}
+// function updateVideoTitle2() {
+//     var videoTitle = player.getVideoData().title;
+//     var videoTitleElement = document.querySelector('.video-title2');
+//     videoTitleElement.textContent = videoTitle;
+// }
 function updateVideoTitleAndThumbnail(title, videoId) {
     // Find the video title and thumbnail elements in your controls
     var videoTitleElement = document.querySelector('.video-title');
