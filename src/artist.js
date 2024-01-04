@@ -1,6 +1,6 @@
 // Function to search artist's channel
 function searchArtistChannel() {
-    var channelName = document.getElementById("searchInput").value;
+    var channelName = document.getElementById("searchInput").value + " - Topic";
     var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
 
