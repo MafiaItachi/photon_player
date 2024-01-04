@@ -1315,4 +1315,28 @@ input:focus,
 textarea:focus,
 select:focus,
 a:focus {
-outline: none;}
+outline: none;
+}
+
+#lyrics-container {
+    padding: 20px;
+    color: #f5f5f5;
+
+    margin-top: 20px;
+
+
+    line-height: 1.6;
+    overflow-y: auto;
+    max-height: 280px;
+    /* Adjust the maximum height as needed */
+}
+#searchinfo{
+    width: 100%;
+}
+#searchinfo2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+}

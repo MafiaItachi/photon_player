@@ -1,7 +1,7 @@
 // Function to search artist's channel
 function searchArtistChannel() {
     var channelName = document.getElementById("searchInput").value + " - Topic";
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -26,7 +26,7 @@ function searchArtistChannel() {
 
 // Function to load artist's videos from channel
 function loadArtistVideos(channelId) {
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -130,7 +130,7 @@ function addFavoriteArtist(channelName, channelId, channelImage) {
 }
 
 function loadFavoriteArtistSongs(channelId) {
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o'; // Replace with your YouTube API key
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA'; // Replace with your YouTube API key
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -266,7 +266,7 @@ function removeFavoriteArtist(index) {
 
 
 function playArtistVideosShuffled(channelId) {
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -348,7 +348,7 @@ function playVideoOnPlayer(videoId) {
 
 
 function playArtistVideosShuffled(channelId) {
-    var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -400,7 +400,7 @@ function playFavoriteArtistVideos(artistId) {
     var artist = favoriteArtists.find(artist => artist.id === artistId);
 
     if (artist) {
-        var apiKey = 'AIzaSyC_NZ20-1F6OOuFUP8GlD6nVBybrl_IG3o';
+        var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
         var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${artistId}&type=video&key=${apiKey}`;
 
         fetch(apiUrl)

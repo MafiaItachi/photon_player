@@ -227,19 +227,34 @@ function setInitialRepeatModeIcon() {
 
 // Call the function to set the initial icon based on the default mode
 setInitialRepeatModeIcon();
-var apiKeys = ['AIzaSyD827YYUzzapoJGI_41LfXnWuP2XYeFgsE', 'AIzaSyB8I395JE6CdPKh2mULCPIss6i3rz5m7UY', 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA',]; // Array of API keys
+var apiKeys = ['AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA','AIzaSyB8I395JE6CdPKh2mULCPIss6i3rz5m7UY', 'AIzaSyDe24T4GwvUSE6QFXwsyJIIJVQelZWq5pk', ]; // Array of API keys
 var currentApiKeyIndex = 0; // Index of the current API key being used
 
+var addTopic = true; // Initial state: Adding " - Topic"
+
+function toggleTopic() {
+    addTopic = !addTopic; // Toggle the state
+    toggleButtonText(); // Change the button text
+    search(); // Perform a search after toggling
+}
+
+
+
 function search() {
-    var query = document.getElementById("searchInput").value + " - Topic";
+    var query = document.getElementById("searchInput").value;
+    if (addTopic) {
+        query += " - Topic"; // Append " - Topic" if addTopic is true
+    }
+
     var apiKey = apiKeys[currentApiKeyIndex];
 
-    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=10&key="+ apiKey;
+    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&key=" + apiKey;
 
     $.ajax({
         url: url,
         success: function (response) {
             displayResults(response);
+            showToggleButton(); // Show the toggle button after search
         },
         error: function (xhr) {
             console.log(xhr);
@@ -247,6 +262,26 @@ function search() {
     });
 }
 
+function clearSearchResults() {
+    var results = document.getElementById("results");
+    results.innerHTML = "";
+
+    document.getElementById("searchInput").value = "";
+     
+    hideToggleButton(); // Hide the toggle button after clearing search results
+    document.getElementById("artistChannel").innerHTML = "";
+    document.getElementById("artistVideos").innerHTML = "";
+}
+
+function hideToggleButton() {
+    var toggleButton = document.getElementById("searchinfo");
+    toggleButton.style.display = "none";
+}
+
+function showToggleButton() {
+    var toggleButton = document.getElementById("searchinfo");
+    toggleButton.style.display = "inline-block"; // Display the toggle button
+}
 
 
 
@@ -520,14 +555,6 @@ document.getElementById('fileInput').addEventListener('change', function (event)
 
 
 
-function clearSearchResults() {
-    var results = document.getElementById("results");
-    results.innerHTML = "";
-    document.getElementById("searchInput").value = "";
-    document.getElementById("artistChannel").innerHTML = "";
-    document.getElementById("artistVideos").innerHTML = "";
-    document.getElementById("artistSearchInput").value = "";
-}
 
 // Initialize Hammer.js on the controls section
 var controlsElement = document.getElementById('controls');
@@ -1092,3 +1119,12 @@ searchInput.addEventListener('blur', function () {
 
 
 
+function toggleButtonText() {
+    var toggleButton = document.getElementById("toggleTopic");
+    if (addTopic) {
+        toggleButton.innerHTML = '<span class="material-symbols-outlined">videocam</span>';
+    } else {
+        toggleButton.innerHTML = '<span class="material-symbols-outlined">music_video</span>';
+    }
+}
+toggleButtonText();
