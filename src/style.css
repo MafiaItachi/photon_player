@@ -559,14 +559,14 @@ margin-left: 8px;
     display: flex;
     justify-content: space-around;
     margin-top: 0px;
-    margin-right: 20px;
+    margin-right: 0px;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 0px;
     flex-direction: column;
 }
 .bbutton{
     margin: 20px;
-    width: 100%;
+    width: 115%;
     display: flex;
     justify-content: center;  
 
