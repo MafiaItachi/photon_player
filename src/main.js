@@ -231,10 +231,10 @@ var apiKeys = ['AIzaSyD827YYUzzapoJGI_41LfXnWuP2XYeFgsE', 'AIzaSyB8I395JE6CdPKh2
 var currentApiKeyIndex = 0; // Index of the current API key being used
 
 function search() {
-    var query = document.getElementById("searchInput").value;
+    var query = document.getElementById("searchInput").value + " - Topic";
     var apiKey = apiKeys[currentApiKeyIndex];
 
-    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&key=" + apiKey;
+    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=10&key="+ apiKey;
 
     $.ajax({
         url: url,
