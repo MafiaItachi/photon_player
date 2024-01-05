@@ -62,7 +62,7 @@ function onPlayerReady(event) {
     $('#play-pause').click(togglePlayPause);
     $('#play-pause2').click(togglePlayPause);
     $('#seek-bar').click(seek);
-    $('#volume-bar').click(setVolume);
+    
     $('#repeat-mode').change(changeRepeatMode);
 }
 
@@ -140,7 +140,7 @@ function downloadCurrentSong() {
         var videoId = player.getVideoData().video_id;
         if (videoId) {
             var youtDownloadLink = 'https://v3.mp3youtube.cc/download/' + videoId;
-
+            console.log(youtDownloadLink);
             // Create an anchor element to trigger the download
             var downloadLink = document.createElement('a');
             downloadLink.href = youtDownloadLink;
@@ -186,17 +186,6 @@ function seek(event) {
 
     player.seekTo(seekTime, true);
 }
-
-function setVolume(event) {
-    var volumeBar = $('#volume-bar');
-    var offsetX = event.pageX - volumeBar.offset().left;
-    var barWidth = volumeBar.outerWidth();
-    var volumeLevel = offsetX / barWidth;
-
-    player.setVolume(volumeLevel * 100);
-    $('#volume-level').css('width', offsetX + 'px');
-}
-
 function toggleRepeatMode() {
     const repeatToggle = document.getElementById('repeat-toggle');
     if (repeatMode === 'no-repeat') {
@@ -243,10 +232,10 @@ function search() {
     if (addTopic) {
         query += " - Topic"; // Append " - Topic" if addTopic is true
     }
-
+    console.log(query);
     var apiKey = getRandomAPIKey();
-
-    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&key=" + apiKey;
+    console.log(apiKey);
+    var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&maxResults=10&key=" + apiKey;
 
     $.ajax({
         url: url,
@@ -428,7 +417,7 @@ function displayPlaylist() {
             var videoTitleDiv = document.createElement("div");
             videoTitleDiv.className = "bvideo-title";
             videoTitleDiv.textContent = truncatedTitle;
-
+            console.log(videoTitleDiv);
             moreButton.innerHTML = '<span class="material-symbols-outlined">more_vert</span>';
             moreButton.className = "more-button";
             moreButton.addEventListener("click", function (index) {
@@ -455,8 +444,9 @@ function displayPlaylist() {
             removeOption.addEventListener("click", function (index) {
                 return function (event) {
                     event.stopPropagation(); // Stop event propagation to prevent triggering playlistItem onclick
+                    console.log(index);
                     removeFromPlaylist(index);
-                    toggleDropdown(index);
+                    
                 };
             }(i));
             var downloadOption = document.createElement("a");
@@ -502,6 +492,7 @@ function removeFromPlaylist(index) {
         playlistItems.splice(index, 1);
         localStorage.setItem("playlist", JSON.stringify(playlistItems));
         displayPlaylist();
+        console.log(playlistItems);
     }
 }
 
@@ -724,159 +715,6 @@ function handleVisibilityChange() {
 // Add event listener for visibility change
 document.addEventListener('visibilitychange', handleVisibilityChange);
 
-// Load the YouTube IFrame Player API asynchronously
-var tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
-var playlistIds = {
-    plist1: 'RDCLAK5uy_loGaNxpVmNaawt9htfXXYRYfm-D8xmHLY',
-    plist2: 'RDCLAK5uy_mvsCHKeFgZxCoFoMA2CClIVPvhFaJCfV8',
-    plist3: 'RDCLAK5uy_lL718gGQZgQf4jkKYjVbOXHABQCFAYuj0',
-    plist4: 'OLAK5uy_kMnLEm82tefvbEOKVUxJTPnDy64UHN1GY',
-    plist5: 'RDCLAK5uy_kGLDDW42tws3jDBNB3m8eRcn3iDWMlwd8&playnext=1&si=DaJHiYAkpyLDcjw6',
-
-};
-// Create references to the central elements
-var centralPlaylistTitle = document.getElementById('central-playlist-title');
-var centralPlaylistThumbnail = document.getElementById('central-playlist-thumbnail');
-var centralSongList = document.getElementById('central-song-list');
-
-function loadAndDisplayCentralSongList(playlistId, playlistTitle) {
-    // Display the playlist name in the central container
-    centralPlaylistTitle.textContent = playlistTitle;
-
-    // Fetch the playlist details to get the thumbnail
-    var playlistDetailsUrl =
-        'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=' +
-        playlistId +
-        '&key=' +
-        apiKey;
-
-    $.getJSON(playlistDetailsUrl, function (response) {
-        if (response.items.length > 0) {
-            var playlistThumbnailUrl = response.items[0].snippet.thumbnails.medium.url;
-
-            // Set the central playlist thumbnail
-            centralPlaylistThumbnail.src = playlistThumbnailUrl;
-        }
-    });
-
-    // Fetch and display the song list
-    var playlistItemsUrl =
-        'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=' +
-        playlistId +
-        '&key=' +
-        apiKey;
-
-    $.getJSON(playlistItemsUrl, function (response) {
-        var items = response.items;
-        centralSongList.innerHTML = ''; // Clear the central song list
-
-        items.forEach(function (item, index) {
-            var video = item.snippet;
-            var videoId = video.resourceId.videoId;
-            var videoTitle = video.title;
-            var videoThumbnailUrl = video.thumbnails.default.url;
-
-            var listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <img class="song-thumbnail" src="${videoThumbnailUrl}" alt="Video Thumbnail">
-                <div class="song-title">${videoTitle}</div>
-            `;
-
-            listItem.addEventListener('click', function () {
-                playVideo(videoId);
-            });
-
-            centralSongList.appendChild(listItem);
-        });
-    });
-}
-
-function loadPlaylist(playlistType, containerId) {
-    var playlistContainer = document.getElementById(containerId);
-    var playlistThumbnail = playlistContainer.querySelector('.playlist-thumbnail');
-    var playlistThumbnailId = containerId + "-thumbnail";
-
-    var playlistUrl =
-        'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=' +
-        playlistIds[playlistType] +
-        '&key=' +
-        apiKey;
-
-    $.getJSON(playlistUrl, function (response) {
-        var playlist = response.items[0];
-        var playlistTitle = playlist.snippet.title;
-        var playlistId = playlist.id;
-
-        playlistThumbnail.src = playlist.snippet.thumbnails.medium.url;
-
-        playlistThumbnail.addEventListener('click', function () {
-            // Load and display the central song list along with the playlist name and thumbnail
-            loadAndDisplayCentralSongList(playlistId, playlistTitle);
-        });
-    });
-}
-
-$(document).ready(function () {
-    loadPlaylist('plist1', 'playlist-plist1');
-    loadPlaylist('plist2', 'playlist-plist2');
-    loadPlaylist('plist3', 'playlist-plist3');
-    loadPlaylist('plist4', 'playlist-plist4');
-    loadPlaylist('plist5', 'playlist-plist5');
-});
-
-
-var shuffledPlaylist = []; // Define an array to store the shuffled playlist
-var currentVideoIndex = 0; // Initialize the index of the currently playing video
-
-function shuffleAndPlay2(playlistType) {
-    var playlistUrl =
-        'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=' +
-        playlistIds[playlistType] +
-        '&key=' +
-        apiKey;
-
-    $.getJSON(playlistUrl, function (response) {
-        var items = response.items;
-        shuffledPlaylist = shuffleArray(items); // Shuffle the playlist
-        var videoIds = shuffledPlaylist.map(function (item) {
-            return item.snippet.resourceId.videoId;
-        });
-
-        if (player) {
-            player.loadPlaylist(videoIds); // Load the shuffled playlist
-            player.setLoop(true);
-            player.playVideo();
-
-            // Update the controls with the first video in the shuffled playlist
-            var firstVideoId = shuffledPlaylist[0].snippet.resourceId.videoId;
-            var firstVideoTitle = shuffledPlaylist[0].snippet.title;
-
-            updateMiniPlayer(firstVideoId, firstVideoTitle);
-        }
-    });
-}
-
-// Listen for the "onStateChange" event to track when a video ends
-if (player) {
-    player.addEventListener('onStateChange', function (event) {
-        if (event.data === YT.PlayerState.ENDED) {
-            // Video ended, play the next video in the shuffled playlist
-            currentVideoIndex = (currentVideoIndex + 1) % shuffledPlaylist.length;
-            var nextVideoId = shuffledPlaylist[currentVideoIndex].snippet.resourceId.videoId;
-            var nextVideoTitle = shuffledPlaylist[currentVideoIndex].snippet.title;
-
-            player.loadVideoById(nextVideoId);
-            updateMiniPlayer(nextVideoId, nextVideoTitle);
-        }
-    });
-}
-
-
 
 
 
@@ -945,7 +783,7 @@ function updateVideoTitleAndThumbnail(title, videoId) {
     // Find the video title and thumbnail elements in your controls
     var videoTitleElement = document.querySelector('.video-title');
     var videoThumbnailElement = document.querySelector('.video-thumbnail');
-
+    console.log(videoTitleElement);
     // Split the title into words
     var words = title.split(' ');
 
@@ -962,7 +800,7 @@ function updateVideoTitleAndThumbnail(title, videoId) {
 function updateMiniPlayer(videoId, videoTitle) {
     var miniThumbnail = document.querySelector('.video-thumbnail');
     var miniTitle = document.querySelector('.video-title');
-
+    console.log(miniTitle);
     // Split the video title into words and limit to 5 words
     var words = videoTitle.split(' ').slice(0, 5);
     var truncatedTitle = words.join(' ');
@@ -1067,7 +905,6 @@ var tag = document.createElement('script');
 tag.src = 'https://www.youtube.com/iframe_api';
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-displaySavedPlaylists();
 
 function shareCurrentVideo() {
     var currentVideoId = getCurrentVideoId();

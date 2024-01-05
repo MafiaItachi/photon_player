@@ -4,7 +4,7 @@ function fetchLyrics(artist, songTitle, videoChannel) {
   fetch(apiUrl)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok.');
+        console.log('error in lyrics');
       }
       return response.json();
     })
@@ -20,7 +20,7 @@ function fetchLyrics(artist, songTitle, videoChannel) {
       }
     })
     .catch(error => {
-      console.error('Error fetching lyrics:', error);
+      console.log('Error fetching lyrics:');
       displayLyrics('Error fetching lyrics');
     });
 }
@@ -29,6 +29,7 @@ function updateVideoTitle2() {
   var videoData = player.getVideoData();
   var videoTitle = videoData.title;
   var videoChannel = videoData.author;
+  console.log(videoChannel, videoTitle);
   var channelWords = videoChannel.split(' ');
   if (channelWords.length > 2) {
    videoChannel = channelWords.slice(0, -2).join(' ');
@@ -42,12 +43,15 @@ function updateVideoTitle2() {
   } else {
     // If title doesn't follow the specified format, try fetching lyrics using video channel as artist
     fetchLyrics(videoChannel, videoTitle, videoChannel);
+   
   }
 
   
 
   var updatedTitle = `${videoTitle} (${videoChannel})`;
+  console.log(updatedTitle);
   var videoTitleElement = document.querySelector('.video-title2');
+  
   videoTitleElement.textContent = updatedTitle;
 }
 

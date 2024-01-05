@@ -6,13 +6,14 @@ function searchArtistChannel() {
     console.log(apiKey);
     fetch(apiUrl)
         .then(response => response.json())
-        .then(data => {
+        .then(data => { 
             if (data.items && data.items.length > 0) {
                 var channelId = data.items[0].id.channelId;
                 var channelName = data.items[0].snippet.channelTitle;
                 var channelLink = `https://www.youtube.com/channel/${channelId}`;
                 var channelImage = data.items[0].snippet.thumbnails.medium.url;
                 displayArtistChannel(channelName, channelId, channelImage);
+                console.log(channelName, channelId, channelImage);
                 loadArtistVideos(channelId);
             } else {
                 alert("No channel found for the artist.");
