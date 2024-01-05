@@ -65,9 +65,9 @@ function revealSongs(playlistId) {
   songListContainer.innerHTML = '';
 
   // Fetch playlist items using YouTube Data API
-  var apiKey = getRandomAPIKey();
+  var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
   var playlistItemsUrl =
-      'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=' +
+      'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' +
       playlistId +
       '&key=' +
       apiKey;
@@ -197,7 +197,7 @@ var shuffledPlaylist = [];
 // Function to shuffle and play songs from a playlist
 function shuffleAndPlaySongs(playlistId) {
     // Fetch playlist items using YouTube Data API
-    var apiKey = getRandomAPIKey();
+    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
     var playlistItemsUrl =
         'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' +
         playlistId +
@@ -263,4 +263,6 @@ function playVideo(videoId) {
     }
 }
 
+// Example usage (call this function when clicking the shuffle button)
+shuffleAndPlaySongsFromPlaylist('YOUR_PLAYLIST_ID');
 
