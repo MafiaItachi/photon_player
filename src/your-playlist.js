@@ -62,9 +62,9 @@ function getPlaylistIdFromLink(link) {
 function revealSongs(playlistId) {
   // Clear the existing song list
   var songListContainer = document.getElementById('songListContainer');
-  songListContainer.innerHTML = '';
+  songListContainer.innerHTML = '<span style="margin-left: 35%;margin-right: 6px;color: white;font-size: larger;">SONGS</span><button onclick="clearplistsong()" style="margin: 11px;height: 30px;padding: 4px;width: 33px;"><span class="material-symbols-outlined">cancel</span></button>';
 
-  // Fetch playlist items using YouTube Data API
+  // Fetch playlist items using YouTube Data API<button onclick="clearfavsong()" style="margin: 11px;height: 30px;padding: 4px;width: 33px;">…</button>
   var apiKey = getRandomAPIKey();
   var playlistItemsUrl =
       'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=' +
@@ -116,7 +116,14 @@ function revealSongs(playlistId) {
       songListContainer.appendChild(songList);
   });
 }
-
+function clearplistsong() {
+    var songListContainer = document.getElementById('songListContainer');
+    if (songListContainer) {
+        songListContainer.innerHTML = '';
+        // Optionally, you can hide the song list container as well by setting its display to 'none'
+        // songListContainer.style.display = 'none';
+    }
+}
 function displaySavedPlaylists() {
     var savedPlaylists = JSON.parse(localStorage.getItem('savedPlaylists')) || [];
     var playlistsSection = document.getElementById('addedPlaylists');
@@ -262,4 +269,3 @@ function playVideo(videoId) {
         player.playVideo();
     }
 }
-
