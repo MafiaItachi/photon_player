@@ -1,9 +1,9 @@
 // Function to search artist's channel
 function searchArtistChannel() {
     var channelName = document.getElementById("searchInput").value + " - Topic";
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = getRandomAPIKey();
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${channelName}&key=${apiKey}`;
-
+    console.log(apiKey);
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -26,9 +26,9 @@ function searchArtistChannel() {
 
 // Function to load artist's videos from channel
 function loadArtistVideos(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = getRandomAPIKey();
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
-
+    console.log(apiKey);
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -41,6 +41,11 @@ function loadArtistVideos(channelId) {
         .catch(error => {
             console.error('Error fetching videos:', error);
         });
+}
+// Function to toggle visibility of artistVideos div
+function toggleArtistVideosDisplay() {
+    var videosDiv = document.getElementById("artistVideos");
+    videosDiv.style.display = videosDiv.style.display === "none" ? "block" : "none";
 }
 
 function displayArtistChannel(channelName, channelId, channelImage) {
@@ -83,11 +88,8 @@ function displayArtistChannel(channelName, channelId, channelImage) {
         
     });
 
-    // Toggle visibility of artistVideos div
-    artistChannel.addEventListener("click", function () {
-        var videosDiv = document.getElementById("artistVideos");
-        videosDiv.style.display = videosDiv.style.display === "none" ? "block" : "none";
-    });
+    // Toggle visibility of artistVideos div when artistChannel is clicked
+    artistChannel.addEventListener("click", toggleArtistVideosDisplay);
 }
 
 
@@ -130,7 +132,7 @@ function addFavoriteArtist(channelName, channelId, channelImage) {
 }
 
 function loadFavoriteArtistSongs(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA'; // Replace with your YouTube API key
+    var apiKey = getRandomAPIKey(); // Replace with your YouTube API key
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=100&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -266,7 +268,7 @@ function removeFavoriteArtist(index) {
 
 
 function playArtistVideosShuffled(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = getRandomAPIKey();
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -348,7 +350,7 @@ function playVideoOnPlayer(videoId) {
 
 
 function playArtistVideosShuffled(channelId) {
-    var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+    var apiKey = getRandomAPIKey();
     var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&maxResults=50&key=${apiKey}`;
 
     fetch(apiUrl)
@@ -400,7 +402,7 @@ function playFavoriteArtistVideos(artistId) {
     var artist = favoriteArtists.find(artist => artist.id === artistId);
 
     if (artist) {
-        var apiKey = 'AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA';
+        var apiKey = getRandomAPIKey();
         var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${artistId}&type=video&key=${apiKey}`;
 
         fetch(apiUrl)

@@ -227,8 +227,6 @@ function setInitialRepeatModeIcon() {
 
 // Call the function to set the initial icon based on the default mode
 setInitialRepeatModeIcon();
-var apiKeys = ['AIzaSyCm3Ezp_uPaNeMjOTXMYVM0FmQ015auYeA','AIzaSyB8I395JE6CdPKh2mULCPIss6i3rz5m7UY', 'AIzaSyDe24T4GwvUSE6QFXwsyJIIJVQelZWq5pk', ]; // Array of API keys
-var currentApiKeyIndex = 0; // Index of the current API key being used
 
 var addTopic = true; // Initial state: Adding " - Topic"
 
@@ -246,7 +244,7 @@ function search() {
         query += " - Topic"; // Append " - Topic" if addTopic is true
     }
 
-    var apiKey = apiKeys[currentApiKeyIndex];
+    var apiKey = getRandomAPIKey();
 
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + query + "&type=video&key=" + apiKey;
 
@@ -263,6 +261,9 @@ function search() {
 }
 
 function clearSearchResults() {
+    var artistVideosDiv = document.getElementById("artistVideos");
+    artistVideosDiv.innerHTML = "";
+    artistVideosDiv.style.display = "none"; 
     var results = document.getElementById("results");
     results.innerHTML = "";
 
@@ -364,7 +365,7 @@ function displayResults(response) {
 
         results.appendChild(div);
     }
-    currentApiKeyIndex = (currentApiKeyIndex + 1) % apiKeys.length;
+    
 }
 
 
@@ -668,7 +669,7 @@ function extractPlaylistId(playlistLink) {
 }
 
 function fetchPlaylistItems(playlistId) {
-    var apiKey = apiKeys[currentApiKeyIndex];
+    var apiKey = getRandomAPIKey();
     var url =
         "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=100&playlistId=" +
         playlistId +
