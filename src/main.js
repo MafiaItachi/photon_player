@@ -970,3 +970,17 @@ function toggleButtonText() {
     }
 }
 toggleButtonText();
+
+
+
+
+
+function endCurrentSong() {
+    if (player) {
+        // Pause the video (optional, if you want to pause before ending)
+        player.pauseVideo();
+
+        // Jump to the end of the video to simulate song completion
+        player.seekTo(player.getDuration(), true);
+    }
+}
