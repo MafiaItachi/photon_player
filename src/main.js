@@ -200,7 +200,7 @@ function toggleRepeatMode() {
     }
 }
 
-var repeatMode = "no-repeat"; // Set the default repeat mode to "no-repeat"
+// var repeatMode = "no-repeat"; Set the default repeat mode to "no-repeat"
 
 // Function to set the initial repeat mode icon based on the default value
 function setInitialRepeatModeIcon() {
@@ -360,6 +360,8 @@ function displayResults(response) {
 
 
 function playVideos(videoId) {
+    repeatMode = 'repeat-all';
+    console.log(repeatMode);
     if (player) {
         currentVideoIndex = playlistItems.findIndex(item => item.videoId === videoId);
         player.loadVideoById(videoId);
@@ -554,7 +556,7 @@ var controlsHammer = new Hammer(controlsElement);
 
 // Detect swipe gestures
 controlsHammer.on('swipeleft', function () {
-    playNextTrack();
+    endCurrentSong();
 });
 
 controlsHammer.on('swiperight', function () {
@@ -613,6 +615,8 @@ function hideMiniPlayer() {
 
 
 function shuffleAndPlay() {
+    repeatMode = 'repeat-all';
+    console.log(repeatMode);
     var storedPlaylist = localStorage.getItem("playlist");
     if (!storedPlaylist) {
         alert("Playlist is empty. Add videos to the playlist first.");
