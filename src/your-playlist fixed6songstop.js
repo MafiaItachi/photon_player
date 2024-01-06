@@ -199,18 +199,18 @@ displaySavedPlaylists();
 
 
 var shuffledPlaylist = [];
-
+var isShuffling = false;
+// Function to shuffle playlist items
+// Function to shuffle and play songs from a playlist
 // Function to shuffle and play songs from a playlist
 async function shuffleAndPlaySongs(playlistId) {
-    // Set shufflePlaying to true when shuffleAndPlaySongs is called
-    repeatMode = 'no-repeat';
-
-    var apiKey = getRandomAPIKey();// Replace 'YOUR_API_KEY' with your actual YouTube Data API key
+    var apiKey = 'AIzaSyD827YYUzzapoJGI_41LfXnWuP2XYeFgsE'; // Replace 'YOUR_API_KEY' with your actual YouTube Data API key
     var playlistItemsUrl =
         'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' +
         playlistId +
         '&key=' +
         apiKey;
+
     try {
         const response = await fetch(playlistItemsUrl);
         const data = await response.json();
@@ -225,10 +225,9 @@ async function shuffleAndPlaySongs(playlistId) {
         await playVideosSequentially(videoIds);
     } catch (error) {
         console.error('Error fetching playlist items:', error);
-    }  
-   
+    }
 }
- 
+
 // Function to play videos sequentially
 async function playVideosSequentially(videoIds) {
     for (let i = 0; i < videoIds.length; i++) {

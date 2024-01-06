@@ -76,6 +76,7 @@ function updateProgressBar() {
     $('.progress-bar2').css('width', progress + '%');
 }
 function handleVideoEnd() {
+    
     if (repeatMode === "repeat-one") {
         player.playVideo();
     } else if (repeatMode === "repeat-all") {
@@ -87,17 +88,10 @@ function handleVideoEnd() {
     } else {
         isPlaying = false;
         updatePlayPauseButton();
-        updatePlayPauseButton2();
     }
 }
+
 // Function to play the next track
-function playNextTrack() {
-    currentVideoIndex++;
-    if (currentVideoIndex >= playlistItems.length) {
-        currentVideoIndex = 0;
-    }
-    playVideo(playlistItems[currentVideoIndex].videoId);
-}
 
 // Function to play the previous track
 function playPreviousTrack() {
@@ -200,7 +194,7 @@ function toggleRepeatMode() {
     }
 }
 
-// var repeatMode = "no-repeat"; Set the default repeat mode to "no-repeat"
+ //var repeatMode = "repeat-all"; Set the default repeat mode to "no-repeat"
 
 // Function to set the initial repeat mode icon based on the default value
 function setInitialRepeatModeIcon() {
@@ -556,21 +550,13 @@ var controlsHammer = new Hammer(controlsElement);
 
 // Detect swipe gestures
 controlsHammer.on('swipeleft', function () {
-    endCurrentSong();
+    playNextTrack();
 });
 
 controlsHammer.on('swiperight', function () {
     playPreviousTrack();
 });
 
-// Function to play the next track
-function playNextTrack() {
-    currentVideoIndex++;
-    if (currentVideoIndex >= playlistItems.length) {
-        currentVideoIndex = 0;
-    }
-    playVideo(playlistItems[currentVideoIndex].videoId);
-}
 
 // Function to play the previous track
 function playPreviousTrack() {
@@ -970,7 +956,6 @@ function toggleButtonText() {
     }
 }
 toggleButtonText();
-
 
 
 
