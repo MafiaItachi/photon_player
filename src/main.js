@@ -550,7 +550,7 @@ var controlsHammer = new Hammer(controlsElement);
 
 // Detect swipe gestures
 controlsHammer.on('swipeleft', function () {
-    playNextTrack();
+    endCurrentSong();
 });
 
 controlsHammer.on('swiperight', function () {
