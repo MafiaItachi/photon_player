@@ -459,9 +459,10 @@ function displayPlaylist() {
             moreDropdown.appendChild(playOption);
             moreDropdown.appendChild(removeOption);
             moreDropdown.appendChild(downloadOption);
-
-            listItem.appendChild(moreButton);
+            
             listItem.appendChild(moreDropdown);
+            listItem.appendChild(moreButton);
+            
             playlistItem.appendChild(thumbnail);
             playlistItem.appendChild(videoTitleDiv);
             playlistItem.appendChild(listItem);
