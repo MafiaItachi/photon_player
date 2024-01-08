@@ -34,6 +34,9 @@ function updateVideoTitle2() {
   if (channelWords.length > 2) {
    videoChannel = channelWords.slice(0, -2).join(' ');
  }
+ videoTitle = videoTitle.replace(/\([^()]*\)|\[[^\[\]]*\]/g, '').trim();
+ videoTitle = videoTitle.replace(/\sft\.\s.*$/, '').trim();
+ videoTitle = videoTitle.replace(/\sFeat\.\s.*$/, '').trim();
 
   var splitTitle = videoTitle.split(' - ');
   if (splitTitle.length === 2) {

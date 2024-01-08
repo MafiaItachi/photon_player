@@ -289,6 +289,7 @@ function playArtistVideosShuffled(channelId) {
         });
 }
 
+
 function playShuffledVideos(videos) {
     var videoIds = videos.map(video => video.id.videoId);
     var currentIndex = 0;
@@ -315,7 +316,14 @@ function playShuffledVideos(videos) {
 
 
 
-
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
 
 
@@ -407,14 +415,15 @@ function playFavoriteArtistVideos(artistId) {
 
     if (artist) {
         var apiKey = getRandomAPIKey();
-        var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${artistId}&type=video&key=${apiKey}`;
+        var apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${artistId}&type=video&maxResults=50&key=${apiKey}`;
 
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 if (data.items && data.items.length > 0) {
-                    var videoIds = data.items.map(item => item.id.videoId);
-                    playVideosSequentially(videoIds);
+                    var videos = data.items;
+                    shuffleArray(videos);
+                    playShuffledVideos(videos);
                 } else {
                     alert("No videos found for the artist.");
                 }
@@ -424,6 +433,7 @@ function playFavoriteArtistVideos(artistId) {
             });
     }
 }
+
 
 function playVideosSequentially(videoIds) {
     var currentVideoIndex = 0;
