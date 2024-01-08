@@ -63,9 +63,9 @@
         <button onclick="clearPlaylist()"><span class="material-symbols-outlined">
                 delete
             </span></button>
-        <button onclick="stopVideo()"><span class="material-symbols-outlined">
-                pause
-            </span></button>
+            <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><span class="material-icons">
+                repeat
+                </span></button>
         <button onclick="shuffleAndPlay()"><span class="material-symbols-outlined">
                 shuffle
             </span></button>
@@ -129,10 +129,6 @@
                             </span></button>
                         <button onclick=" downloadCurrentSong() "><span class="material-symbols-outlined">
                                 download
-                            </span></button>
-                        <button id="repeat-toggle" class="repeat-option" onclick="toggleRepeatMode()"><span
-                                class="material-icons">
-                                repeat
                             </span></button>
                         <button id="toggle-lyrics-btn" onclick="toggleLyrics(); togglePlayer()"><span
                                 class="material-symbols-outlined">
