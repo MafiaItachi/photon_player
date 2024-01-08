@@ -184,13 +184,13 @@ function toggleRepeatMode() {
     const repeatToggle = document.getElementById('repeat-toggle');
     if (repeatMode === 'no-repeat') {
         repeatMode = 'repeat-all';
-        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_on</span>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
     } else if (repeatMode === 'repeat-all') {
         repeatMode = 'repeat-one';
         repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_one</span>';
     } else {
         repeatMode = 'no-repeat';
-        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">stop_circle</span>';
     }
 }
 
@@ -200,9 +200,9 @@ function toggleRepeatMode() {
 function setInitialRepeatModeIcon() {
     const repeatToggle = document.getElementById('repeat-toggle');
     if (repeatMode === 'no-repeat') {
-        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">stop_circle</span>';
     } else if (repeatMode === 'repeat-all') {
-        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_on</span>';
+        repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
     } else {
         repeatToggle.innerHTML = '<span class="material-symbols-outlined">repeat_one</span>';
     }
@@ -690,24 +690,6 @@ function processPlaylistItems(items) {
 }
 
 displayPlaylist();
-
-function handleVisibilityChange() {
-    if (document.visibilityState === 'visible') {
-        if (isPlaying) {
-            player.playVideo();
-        }
-    } else {
-        if (isPlaying) {
-            player.pauseVideo();
-        }
-    }
-}
-
-// Add event listener for visibility change
-document.addEventListener('visibilitychange', handleVisibilityChange);
-
-
-
 
 function shuffleArray(array) {
     var currentIndex = array.length,

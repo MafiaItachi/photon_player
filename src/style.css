@@ -1171,6 +1171,7 @@ css for favorite-artist */
 }
 .favorite-artist img{
     border-radius: 8px;
+    width: 150px;
 
 }
 .favorite-artist-song {

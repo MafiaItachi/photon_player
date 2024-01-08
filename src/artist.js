@@ -210,7 +210,7 @@ function loadFavoriteArtistsOnLoad() {
         var channelImg = document.createElement("img");
         channelImg.src = artist.image;
         channelImg.alt = "Channel Image";
-        channelImg.style.width = "150px"; // Adjust image size if needed
+        //channelImg.style.width = "150px";  Adjust image size if needed
 
         var channelParagraph = document.createElement("p");
         channelParagraph.textContent = artist.name;
