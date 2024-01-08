@@ -11,6 +11,7 @@ function fetchLyrics(artist, songTitle, videoChannel) {
     .then(data => {
       if (data.lyrics) {
         displayLyrics(data.lyrics);
+        return; // Stop function execution here after displaying lyrics
       } else {
         if (videoChannel) {
           fetchLyrics(videoChannel, songTitle); // Try fetching lyrics using video channel as artist
@@ -24,6 +25,8 @@ function fetchLyrics(artist, songTitle, videoChannel) {
       displayLyrics('Error fetching lyrics');
     });
 }
+
+
 
 function updateVideoTitle2() {
   var videoData = player.getVideoData();
