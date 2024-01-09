@@ -938,10 +938,27 @@ toggleButtonText();
 
 function endCurrentSong() {
     if (player) {
-        // Pause the video (optional, if you want to pause before ending)
         player.pauseVideo();
-
-        // Jump to the end of the video to simulate song completion
         player.seekTo(player.getDuration(), true);
+    }
+}
+
+var previousRepeatMode = repeatMode;
+
+function toggleRepeatOneMode() {
+    if (repeatMode !== "repeat-one") {
+        previousRepeatMode = repeatMode;
+        repeatMode = "repeat-one";
+    } else {
+        repeatMode = previousRepeatMode;
+    }
+    updateRepeatModeButton();
+}
+function updateRepeatModeButton() {
+    var repeatButton = document.getElementById('repeat-button');
+    if (repeatMode === "repeat-one") {
+        repeatButton.innerHTML = '<span class="material-symbols-outlined">repeat_one</span>';
+    } else {
+        repeatButton.innerHTML = '<span class="material-symbols-outlined">repeat</span>';
     }
 }
