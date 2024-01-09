@@ -69,22 +69,40 @@ height: 100vh;
     background-color: #181c28;
 }
 .con{
-    background-color: #455174;;
+    /* background-color: #455174; */
+    height: 99%;
 }
 
 #controls{
     background-color: #455174;
     border-radius: 10px;
     padding: 0;
+    height: 120px;
+    margin-top: 5px;
    
+}
+.video-thumbnail {
+    height: 90px;
+    margin-left: 15px;
+    margin-right: 5px;
 }
 .bottom{
     background-color: #455174;
+    justify-content: none;
+    height: 89%;
+    PADDING-BOTTOM: 40PX;
+    margin-top: 5px;
+}.video-title2 {
+    margin: 0px;
+    padding: 0px;
+    height: 0px;
 }
+
+
 .youtube{
     width: 97%;
     padding: 0;
-    height: 115%;
+    height: 125%;
 }
 
 #player{
@@ -95,6 +113,7 @@ height: 100vh;
 }
 button{
     height: 50px;
+    width: 100.4px;
 }
 input[type="text"] {
     height: 34px;
@@ -156,15 +175,35 @@ input[type="text"] {
 
 }
 
+/* your playlist */
+
+
+.playlist {
+    width: 235px;
+}
+.yourplaylist-thumbnail {
+    height: 200px;
+    WIDTH: 235px;
+}
+.playlist-buttons button {
+
+    height: 57px;
+    width: 57px;
+}
 
 
 
-
-
-
-
-
-
+#plistbylink {
+    height: 269px;
+    width: 100%;
+}
+#plistbylink input[type="text"] {
+    height: 215px;
+    width: 203px;
+}
+#myplist{
+    width: 233px;
+}
 
 
 
