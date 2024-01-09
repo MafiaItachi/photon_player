@@ -91,7 +91,7 @@ height: 100vh;
     height: 100%;
 }
 .playlist-item img {
-    height: 60px;
+    height: 67px;
 }
 button{
     height: 50px;
@@ -114,6 +114,64 @@ input[type="text"] {
 
     HEIGHT: 62PX;
 }
+.result-item img {
+    height: 115px;
+}
+
+
+#artistChannel img {
+    margin: 6PX;
+
+    height: 150px;
+}
+
+#artistVideos img {
+    height: 104px;
+    width: 162px;
+
+}
+#artistChannel button {
+    height: 151PX;
+    width: 141px;
+}
+.song-thumbnail {
+    height: 67px;
+}
+.trending-song-list li img {
+    
+    height: 67px;
+
+}
+.result-details {
+    width: 100%;
+}
+.result-buttons {
+
+    width: 100%;
+}
+.result-buttons button {
+
+    height: 49px;
+    width: 48%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
