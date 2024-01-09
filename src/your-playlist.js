@@ -222,7 +222,6 @@ displaySavedPlaylists();
 
 
 var shuffledPlaylist = [];
-// Function to shuffle and play songs from a playlist
 async function shuffleAndPlaySongs(playlistId) {
     // Set shufflePlaying to true when shuffleAndPlaySongs is called
     repeatMode = 'no-repeat';
@@ -244,34 +243,52 @@ async function shuffleAndPlaySongs(playlistId) {
         }
 
         const videoIds = items.map(item => item.snippet.resourceId.videoId);
-        
+
         // Shuffle the video IDs
         const shuffledVideoIds = shuffleArray2(videoIds);
 
-        // Play the shuffled videos sequentially
-        await playVideosSequentially(shuffledVideoIds);
+        // Play the shuffled videos sequentially, skipping unavailable videos
+        await playVideosSequentiallySkippingUnavailable(shuffledVideoIds);
     } catch (error) {
         console.error('Error fetching playlist items:', error);
     }
 }
 
 
-
-// Function to play videos shuffled
-async function playVideosShuffled(videoIds) {
-    // Shuffle the array of video IDs and play videos in a shuffled order
-    const shuffledVideoIds = shuffleArray2(videoIds);
-
-    for (let i = 0; i < shuffledVideoIds.length; i++) {
-        await playVideoPromise(shuffledVideoIds[i]);
+async function playVideosSequentiallySkippingUnavailable(videoIds) {
+    let currentIndex = 0;
+    while (repeatMode !== 'no-repeat' || currentIndex < videoIds.length) {
+        try {
+            await playVideoPromise(videoIds[currentIndex]);
+        } catch (error) {
+            console.error('Error playing video:', error);
+            // If there's an error playing the video (e.g., video unavailable), proceed to the next video
+            currentIndex++;
+            continue;
+        }
+        if (repeatMode === 'repeat-one') {
+            // If in repeat-one mode, continue playing the same video until repeatMode changes
+            continue;
+        }
+        currentIndex++;
+        if (currentIndex >= videoIds.length && repeatMode === 'repeat-all') {
+            // If at the end of the playlist and in repeat-all mode, start over
+            currentIndex = 0;
+        }
     }
 }
 
 
-// Function to play a video with a promise
 function playVideoPromise(videoId) {
     return new Promise((resolve, reject) => {
         playVideo(videoId);
+        player.addEventListener('onError', function onPlayerError(event) {
+            if (event.data === 100 || event.data === 101 || event.data === 150) {
+                // Error codes 100, 101, and 150 represent unavailable videos
+                player.removeEventListener('onError', onPlayerError);
+                reject('Video unavailable');
+            }
+        });
         player.addEventListener('onStateChange', function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.ENDED) {
                 player.removeEventListener('onStateChange', onPlayerStateChange);
@@ -279,14 +296,6 @@ function playVideoPromise(videoId) {
             }
         });
     });
-}
-
-// Function to play a video in the YouTube iframe player
-function playVideo(videoId) {
-    if (player) {
-        player.loadVideoById(videoId);
-        player.playVideo();
-    }
 }
 
 // Shuffle function to shuffle an array
@@ -307,6 +316,30 @@ function shuffleArray2(array) {
 
 
 
+
+
+
+
+
+
+
+// Function to play a video in the YouTube iframe player
+function playVideo(videoId) {
+    if (player) {
+        player.loadVideoById(videoId);
+        player.playVideo();
+    }
+}
+
+// Function to play videos shuffled
+async function playVideosShuffled(videoIds) {
+    // Shuffle the array of video IDs and play videos in a shuffled order
+    const shuffledVideoIds = shuffleArray2(videoIds);
+
+    for (let i = 0; i < shuffledVideoIds.length; i++) {
+        await playVideoPromise(shuffledVideoIds[i]);
+    }
+}
 
 
 // function revealSongs(playlistId) {
