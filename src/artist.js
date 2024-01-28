@@ -467,35 +467,9 @@ function clearArtistSearchResults() {
     document.getElementById("artistVideos").innerHTML = "";
      document.getElementById("artistSearchInput").value = "";
 }
-function simulateBackGesture() {
-    isPlaylistContainerVisible = true;
-    togglePlaylistContainerVisibility();
-    // Restore the visibility of the favoriteArtistsContainer
-    isFavoriteArtistsContainerVisible = true;
-    toggleFavoriteArtistsContainerVisibility();
-  // Push a state with a custom property to indicate the back gesture
-  window.history.pushState(
-    { backGesture: true },
-    document.title,
-    location.href
-  );
-}
 
-// Update the popstate event listener to check for the backGesture property
-window.addEventListener("popstate", function (event) {
-  // Check if the event is due to a navigation back and if the backGesture property is set
-  if (event.state && event.state.backGesture) {
-    // Perform the desired function (clearfavsong() in this case)
-    clearfavsong();
-  }
-});
+
 function clearfavsong() {
-  document.getElementById("favoriteArtistSongs").innerHTML = "";
-  isPlaylistContainerVisible = true;
-  togglePlaylistContainerVisibility();
-  // Restore the visibility of the favoriteArtistsContainer
-  isFavoriteArtistsContainerVisible = true;
-  toggleFavoriteArtistsContainerVisibility();
-  // Simulate the back gesture
-  simulateBackGesture();
+    document.getElementById("favoriteArtistSongs").innerHTML = "";
+
 }
